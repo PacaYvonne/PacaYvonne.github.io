@@ -21,62 +21,119 @@
     
     <!-- Load main JavaScript -->
     <script src="assets/js/main.js" defer></script>
+    <style>
+        .w-70 { width: 70% !important; }
+
+        .title-bar {
+            margin: 0;
+            text-align: center;
+            border-radius: 0.375rem;
+            
+            /* Fluid padding — smaller on mobile, bigger on desktop */
+            padding: clamp(0.3rem, 1vw, 0.6rem) clamp(0.5rem, 2vw, 0.9rem);
+            /* Fluid font size */
+            font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+            
+        }
+
+
+        .card-img-top {
+        height: auto;
+        max-width: 100%;
+        display: block;
+        }
+        .card {
+            gap: 10px;
+        }
+        /* Let the cards shrink in height too */
+        .card-body p {
+        font-size: clamp(0.3rem, 2.5vw, 1rem);
+        }
+
+        /* On mobile (Bootstrap's sm breakpoint and below) */
+        @media (max-width: 576px) {
+            .w-70 {
+                width: 100% !important;
+            }
+        }
+
+    </style>
 </head>
 <body>
     <main>
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="row">
-                        <div class="col-12">
-                            <section class="featured-content">
-                                <h3>Latest Blog Postsposts</h3>
-                            </section>
-                        </div>
-                        <div class="col-12">
-                            <article>
-                                <h4><a href="blog/egg-powder-for-cat-allergies.html">Can Feeding Egg Powder Help With Cat Allergies?</a></h4>
-                                <p>Learn about the science behind egg powde11r and how it can help with cat allergies.</p>
-                            </article>
-                        </div>
-                        <div class="col-12"> 
-                            <article>
-                                <h4><a href="blog/worst-cats-for-allergies.html">Allergic to Cats? A List Of Cat Breeds You Should Avoid</a></h4>
-                                <p>A list of cat breeds that are the worst for allergies, including Persian, British Longhair, and Himalayan.</p>
-                            </article>
-                        </div>
-                        <div class="col-12"> 
-                            <article>
-                                <h4><a href="blog/how-to-help-allergy-fatigue.html">How To Help Allergy Fatigue</a></h4>
-                                <p>Practical tips and strategies to help you overcome allergy-induced fatigue, specifically focusing on cat allergies.</p>
-                            </article>
-                        </div>
-                        <div class="col-12"> 
-                            <article>
-                                <h4><a href="blog/understanding-fel-d-1.html">Understanding Fel d 1: The Cat Allergen</a></h4>
-                                <p>A deep dive into the science of Fel d 1, the primary cat allergen responsible for the majority of allergic responses to cats.</p>
-                            </article>
-                        </div>
-                        <div class="col-12"> 
-                            <article>
-                                <h4><a href="blog/dust-mite-allergies.html">Dust Mite Allergies: What You Need To Know</a></h4>
-                                <p>Learn about dust mite allergies, including what they are, how they affect you, and how to manage them.</p>
-                            </article>
-                        </div>                            
+            <section class="w-70 mx-auto my-4">
+                <div class="row row-cols-2 g-3">
+              
+                  <!-- Slot 1 -->
+                  <div class="col">
+                    <div class="card h-100 border-0">
+                        <a href="https://cleanhomehacks.com/listicle1.html">
+                            <img src="assets/images/1.png" class="card-img-top" alt="...">
+                        </a>
+                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="card-body">
+                        <a href="https://cleanhomehacks.com/listicle1.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                I Am A Busy Mom Who Hates Cleaning And These 5 Products Changed Everything
+                            </p>
+                        </a>
+                      </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="assets/images/img-dog-silent.webp" alt="Dog Silent" class="img-fluid">
-                        </div>    
-                        <div class="col-12">
-                            <h3>Everyone deals with allergies differently</h3>
-                            <p>Take our quiz to find out how you deal with allergies</p>
-                            <a href="quiz.html" class="btn btn-primary">Take the quiz</a>
-                        </div>                            
+                  </div>
+              
+                  <!-- Slot 2 -->
+                  <div class="col">
+                    <div class="card h-100 border-0">
+                        <a href="image-link.html">
+                            <img src="assets/images/2.png" class="card-img-top" alt="...">
+                        </a>
+                      <h5 class="title-bar bg-primary text-white">Home Deco</h5>
+                      <div class="card-body">
+                        <a href="description-link.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                I Am A Busy Mom Who Hates Cleaning And These 5 Products Changed Everything
+                            </p>
+                        </a>
+                      </div>
                     </div>
+                  </div>
+              
+                  <!-- Duplicate more .col blocks as needed -->
+                  <div class="col">
+                    <div class="card h-100 border-0">
+                        <a href="image-link.html">
+                            <img src="assets/images/3.png" class="card-img-top" alt="...">
+                        </a>
+                      <h5 class="title-bar bg-primary text-white">Home Deco</h5>
+                      <div class="card-body">
+                        <a href="description-link.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                I Am A Busy Mom Who Hates Cleaning And These 5 Products Changed Everything
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <div class="col">
+                    <div class="card h-100 border-0">
+                        <a href="image-link.html">
+                            <img src="assets/images/5.png" class="card-img-top" alt="...">
+                        </a>
+                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="card-body">
+                        <a href="description-link.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                I Am A Busy Mom Who Hates Cleaning And These 5 Products Changed Everything
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+              
                 </div>
+              </section>
             </div>
         </div>
     </main>

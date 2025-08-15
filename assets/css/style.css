@@ -5,6 +5,46 @@
     box-sizing: border-box;
 }
 
+.site-header {
+    /* Grid makes centering dead simple and responsive */
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* left icon | logo | right icon */
+    align-items: center;
+    gap: clamp(0.5rem, 2vw, 1rem);
+  
+    background: #fff;
+    padding: clamp(0.4rem, 2vw, 0.8rem) clamp(0.8rem, 3vw, 1.2rem);
+    /* Let content define height instead of hard-coding */
+    min-height: clamp(56px, 10vw, 88px);
+    box-sizing: border-box;
+  }
+  
+  /* Icons scale slightly with viewport */
+  .menu-icon,
+  .search-icon {
+    font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+    cursor: pointer;
+    background: none;
+    border: 0;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  /* Center the logo cell */
+  .logo {
+    justify-self: center;
+  }
+  
+  /* Fluid logo height with a sensible min/max */
+  .logo img {
+    height: clamp(36px, 12vw, 72px);
+    width: auto;
+    display: block;
+    /* Prevent the logo from colliding with icons on very narrow screens */
+    max-width: min(60vw, 420px);
+  }
+  
+  
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
@@ -213,6 +253,22 @@ footer {
         padding: 1rem;
     }
 }
+
+
+/* Optional: tighten spacing on very small screens */
+@media (max-width: 400px) {
+    .site-header {
+      gap: 0.4rem;
+    }
+  }
+  
+  /* Optional: give icons larger hit targets on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .menu-icon,
+    .search-icon {
+      padding: 0.25rem;
+    }
+  }
 
 /* Custom styles */
 .light-b-bg{

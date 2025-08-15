@@ -79,26 +79,27 @@ function loadStylesheets(assetPath) {
 function insertNavigation(pageType = 'root', currentPage = '') {
     // Determine the correct paths based on page type
     const homePath = pageType === 'blog' ? '../index.html' : 'index.html';
-    const logoPath = pageType === 'blog' ? '../assets/images/allergyhealthdailylogo.png' : 'assets/images/allergyhealthdailylogo.png';
+    const logoPath = pageType === 'blog' ? '../assets/images/logo.png' : 'assets/images/logo.png';
     const blogPath = pageType === 'blog' ? 'index.html' : 'blog/index.html';
     const quizPath = pageType === 'blog' ? '../quiz.html' : 'quiz.html';
     
     // Create navigation HTML
     const navigationHTML = `
-        <header>
-            <nav>
-                <a href="${homePath}"><img src="${logoPath}" alt="Allergy Health Daily Logo" id="logo"></a>
-                <ul>
-                    <li><a href="${blogPath}" ${currentPage === 'blog' ? 'class="active"' : ''}>Blogs</a></li>
-                    <li><a href="${quizPath}" ${currentPage === 'quiz' ? 'class="active"' : ''}>Find Out Your Allergy Personality</a></li>
-                </ul>
-            </nav>
+        <header class="site-header">
+            <div class="menu-icon">&#9776;</div> <!-- hamburger menu -->
+            <div class="logo">
+                <a href="${homePath}">
+                    <img src="${logoPath}" alt="Site Logo">
+                </a>
+            </div>
+            <div class="search-icon">&#128269;</div> <!-- magnifying glass -->
         </header>
     `;
     
     // Insert navigation at the beginning of body
     document.body.insertAdjacentHTML('afterbegin', navigationHTML);
 }
+
 
 // Footer Component - Insert footer HTML
 function insertFooter(pageType = 'root') {
