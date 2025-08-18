@@ -4,7 +4,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.search-icon{
+    display: none;
+}
 .site-header {
     /* Grid makes centering dead simple and responsive */
     display: grid;
@@ -28,7 +30,6 @@
     border: 0;
     padding: 0;
     line-height: 1;
-    display: none;
   }
   
   /* Center the logo cell */
