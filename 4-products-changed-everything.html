@@ -249,11 +249,11 @@
             <h2 style="margin-top: 20px;">2. Pacagen Dust Allergen Neutralizing Spray</h2>
             </a>
             <p>Every morning my son would wake up sneezing. At first, I thought it was just seasonal allergies, but it happened even in the middle of winter. Then I learned something that shocked me - the average bed has 1.5 million dust mites, and mattresses can have up to 10 million.
-            I decided to try <a href="https://pacagen.com/products/dust-allergen-neutralizing-spray"  class="productlink">Pacagen’s Dust Allergen Neutralizing Spray</a>. I started using it every couple of days as part of our morning routine - a few quick sprays on his bedding, our couch, and the rugs. Within a month, his morning sneezing stopped. It was such a small change, but it made a huge difference in how he starts his day. Now I keep it in the bedroom and use it without even thinking. It gives me peace of mind knowing our home’s air is a little cleaner for my kids.
+            I decided to try <a href="javascript:void(0)" onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')" class="productlink">Pacagen’s Dust Allergen Neutralizing Spray</a>. I started using it every couple of days as part of our morning routine - a few quick sprays on his bedding, our couch, and the rugs. Within a month, his morning sneezing stopped. It was such a small change, but it made a huge difference in how he starts his day. Now I keep it in the bedroom and use it without even thinking. It gives me peace of mind knowing our home’s air is a little cleaner for my kids.
             </p>
             <div class="row mt-3">
                 <div class="col-12 d-flex justify-content-center">
-                  <a href="https://pacagen.com/products/dust-allergen-neutralizing-spray" class="ctabutton">Try it now</a>
+                  <a href="javascript:void(0)" onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')" class="ctabutton">Try it now</a>
                 </div>
               </div>
             <div class="image-row">
@@ -290,5 +290,35 @@
             </p>
         </div>
     </section>
+    <script>
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return '';
+        }
+
+        function f(baseUrl) {
+            cvg({method: "track", eventName:"GlowThriveShineSubmission"});
+            
+            // Get cookie values
+            let uid = getCookie('__cvg_uid');
+            let sid = getCookie('__cvg_sid');
+            
+            // Build the final URL with parameters
+            let finalUrl = baseUrl;
+            if (uid || sid) {
+                finalUrl += (finalUrl.includes('?') ? '&' : '?');
+                if (uid) finalUrl += `__cvg_uid=${encodeURIComponent(uid)}`;
+                if (uid && sid) finalUrl += '&';
+                if (sid) finalUrl += `__cvg_sid=${encodeURIComponent(sid)}`;
+            }
+            
+            // Redirect after 200ms delay
+            setTimeout(() => {
+                window.location.href = finalUrl;
+            }, 200);
+        }
+    </script>
 </body>
 </html>
