@@ -7,15 +7,39 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://cleanhomehacks.com/blog/index.html</loc>
-        <lastmod>2025-08-06</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
         <loc>https://cleanhomehacks.com/4-products-changed-everything.html</loc>
         <lastmod>2025-08-06</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://cleanhomehacks.com/3-secrets-interior-designers.html</loc>
+        <lastmod>2025-08-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://cleanhomehacks.com/home-decor-less-than-50.html</loc>
+        <lastmod>2025-08-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://cleanhomehacks.com/how-to-make-any-room-feel-luxe.html</loc>
+        <lastmod>2025-08-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://cleanhomehacks.com/sleeping-with-1.5-million-dust-mites.html</loc>
+        <lastmod>2025-08-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://cleanhomehacks.com/types-of-environmental-allergies.html</loc>
+        <lastmod>2025-08-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
     </url>
 </urlset>
