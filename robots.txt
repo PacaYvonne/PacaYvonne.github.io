@@ -18,5 +18,4 @@ Disallow: /assets/css/
 # Allow important pages
 Allow: /blog/
 Allow: /advertorial*.html
-Allow: /quiz.html
 Allow: /index.html
