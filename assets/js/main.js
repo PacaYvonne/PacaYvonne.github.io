@@ -1,4 +1,4 @@
-// Main JavaScript file for Allergy Health Daily
+// Main JavaScript file for Clean Home Hacks
 
 // Head Component - Insert favicon and stylesheets
 function insertHeadElements(pageType = 'root') {
