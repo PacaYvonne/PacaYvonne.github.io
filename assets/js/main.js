@@ -81,18 +81,15 @@ function insertNavigation(pageType = 'root', currentPage = '') {
     const homePath = pageType === 'blog' ? '../index.html' : 'index.html';
     const logoPath = pageType === 'blog' ? '../assets/images/logo.png' : 'assets/images/logo.png';
     const blogPath = pageType === 'blog' ? 'index.html' : 'blog/index.html';
-    const quizPath = pageType === 'blog' ? '../quiz.html' : 'quiz.html';
     
     // Create navigation HTML
     const navigationHTML = `
         <header class="site-header">
-            <div class="menu-icon">&#9776;</div> <!-- hamburger menu -->
             <div class="logo">
                 <a href="${homePath}">
                     <img src="${logoPath}" alt="Site Logo">
                 </a>
             </div>
-            <div class="search-icon">&#128269;</div> <!-- magnifying glass -->
         </header>
     `;
     
