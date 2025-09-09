@@ -272,6 +272,7 @@
                   onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')" class="ctabutton">Try it now</a>
                 </div>
               </div>
+            <div id="pacagen-spray-showcase" class="d-flex justify-content-center align-items-center my-3"></div>
             <div class="image-row">
                 <img src="assets/images/lis_mom5products_sprayimg.png" style="margin-top: 10px;" alt="Image 5">
             </div>
@@ -308,6 +309,16 @@
                 window.location.href = finalUrl;
             }, 200);
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const pacagenSprayShowcase = createProductShowcase({
+                image: 'dust_pink.png',
+                alt: 'Dust Allergen Neutralizing Spray',
+                description: 'Breaks down 76% of dust allergens on contact',
+                url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            document.getElementById('pacagen-spray-showcase').innerHTML = pacagenSprayShowcase;
+        });
     </script>
 </body>
 </html>

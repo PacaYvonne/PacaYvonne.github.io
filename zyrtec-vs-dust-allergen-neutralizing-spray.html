@@ -271,6 +271,7 @@
               <div class="d-flex justify-content-center" style="margin-top:10px;">
                 <img src="assets/images/lis_vs_girlspray.png" class="img-fluid" alt="Image 1">
             </div>
+            <div id="pacagen-spray-showcase" class="d-flex justify-content-center align-items-center my-3"></div>
               <h2 style="margin-top: 20px;">My Honest Take</h2>
               <p>Now, I’m not saying I’ll never touch Zyrtec again - it’s still handy when pollen counts skyrocket. But for my everyday dust-triggered allergies, this  <a href="https://pacagen.com/products/dust-allergen-neutralizing-spray"  class="productlink">Dust Allergen Neutralizing Spray</a> changed everything. I finally feel like I’m controlling my environment instead of just reacting to it.</p>  
               <p>For years I thought only pills could help. Now I just reach for what feels like <strong style="color:#c62828;">a Functional Febreze</strong> — simple, effective, side-effect free.</p>  
@@ -311,6 +312,16 @@
                 window.location.href = finalUrl;
             }, 200);
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const pacagenSprayShowcase = createProductShowcase({
+                image: 'dust_pink.png',
+                alt: 'Dust Allergen Neutralizing Spray',
+                description: 'Breaks down 76% of dust allergens on contact',
+                url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            document.getElementById('pacagen-spray-showcase').innerHTML = pacagenSprayShowcase;
+        });
     </script>
 </body>
 </html>

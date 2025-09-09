@@ -270,7 +270,7 @@
       <div class="image-row">
         <img src="assets/images/adv_helpkids_homespray.png" style="margin-top: 10px;" alt="Image 1">
     </div>
-
+    <div id="pacagen-spray-showcase" class="d-flex justify-content-center align-items-center my-3"></div>
       <h2 style="margin-top: 20px;">The Results</h2>
       <p>After just two weeks, the difference was obvious.  <strong style="color:#c62828;">My son woke up without sneezing. </strong>No more stuffy nose, no more itchy eyes. Our mornings felt calmer, and I felt better knowing I was doing something simple but powerful to protect his health — without shots, without daily pills.</strong></p>
 
@@ -318,6 +318,16 @@
                 window.location.href = finalUrl;
             }, 200);
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const pacagenSprayShowcase = createProductShowcase({
+                image: 'dust_pink.png',
+                alt: 'Dust Allergen Neutralizing Spray',
+                description: 'Breaks down 76% of dust allergens on contact',
+                url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            document.getElementById('pacagen-spray-showcase').innerHTML = pacagenSprayShowcase;
+        });
   </script>
 </body>
 </html>

@@ -270,6 +270,8 @@
       <div class="image-row">
         <img src="assets/images/adv_helpkids_homespray.png" style="margin-top: 10px;" alt="Image 1">
     </div>
+    <div id="pacagen-spray-showcase" class="d-flex justify-content-center align-items-center my-3"></div>
+
 
       <h2 style="margin-top: 20px;">The Science Behind the Mist</h2>
       <p>Pacagen’s Home Mist Spray is powered by EnviroBlock™, a food-grade protein technology proven to neutralize up to 76% of dust allergens before they reach your body. Safe for people and pets and backed by $2M in R&D, EnviroBlock™ tackles invisible triggers at the source so your home feels fresher, lighter, and healthier with every mist.</p>
@@ -284,7 +286,7 @@
       <p> For a home that looks clean and feels fresh, <a href="javascript:void(0)"
         onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')" class="productlink" target="_blank">Pacagen’s Home Mist Spray</a> is the easiest upgrade. Safe, simple, science-backed.</p>
       <p>👉<a href="javascript:void(0)"
-        onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')" class="productlink" target="_blank">[Try Pacagen's Home Mist Spray Today]</a> and breathe the difference.</p>
+        onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')" class="productlink" target="_blank">Try Pacagen's Home Mist Spray Today</a> and breathe the difference.</p>
 
     </div>
   </section>
@@ -319,6 +321,16 @@
         }
         const video = document.getElementById('scienceVideo');
         video.playbackRate = 1.5;
+        document.addEventListener('DOMContentLoaded', function() {
+            const pacagenSprayShowcase = createProductShowcase({
+                image: 'dust_pink.png',
+                alt: 'Dust Allergen Neutralizing Spray',
+                description: 'Breaks down 76% of dust allergens on contact',
+                url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            document.getElementById('pacagen-spray-showcase').innerHTML = pacagenSprayShowcase;
+        });
   </script>
 </body>
 </html>
