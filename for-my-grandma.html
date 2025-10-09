@@ -415,10 +415,7 @@
             alt="Image 1"
           />
         </div>
-        <div
-          id="pacagen-spray-showcase"
-          class="d-flex justify-content-center align-items-center my-3"
-        ></div>
+
         <h2 style="margin-top: 20px">The Difference Was Immediate</h2>
         <ul>
           <li>
@@ -453,14 +450,117 @@
             alt="Image 1"
           />
         </div>
-        <h2 style="margin-top: 20px">Why Pacagen Works When “Deep Cleaning” Doesn’t</h2>
-        <p>After seeing the difference, I dug into the science behind it. Here’s what I learned:</p>
+        <h2 style="margin-top: 20px">
+          Why Pacagen Works When “Deep Cleaning” Doesn’t
+        </h2>
+        <p>
+          After seeing the difference, I dug into the science behind it. Here’s
+          what I learned:
+        </p>
         <ul>
-            <li><Strong>🧬 Neutralizes allergens at the molecular level: </Strong>Pacagen deactivates the allergenic proteins that cause immune reactions, instead of just covering them up.</li>
-            <li><Strong>🛋️ Safe for soft surfaces: </Strong>Works on bedding, curtains, furniture, and even clothes.</li>
-            <li><Strong>🌿 Non-toxic & fragrance-free: </Strong>Safe for seniors, pets, and people with chemical sensitivities.</li>
-            <li><Strong>🌬️ Creates a lasting hypoallergenic zone: </Strong>Regular use prevents allergen buildup in shared living spaces.</li>
+          <li>
+            <strong>🧬 Neutralizes allergens at the molecular level: </strong
+            >Pacagen deactivates the allergenic proteins that cause immune
+            reactions, instead of just covering them up.
+          </li>
+          <li>
+            <strong>🛋️ Safe for soft surfaces: </strong>Works on bedding,
+            curtains, furniture, and even clothes.
+          </li>
+          <li>
+            <strong>🌿 Non-toxic & fragrance-free: </strong>Safe for seniors,
+            pets, and people with chemical sensitivities.
+          </li>
+          <li>
+            <strong>🌬️ Creates a lasting hypoallergenic zone: </strong>Regular
+            use prevents allergen buildup in shared living spaces.
+          </li>
         </ul>
+
+        <p>
+          In a place like a senior home - where dust exposure is unavoidable -
+          Pacagen became our invisible ally.
+        </p>
+
+        <h2 style="margin-top: 20px">It's Helping Other Families Too</h2>
+        <p>
+          Once I saw the results, I told the senior home director about Pacagen.
+          A few months later, she mentioned several residents were now using it
+          with similar success.
+        </p>
+
+        <section id="quote-section-1"></section>
+
+        <p>
+          I wasn’t surprised. For the first time, there was something that
+          actually addressed the cause of the problem, not just the symptoms.
+        </p>
+
+        <h2 style="margin-top: 20px">What I Learned Along the Way</h2>
+        <p>
+          If your parent or grandparent struggles with dust allergies or
+          breathing issues, here’s what I wish someone had told me sooner:
+        </p>
+        <ul>
+          <li>
+            🧼 “Clean” doesn’t always mean allergen-free; most allergens are
+            invisible.
+          </li>
+          <li>
+            🧴 Use Pacagen regularly on soft surfaces; where allergens love to
+            hide.
+          </li>
+          <li>
+            💤 Consistency is key; build it into your weekly cleaning routine.
+          </li>
+          <li>
+            ❤️ Prevention matters; once allergens are neutralized, symptoms
+            fade.
+          </li>
+        </ul>
+
+        <p>
+          I’m not a scientist or a doctor. Just a son who wanted his mom to have
+          her mornings back. Pacagen gave her that. They gave me peace of mind
+          knowing she’s finally breathing easy in her own space.
+        </p>
+
+        <h2 style="margin-top: 20px">Where to Get It</h2>
+        <p>
+          Pacagen’s allergen-neutralizing spray is available
+          <strong>only on their official website</strong>, shipped directly from
+          their lab to your home.
+        </p>
+        <p>
+          They even include a <strong>30-day satisfaction guarantee</strong>,
+          which made it easy for me to try without hesitation. If someone you
+          love is struggling with dust allergies, this could be the quiet,
+          science-backed solution you’ve been looking for.
+        </p>
+
+        <div
+          id="pacagen-spray-showcase"
+          class="d-flex justify-content-center align-items-center my-3"
+        >
+          
+        </div>
+        <div class="ctabutton mt-2">Try it now</div>
+
+        <div class="text-center">
+            <a
+              href="javascript:void(0)"
+              onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')"
+              class="ctabutton"
+              >🧴 Claim Your 20% Discount Now</a
+            >
+            <p><em>Limited time offer • 30-day satisfaction guarantee</em></p>
+          </div>
+
+        <section id="quote-section-2"></section>
+
+        <section id="quote-section-3"></section>
+
+        <section id="image-section-1"></section>
 
         <h2 style="margin-top: 20px">
           Shop Now & Start Your Allergen Relief Journey
@@ -485,6 +585,29 @@
         return "";
       }
 
+      // Define the quotes you want for each section
+      const quote1 = {
+        testimonial:
+          "We noticed fewer reports of nighttime coughing and congestion since introducing Pacagen into the routine...Families say their loved ones are sleeping better and breathing easier.",
+        author: "Senior Home Director",
+      };
+      const quote2 = {
+        testimonial: "No sneezing around my cat anymore.",
+        author: "Michael R.",
+      };
+      const quote3 = {
+        testimonial: "It actually works better than I expected!",
+        author: "Karen D.",
+      };
+
+      // Define your image data
+      const image1 = {
+        src: "pileofclothes.png",
+        alt: "Grandma and her cat",
+        caption: "Grandma and Whiskers enjoying clean air again.",
+        pageType: "blog",
+      };
+
       function f(baseUrl) {
         cvg({ method: "track", eventName: "CleanHomeHacks Pacagen Click" });
 
@@ -507,6 +630,17 @@
         }, 200);
       }
       document.addEventListener("DOMContentLoaded", function () {
+        // Insert each quote into its respective section
+        document.getElementById("quote-section-1").innerHTML =
+          createQuoteComponent(quote1);
+        document.getElementById("quote-section-2").innerHTML =
+          createQuoteComponent(quote2);
+        document.getElementById("quote-section-3").innerHTML =
+          createQuoteComponent(quote3);
+
+        // Render them into their respective sections
+        document.getElementById("image-section-1").innerHTML =
+          createImageComponent(image1);
         const pacagenSprayShowcase = createProductShowcase({
           image: "dust_pink.png",
           alt: "Dust Allergen Neutralizing Spray",

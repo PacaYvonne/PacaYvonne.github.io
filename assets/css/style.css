@@ -277,6 +277,14 @@ footer {
 }
 
 /* Custom styles */
-.light-b-bg {
-  background-color: #a1e2e2;
+.light-b-bg{
+    background-color: #a1e2e2;
 }
+
+.quote-card {
+    width: 600px;
+    max-width: 90%;
+    margin: 20px auto;
+    height: auto;
+    background-color: #f7ebc9;
+  }

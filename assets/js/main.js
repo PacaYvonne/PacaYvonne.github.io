@@ -128,12 +128,32 @@ function insertFooter(pageType = 'root') {
 //Quote Component - Reusbale testimonial block
 function createQuoteComponent({ testimonial, author}) {
     return `
-        <div class="quote-card p-3 my-3 border rounded-4 bg-light">
-            <p class="quote-text fs-5 fst-italic mb-2">“${testimonial}”</p>
-            <p class="quote-author fw-semibold mb-1">– ${author}</p>
+        
+        <div class="quote-card p-3 my-3 border rounded-4">
+            <p class="quote-text fs-5 fst-italic m-2 text-left">“${testimonial}”</p>
+            <p class="quote-author fw-semibold mb-1" style="text-align: right; margin-right: 40px;">– ${author}</p>
         </div>
+    
     `;
 }
+
+// Image Component - Reusable image + caption block
+function createImageComponent({ src, alt, caption, pageType = 'root' }) {
+    // Adjust image path if needed (for blog pages, etc.)
+    const assetPath = pageType === 'blog' ? '../assets' : 'assets';
+    
+    return `
+      <div class="d-flex flex-column align-items-center my-4">
+        <img 
+          src="${assetPath}/images/${src}" 
+          alt="${alt}" 
+          class="rounded-4 mb-2 img-fluid"
+          style="max-width: 600px; width: 100%; height: auto;"
+        >
+        <p class="text-muted text-center small">${caption}</p>
+      </div>
+    `;
+  }
 
 
 // Load components immediately when script loads (before DOM ready)
