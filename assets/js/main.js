@@ -188,7 +188,7 @@ function createProductShowcase(config) {
     if (clickable && url) {
         return `
         <a href="javascript:void(0)" class="d-flex w-md-65 justify-content-center align-items-center text-decoration-none" onclick="f('${url}')">
-            <div class="card p-2">
+            <div class="card p-2 mt-3 mb-3">
                 <div class="row mx-auto">
                     <div class="col-5 col-sm-4 col-md-3 p-0 px-md-2">
                         <img src="${assetPath}/images/${image}" class=" rounded-4" alt="${alt}">
@@ -197,6 +197,7 @@ function createProductShowcase(config) {
                         <h2 class="card-title"><b>${alt}</b></h2>
                         <p class="card-reviews mb-1">★★★★★ &nbsp ${reviews[url][0]} ${reviews[url][1]}</p>
                         <p class="card-description mb-0">${description}</p>
+                        <div class="ctabutton mt-2">Try it now</div>
                     </div>
                 </div>
             </div>
