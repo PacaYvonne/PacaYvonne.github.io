@@ -125,6 +125,17 @@ function insertFooter(pageType = 'root') {
     document.body.insertAdjacentHTML('beforeend', footerHTML);
 }
 
+//Quote Component - Reusbale testimonial block
+function createQuoteComponent({ testimonial, author}) {
+    return `
+        <div class="quote-card p-3 my-3 border rounded-4 bg-light">
+            <p class="quote-text fs-5 fst-italic mb-2">“${testimonial}”</p>
+            <p class="quote-author fw-semibold mb-1">– ${author}</p>
+        </div>
+    `;
+}
+
+
 // Load components immediately when script loads (before DOM ready)
 (function() {
     // Check if we're in a blog subdirectory
