@@ -39,148 +39,150 @@
 
     <style>
       .section-divider {
-  height: 2px;
-  background-color: #ccc;
-  margin: 10px auto 10px auto;
-  width: 80%;
-}
-    .breadcrumb-link {
-  color: black;
-  text-decoration: none;
-}
+        height: 2px;
+        background-color: #ccc;
+        margin: 10px auto 10px auto;
+        width: 80%;
+      }
+      .breadcrumb-link {
+        color: black;
+        text-decoration: none;
+      }
 
-.breadcrumb-link:hover {
-  text-decoration: underline;
-  color: #c62828; 
-}
-    .productlink {
-  color: #c62828 !important; /* deep red, adjust if needed */
-  font-weight: bold;
-  text-decoration: underline; /* optional: removes underline */
-}
+      .breadcrumb-link:hover {
+        text-decoration: underline;
+        color: #c62828;
+      }
+      .productlink {
+        color: #c62828 !important; /* deep red, adjust if needed */
+        font-weight: bold;
+        text-decoration: underline; /* optional: removes underline */
+      }
 
-.productlink:hover {
-  text-decoration: underline; /* optional: show underline on hover */
-}
-    .category-badge1 {
-    display: inline-block;
-    background-color: #f39f1e; /* deep green */
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 999px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-.ctabutton {
-      display: inline-block;
-      background-color: #c62828;
-      color: white;
-      font-weight: bold;
-      padding: 8px 18px;
-      border-radius: 4px;
-      text-decoration: none;
-      text-align: center;
-    }
+      .productlink:hover {
+        text-decoration: underline; /* optional: show underline on hover */
+      }
+      .category-badge1 {
+        display: inline-block;
+        background-color: #f39f1e; /* deep green */
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 999px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .ctabutton {
+        display: inline-block;
+        background-color: #c62828;
+        color: white;
+        font-weight: bold;
+        padding: 8px 18px;
+        border-radius: 4px;
+        text-decoration: none;
+        text-align: center;
+      }
 
-    .ctabutton:hover {
-      background-color: #a62020;
-    }
-    body{
+      .ctabutton:hover {
+        background-color: #a62020;
+      }
+      body {
         visibility: hidden;
         opacity: 0;
         transition: opacity 0.3s ease;
         font-family: Georgia, serif !important;
-    }
-    .w-60 { width: 60% !important; }
+      }
+      .w-60 {
+        width: 60% !important;
+      }
 
-    .blog-category {
+      .blog-category {
         align-items: center;
-    }
+      }
 
-    .blog-contents {
+      .blog-contents {
         gap: 100px;
-    }
+      }
 
-    .blog-contents p {
-        margin-bottom: 1rem;  /* space after paragraphs */
+      .blog-contents p {
+        margin-bottom: 1rem; /* space after paragraphs */
         font-size: 1.25rem;
-    }
+      }
 
-    .breadcrumb-section {
+      .breadcrumb-section {
         display: flex;
         justify-content: center; /* center horizontally */
-        align-items: center;     /* center vertically */
-        height: 50px;            /* adjust height as needed */
+        align-items: center; /* center vertically */
+        height: 50px; /* adjust height as needed */
         background-color: #ffffff; /* optional */
-    }
+      }
 
-    .breadcrumb a {
+      .breadcrumb a {
         text-decoration: none;
         color: #007bff;
         font-weight: 500;
-    }
+      }
 
-    .breadcrumb a:hover {
+      .breadcrumb a:hover {
         text-decoration: underline;
-    }
+      }
 
-    .blog-title-section {
+      .blog-title-section {
         display: flex;
-        justify-content: center;  /* horizontal center */
-        align-items: center;      /* vertical center if height set */
-        padding: 20px 0;          /* top/bottom spacing */
+        justify-content: center; /* horizontal center */
+        align-items: center; /* vertical center if height set */
+        padding: 20px 0; /* top/bottom spacing */
         background-color: #ffffff; /* optional background */
-    }
+      }
 
-    .blog-title {
+      .blog-title {
         font-size: 2rem;
         font-weight: bold;
         margin: 0;
         text-align: center;
-    }
+      }
 
-    .author-section {
+      .author-section {
         display: flex;
         align-items: center; /* vertically align text and image */
         justify-content: center; /* center horizontally */
         gap: 10px; /* space between text and image */
         font-size: 1rem;
         color: #555; /* subtle gray text */
-    }
+      }
 
-    .author-image {
-        width: 32px;  /* adjust size */
+      .author-image {
+        width: 32px; /* adjust size */
         height: 32px;
         border-radius: 50%; /* circular image */
         object-fit: cover; /* crop nicely */
-    }
+      }
 
-    /* On mobile (Bootstrap's sm breakpoint and below) */
-    @media (max-width: 576px) {
+      /* On mobile (Bootstrap's sm breakpoint and below) */
+      @media (max-width: 576px) {
         .w-60 {
-            width: 90% !important;
+          width: 90% !important;
         }
-    }
+      }
 
-    @media (max-width: 768px) {
+      @media (max-width: 768px) {
         .blog-contents p {
-            font-size: 0.9rem;
+          font-size: 0.9rem;
         }
-    }
+      }
+      .blockquote { border-left: 4px solid #c62828; padding-left: 15px; font-style: italic; color: #444; }
 
-    .image-row {
-        display: flex;       /* place items in a row */
-        gap: 10px;           /* space between images */
-    }
+      .image-row {
+        display: flex; /* place items in a row */
+        gap: 10px; /* space between images */
+      }
 
-    .image-row img {
-        width: 100%;          /* each takes half the parent width */
-        height: auto;        /* keep aspect ratio */
-        display: block;      /* remove inline spacing */
-    }
-
+      .image-row img {
+        width: 100%; /* each takes half the parent width */
+        height: auto; /* keep aspect ratio */
+        display: block; /* remove inline spacing */
+      }
     </style>
 
     <script>
@@ -246,25 +248,18 @@
           <div class="col-md-6 d-flex align-items-center gap-2">
             <span class="fw-semibold">Share:</span>
             <a
-              href="https://www.facebook.com/sharer/sharer.php?u=https://cleanhomehacks.com/4-products-changed-everything.html"
+              href="https://www.facebook.com/sharer/sharer.php?u=https://cleanhomehacks.com/a-fathers-journey.html"
               target="_blank"
               class="text-decoration-none fs-5 text-black"
             >
               <i class="bi bi-facebook"></i>
             </a>
             <a
-              href="https://twitter.com/intent/tweet?text=Here%20are%204%20products%20that%20make%20cleaning%20a%20breeze%20-%20https%3A%2F%2Fcleanhomehacks.com%2F4-products-changed-everything.html"
+              href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcleanhomehacks.com%2Fa-fathers-journey.html"
               target="_blank"
               class="text-decoration-none fs-5 text-black twitter-share-button"
               ><i class="bi bi-twitter"></i
             ></a>
-            <a
-              href="https://pinterest.com/pin/create/button/?url=https://cleanhomehacks.com/4-products-changed-everything.html&media=https://cleanhomehacks.com/assets/images/lis_mom5products_mainimg.png&description=Here%20are%204%20products%20that%20make%20cleaning%20a%20breeze"
-              target="_blank"
-              class="text-decoration-none fs-5 text-black"
-            >
-              <i class="bi bi-pinterest"></i>
-            </a>
           </div>
 
           <!-- Right column: Updated date -->
@@ -452,8 +447,10 @@
           So if your child struggles with dust allergies — or if you want a
           truly hypoallergenic home — I can’t recommend it enough.
         </p>
-        <div id="pacagen-spray-showcase" class="d-flex justify-content-center align-items-center my-3"></div>
-
+        <div
+          id="pacagen-spray-showcase"
+          class="d-flex justify-content-center align-items-center my-3"
+        ></div>
 
         <div class="text-center">
           <a
