@@ -193,8 +193,8 @@ function createProductShowcase(config) {
                     <div class="col-5 col-sm-4 col-md-3 p-0 px-md-2">
                         <img src="${assetPath}/images/${image}" class=" rounded-4" alt="${alt}">
                     </div>
-                    <div class="col-7 col-sm-8 col-md-9">
-                        <h2 class="card-title"><b>${alt}</b></h2>
+                    <div class="col-7 my-auto col-sm-8 col-md-9">
+                        <h3 class="card-title"><b>${alt}</b></h3>
                         <p class="card-reviews mb-1">★★★★★ &nbsp ${reviews[url][0]} ${reviews[url][1]}</p>
                         <p class="card-description mb-0">${description}</p>
                         <div class="ctabutton mt-2">Try it now</div>
