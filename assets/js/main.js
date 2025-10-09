@@ -125,6 +125,37 @@ function insertFooter(pageType = 'root') {
     document.body.insertAdjacentHTML('beforeend', footerHTML);
 }
 
+//Quote Component - Reusbale testimonial block
+function createQuoteComponent({ testimonial, author}) {
+    return `
+        
+        <div class="quote-card p-3 my-3 border rounded-4">
+            <p class="quote-text fs-5 fst-italic m-2 text-left">“${testimonial}”</p>
+            <p class="quote-author fw-semibold mb-1" style="text-align: right; margin-right: 40px;">– ${author}</p>
+        </div>
+    
+    `;
+}
+
+// Image Component - Reusable image + caption block
+function createImageComponent({ src, alt, caption }) {
+    // Adjust image path if needed (for blog pages, etc.)
+   
+    
+    return `
+      <div class="d-flex flex-column align-items-center my-4">
+        <img 
+          src="assets/images/${src}" 
+          alt="${alt}" 
+          class="rounded-2 mb-2 img-fluid"
+          style="width: 100%; height: auto;"
+        >
+        <p class="text-muted text-center small">${caption}</p>
+      </div>
+    `;
+  }
+
+
 // Load components immediately when script loads (before DOM ready)
 (function() {
     // Check if we're in a blog subdirectory
