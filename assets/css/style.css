@@ -203,12 +203,13 @@ main {
     width: 100%;
   }
 }
-
+section p {
+    margin-bottom: 2rem;
+}
 section h3 {
-  color: #056839;
-  font-size: 2rem;
   margin-bottom: 1rem;
-  border-bottom: 3px solid #056839;
+  margin-top: 1rem;
+  border-bottom: 3px solid black;
   padding-bottom: 0.5rem;
 }
 
