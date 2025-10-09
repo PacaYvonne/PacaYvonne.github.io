@@ -138,17 +138,17 @@ function createQuoteComponent({ testimonial, author}) {
 }
 
 // Image Component - Reusable image + caption block
-function createImageComponent({ src, alt, caption, pageType = 'root' }) {
+function createImageComponent({ src, alt, caption }) {
     // Adjust image path if needed (for blog pages, etc.)
-    const assetPath = pageType === 'blog' ? '../assets' : 'assets';
+   
     
     return `
       <div class="d-flex flex-column align-items-center my-4">
         <img 
-          src="${assetPath}/images/${src}" 
+          src="assets/images/${src}" 
           alt="${alt}" 
-          class="rounded-4 mb-2 img-fluid"
-          style="max-width: 600px; width: 100%; height: auto;"
+          class="rounded-2 mb-2 img-fluid"
+          style="width: 100%; height: auto;"
         >
         <p class="text-muted text-center small">${caption}</p>
       </div>
