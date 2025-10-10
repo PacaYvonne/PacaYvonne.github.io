@@ -573,6 +573,7 @@
         // Get cookie values
         let uid = getCookie("__cvg_uid");
         let sid = getCookie("__cvg_sid");
+        let source = 'chh'
 
         // Build the final URL with parameters
         let finalUrl = baseUrl;
@@ -581,6 +582,7 @@
           if (uid) finalUrl += `__cvg_uid=${encodeURIComponent(uid)}`;
           if (uid && sid) finalUrl += "&";
           if (sid) finalUrl += `__cvg_sid=${encodeURIComponent(sid)}`;
+          finalUrl+= `&utm_source=${source}`;
         }
 
         // Redirect after 200ms delay
