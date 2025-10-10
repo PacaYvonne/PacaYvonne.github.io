@@ -508,16 +508,11 @@
 
         <div
           id="pacagen-spray-showcase"
-          class="d-flex justify-content-center align-items-center my-3"
+          class="d-flex justify-content-center align-items-center my-20"
         ></div>
 
         <div class="text-center">
-          <a
-            href="javascript:void(0)"
-            onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')"
-            class="ctabutton"
-            >🧴 Claim Your 20% Discount Now</a
-          >
+          
           <p><em>Limited time offer • 30-day satisfaction guarantee</em></p>
         </div>
 
@@ -578,6 +573,7 @@
         // Get cookie values
         let uid = getCookie("__cvg_uid");
         let sid = getCookie("__cvg_sid");
+        let source = 'chh'
 
         // Build the final URL with parameters
         let finalUrl = baseUrl;
@@ -586,6 +582,7 @@
           if (uid) finalUrl += `__cvg_uid=${encodeURIComponent(uid)}`;
           if (uid && sid) finalUrl += "&";
           if (sid) finalUrl += `__cvg_sid=${encodeURIComponent(sid)}`;
+          finalUrl+= `&utm_source=${source}`;
         }
 
         // Redirect after 200ms delay
