@@ -228,7 +228,7 @@ function createProductShowcase(config) {
                         <h3 class="card-title"><b>${alt}</b></h3>
                         <p class="card-reviews mb-1">★★★★★ &nbsp ${reviews[url][0]} ${reviews[url][1]}</p>
                         <p class="card-description mb-0">${description}</p>
-                        <div class="ctabutton mt-2">Try it now</div>
+                        <div class="ctabutton mt-2">Claim your 15% off now</div>
                     </div>
                 </div>
             </div>
