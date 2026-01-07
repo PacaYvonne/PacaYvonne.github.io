@@ -125,6 +125,37 @@ function insertFooter(pageType = 'root') {
     document.body.insertAdjacentHTML('beforeend', footerHTML);
 }
 
+//Quote Component - Reusbale testimonial block
+function createQuoteComponent({ testimonial, author}) {
+    return `
+        
+        <div class="quote-card p-3 my-3 border rounded-4">
+            <p class="quote-text fs-5 fst-italic m-2 text-left">“${testimonial}”</p>
+            <p class="quote-author fw-semibold mb-1" style="text-align: right; margin-right: 40px;">– ${author}</p>
+        </div>
+    
+    `;
+}
+
+// Image Component - Reusable image + caption block
+function createImageComponent({ src, alt, caption }) {
+    // Adjust image path if needed (for blog pages, etc.)
+   
+    
+    return `
+      <div class="d-flex flex-column align-items-center my-4">
+        <img 
+          src="assets/images/${src}" 
+          alt="${alt}" 
+          class="rounded-2 mb-2 img-fluid"
+          style="width: 100%; height: auto;"
+        >
+        <p class="text-muted text-center small">${caption}</p>
+      </div>
+    `;
+  }
+
+
 // Load components immediately when script loads (before DOM ready)
 (function() {
     // Check if we're in a blog subdirectory
@@ -162,6 +193,64 @@ function insertFooter(pageType = 'root') {
         }
     }
 })();
+
+function createProductShowcase(config) {
+    const {
+        image,
+        alt,
+        url,
+        description,
+        clickable = true,
+        pageType = 'root'
+    } = config;
+
+    reviews ={
+        "https://www.pacagen.com/products/cat-allergen-neutralizing-spray": ["4.72 out of 5 stars", "(600+ reviews)"],
+        "https://www.pacagen.com/products/dog-allergen-neutralizing-spray": ["4.87 out of 5 stars", ""],
+        "https://www.pacagen.com/products/dust-allergen-neutralizing-spray": ["4.86 out of 5 stars", ""],
+        "https://www.pacagen.com/products/cat-food-topper-chicken": ["4.80 out of 5 stars", "(200+ reviews)"],
+        "https://www.pacagen.com/products/cat-allergen-reducing-supplement": ["4.80 out of 5 stars", "(200+ reviews)"],
+        "https://www.pacagen.com/products/allergen-neutralizing-spray": ["4.72 out of 5 stars", "(600+ reviews)"]
+    }
+    
+    // Determine the correct asset path
+    const assetPath = pageType === 'blog' ? '../assets' : 'assets';
+    
+    if (clickable && url) {
+        return `
+        <a href="javascript:void(0)" class="d-flex w-md-65 justify-content-center align-items-center text-decoration-none" onclick="f('${url}')">
+            <div class="card p-2 mt-3 mb-3">
+                <div class="row mx-auto">
+                    <div class="col-5 col-sm-4 col-md-3 p-0 px-md-2">
+                        <img src="${assetPath}/images/${image}" class=" rounded-4" alt="${alt}">
+                    </div>
+                    <div class="col-7 my-auto col-sm-8 col-md-9">
+                        <h3 class="card-title"><b>${alt}</b></h3>
+                        <p class="card-reviews mb-1">★★★★★ &nbsp ${reviews[url][0]} ${reviews[url][1]}</p>
+                        <p class="card-description mb-0">${description}</p>
+                        <div class="ctabutton mt-2">Claim your 15% off now</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        `;
+    } else {
+        return `
+            <div class="article-content-image d-flex">
+                <img src="${assetPath}/images/${image}" class="article-img" alt="${alt}">
+            </div>
+        `;
+    }
+}
+
+// Function to insert product showcase into page
+function insertProductShowcase(targetSelector, config) {
+    const target = document.querySelector(targetSelector);
+    if (target) {
+        target.insertAdjacentHTML('afterend', createProductShowcase(config));
+    }
+}
+
 
 // Wait for DOM to be fully loaded for additional functionality
 document.addEventListener('DOMContentLoaded', function() {

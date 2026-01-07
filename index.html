@@ -22,18 +22,27 @@
     <!-- Load main JavaScript -->
     <script src="assets/js/main.js" defer></script>
     <style>
-        .w-70 { width: 70% !important; }
+        .w-60 { width: 60% !important; }
 
-        .title-bar {
-            margin: 0;
-            text-align: center;
-            border-radius: 2rem;
-            
-            /* Fluid padding — smaller on mobile, bigger on desktop */
-            padding: clamp(0.1rem, 1vw, 0.3rem) clamp(0.5rem, 2vw, 0.9rem);
-            /* Fluid font size */
-            font-size: clamp(0.8rem, 2.5vw, 1.2rem);
-            
+        .cat-tag {
+          position: absolute;
+          top: 0.75rem;
+          left: 0.75rem;
+          background-color: var(--bs-success, #198754); /* fallback if Bootstrap vars missing */
+          color: white;
+          font-weight: 600;
+          border-radius: 0.75rem;
+          padding: 0.25rem 0.75rem;
+          font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+          z-index: 2;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Optional: add a bit of motion when hovering */
+        .card:hover .cat-tag {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0,0,0,0.25);
         }
 
 
@@ -52,7 +61,7 @@
 
         /* On mobile (Bootstrap's sm breakpoint and below) */
         @media (max-width: 576px) {
-            .w-70 {
+            .w-60 {
                 width: 100% !important;
             }
         }
@@ -62,16 +71,16 @@
 <body>
     <main>
         <div class="container">
-            <section class="w-70 mx-auto my-4">
+            <section class="mx-auto my-4">
                 <div class="row row-cols-2 g-3">
               
                   <!-- Slot 1 -->
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="https://cleanhomehacks.com/4-products-changed-everything.html">
-                            <img src="assets/images/lis_mom5products_mainimg.png" class="card-img-top" alt="...">
+                            <img src="assets/images/lis_mom5products_mainimg.png" class="card-img-top" alt="I Am A Busy Mom Who Hates Cleaning And These 4 Products Changed Everything">
                         </a>
-                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
                       <div class="card-body">
                         <a href="https://cleanhomehacks.com/4-products-changed-everything.html" class="text-decoration-none text-dark">
                             <p class="card-text">
@@ -86,9 +95,9 @@
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="/blog/home-decor-less-than-50.html">
-                            <img src="assets/images/adv_50_mainimg.png" class="card-img-top" alt="...">
+                            <img src="assets/images/adv_50_mainimg.png" class="card-img-top" alt="The One Home Decor Trick Designers Swear By - And It Costs Less Than $50">
                         </a>
-                        <h5 class="title-bar bg-primary text-white">Home Decor</h5>
+                        <div class="cat-tag bg-primary text-white">Home Decor</div>
                       <div class="card-body">
                         <a href="/blog/home-decor-less-than-50.html" class="text-decoration-none text-dark">
                             <p class="card-text">
@@ -101,9 +110,9 @@
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="/blog/how-dust-allergies-really-work.html"> 
-                            <img src="assets/images/adv_dustallergies_mainimg.png" class="card-img-top" alt="...">
+                            <img src="assets/images/adv_dustallergies_mainimg.png" class="card-img-top" alt="How Dust Allergies Really Work, And the Myths You Should Stop Believing">
                         </a>
-                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
                       <div class="card-body">
                         <a href="/blog/how-dust-allergies-really-work.html" class="text-decoration-none text-dark">  
                             <p class="card-text">
@@ -117,9 +126,9 @@
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="/blog/dust-mite-allergy-bedding.html">
-                            <img src="assets/images/adv_dustallergybedding_mainimg.png" class="card-img-top" alt="...">
+                            <img src="assets/images/adv_dustallergybedding_mainimg.png" class="card-img-top" alt="Dust Mite Allergy Bedding">
                         </a>
-                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
                       <div class="card-body">
                         <a href="/blog/dust-mite-allergy-bedding.html" class="text-decoration-none text-dark"> 
                             <p class="card-text">
@@ -129,29 +138,13 @@
                       </div>
                     </div>
                   </div>
-                  <!-- Duplicate more .col blocks as needed -->
-                  <div class="col">
-                    <div class="card h-100 border-0">
-                        <a href="/blog/3-secrets-interior-designers.html"> 
-                            <img src="assets/images/adv_interior_mainimg.png" class="card-img-top" alt="...">
-                        </a>
-                      <h5 class="title-bar bg-primary text-white">Home Decor</h5>
-                      <div class="card-body">
-                        <a href="/blog/3-secrets-interior-designers.html" class="text-decoration-none text-dark">  
-                            <p class="card-text">
-                              Transform Your Space: The 3 Secrets Interior Designers Swear By
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
               
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="https://cleanhomehacks.com/sleeping-with-1.5-million-dust-mites.html">
-                            <img src="assets/images/adv_helpkids_mainimg.png" class="card-img-top" alt="...">
+                            <img src="assets/images/adv_helpkids_mainimg.png" class="card-img-top" alt="The Average Bed Has 1.5 Million Dust Mites. I Found a Home Mist That Changed Our Life">
                         </a>
-                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
                       <div class="card-body">
                         <a href="https://cleanhomehacks.com/sleeping-with-1.5-million-dust-mites.html" class="text-decoration-none text-dark">
                             <p class="card-text">
@@ -165,9 +158,9 @@
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="/blog/how-to-make-any-room-feel-luxe.html"> 
-                            <img src="assets/images/adv_luxe_mainimg.png" class="card-img-top" alt="...">
+                            <img src="assets/images/adv_luxe_mainimg.png" class="card-img-top" alt="Small Space, Big Style: How to Make Any Room Feel Luxe">
                         </a>
-                      <h5 class="title-bar bg-primary text-white">Home Decor</h5>
+                      <div class="cat-tag bg-primary text-white">Home Decor</div>
                       <div class="card-body">
                         <a href="/blog/how-to-make-any-room-feel-luxe.html" class="text-decoration-none text-dark"> 
                             <p class="card-text">
@@ -181,9 +174,9 @@
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="/blog/types-of-environmental-allergies.html"> 
-                            <img src="assets/images/blog_enviro_mainimg.png" class="card-img-top" alt="...">
+                            <img src="assets/images/blog_enviro_mainimg.png" class="card-img-top" alt="Types of Environmental Allergies and How They Affect You">
                         </a>
-                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
                       <div class="card-body">
                         <a href="/blog/types-of-environmental-allergies.html" class="text-decoration-none text-dark"> 
                             <p class="card-text">
@@ -195,10 +188,25 @@
                   </div>
                   <div class="col">
                     <div class="card h-100 border-0">
-                        <a href="https://cleanhomehacks.com/how-to-clean-a-living-room-in-11-minutes.html"> 
-                            <img src="assets/images/lis_11_main.png" class="card-img-top" alt="...">
+                        <a href="https://cleanhomehacks.com/secret-to-waking-up-with-perfect-skin"> 
+                            <img src="assets/images/adv_girlinbed.png" class="card-img-top" alt="The Secret to Waking Up with Better Skin Might Be Hiding in Your Bedroom">  
                         </a>
-                      <h5 class="title-bar text-white" style="background-color: orange;">Home Cleaning</h5>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="https://cleanhomehacks.com/secret-to-waking-up-with-perfect-skin" class="text-decoration-none text-dark">   
+                            <p class="card-text">
+                              The Secret to Waking Up with Better Skin Might Be Hiding in Your Bedroom
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100 border-0">
+                        <a href="https://cleanhomehacks.com/how-to-clean-a-living-room-in-11-minutes.html"> 
+                            <img src="assets/images/lis_11_main.png" class="card-img-top" alt="How to Clean a Living Room in Just 11 Minutes">
+                        </a>
+                      <div class="cat-tag text-white" style="background-color: orange;">Home Cleaning</div>
                       <div class="card-body">
                         <a href="https://cleanhomehacks.com/how-to-clean-a-living-room-in-11-minutes.html" class="text-decoration-none text-dark"> 
                             <p class="card-text">
@@ -211,9 +219,9 @@
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="https://cleanhomehacks.com/pacagen-home-mist-spray.html"> 
-                            <img src="assets/images/adv_homemist_main.png" class="card-img-top" alt="...">  
+                            <img src="assets/images/adv_homemist_main.png" class="card-img-top" alt="Pacagen Home Mist Spray: The Science-Backed Way to Refresh Your Air">  
                         </a>
-                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
                       <div class="card-body">
                         <a href="https://cleanhomehacks.com/zyrtec-vs-dust-allergen-neutralizing-spray.html" class="text-decoration-none text-dark">   
                             <p class="card-text">
@@ -226,9 +234,9 @@
                   <div class="col">
                     <div class="card h-100 border-0">
                         <a href="https://cleanhomehacks.com/zyrtec-vs-dust-allergen-neutralizing-spray.html"> 
-                            <img src="assets/images/lis_vs_main.png" class="card-img-top" alt="...">  
+                            <img src="assets/images/lis_vs_main.png" class="card-img-top" alt="Zyrtec vs. a Functional Febreze: Which One Works Better?">  
                         </a>
-                      <h5 class="title-bar bg-success text-white">Wellness</h5>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
                       <div class="card-body">
                         <a href="https://cleanhomehacks.com/zyrtec-vs-dust-allergen-neutralizing-spray.html" class="text-decoration-none text-dark">   
                             <p class="card-text">
@@ -238,7 +246,51 @@
                       </div>
                     </div>
                   </div>
-              
+                  <div class="col">
+                    <div class="card h-100 border-0">
+                        <a href="/blog/3-secrets-interior-designers.html"> 
+                            <img src="assets/images/adv_interior_mainimg.png" class="card-img-top" alt="Transform Your Space: The 3 Secrets Interior Designers Swear By">
+                        </a>
+                      <div class="cat-tag bg-primary text-white">Home Decor</div>
+                      <div class="card-body">
+                        <a href="/blog/3-secrets-interior-designers.html" class="text-decoration-none text-dark">  
+                            <p class="card-text">
+                              Transform Your Space: The 3 Secrets Interior Designers Swear By
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100 border-0">
+                        <a href="https://cleanhomehacks.com/a-fathers-journey.html"> 
+                            <img src="assets/images/adv_fathers_journey.png" class="card-img-top" alt="A Father's Journey: How I Finally Helped My Son Breathe Again">  
+                        </a>
+                      <div class="cat-tag bg-success text-white">Health</div>
+                      <div class="card-body">
+                        <a href="https://cleanhomehacks.com/a-fathers-journey.html" class="text-decoration-none text-dark">   
+                            <p class="card-text">
+                                A Father's Journey: How I Finally Helped My Son Breathe Again
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100 border-0">
+                        <a href="https://cleanhomehacks.com/for-my-grandma"> 
+                            <img src="assets/images/Grandma.png" class="card-img-top" alt="A Son’s Story: How I Helped My Mom Breathe Again in Her Senior Home">  
+                        </a>
+                      <div class="cat-tag bg-success text-white">Health</div>
+                      <div class="card-body">
+                        <a href="https://cleanhomehacks.com/for-my-grandma" class="text-decoration-none text-dark">   
+                            <p class="card-text">
+                              A Son’s Story: How I Helped My Mom Breathe Again in Her Senior Home
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>              
                 </div>
               </section>
             </div>

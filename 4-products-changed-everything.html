@@ -6,7 +6,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <meta name="description" content="Clean Home Hacks - Your comprehensive source for keeping your home clean and hypoallergenic.">           
     <meta name="keywords" content="cleaning hacks for moms, time saving cleaning products, busy mom home tips, easy cleaning solutions, dust allergy spray, robot vacuum, magic eraser hacks, dish wand cleaning, stress free cleaning, family friendly home products">
-    <meta name="robots" content="noindex">
     <meta property="og:url" content="https://cleanhomehacks.com/4-products-changed-everything.html" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="I Am A Busy Mom Who Hates Cleaning And These 4 Products Changed Everything" />
@@ -84,7 +83,7 @@
         transition: opacity 0.3s ease;
         font-family: Georgia, serif !important;
     }
-    .w-70 { width: 70% !important; }
+    .w-60 { width: 60% !important; }
 
     .blog-category {
         align-items: center;
@@ -150,7 +149,7 @@
 
     /* On mobile (Bootstrap's sm breakpoint and below) */
     @media (max-width: 576px) {
-        .w-70 {
+        .w-60 {
             width: 90% !important;
         }
     }
@@ -175,7 +174,7 @@
 </style>
 </head>
 <body>
-    <section class="w-70 mx-auto my-4">
+    <section class="w-60 mx-auto my-4">
         <div class="breadcrumb-section">
             <div class="breadcrumb">
               <a href="index.html" class="breadcrumb-link">
@@ -256,9 +255,13 @@
                   <a href="javascript:void(0)" onclick="f('https://www.pacagen.com/products/dust-allergen-neutralizing-spray')" class="ctabutton">Try it now</a>
                 </div>
               </div>
+
+              <div id="pacagen-spray-showcase" class="d-flex justify-content-center align-items-center my-3"></div>
+
             <div class="image-row">
                 <img src="assets/images/lis_mom5products_sprayimg.png" style="margin-top: 10px;" alt="Image 2">
             </div>
+
             <h2 style="margin-top: 20px;">3. Magic Eraser Sponges for Everyday Disasters</h2>
             <p>
             Sticky fingerprints on the walls, crayon doodles on the table, mystery scuffs on the baseboards — it’s like they appear overnight.  
@@ -319,6 +322,16 @@
                 window.location.href = finalUrl;
             }, 200);
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const pacagenSprayShowcase = createProductShowcase({
+                image: 'dust_pink.png',
+                alt: 'Dust Allergen Neutralizing Spray',
+                description: 'Breaks down 76% of dust allergens on contact',
+                url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            document.getElementById('pacagen-spray-showcase').innerHTML = pacagenSprayShowcase;
+        });
     </script>
 </body>
 </html>

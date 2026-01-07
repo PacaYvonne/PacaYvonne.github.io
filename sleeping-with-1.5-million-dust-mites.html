@@ -6,7 +6,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <meta name="description" content="Clean Home Hacks - Your comprehensive source for keeping your home clean and hypoallergenic." />
   <meta name="keywords" content="dust allergy in children, dust mite allergy symptoms, how to reduce dust mites at home, natural dust allergy relief for kids, dust mite mattress protection, best allergy solutions for kids, prevent childhood asthma from dust, dust mites in bedding, safe allergy relief without medication, dust allergy home remedies, indoor allergen solutions for families, child sneezing every morning, dust mites and asthma risk, how to keep home allergen-free, hypoallergenic solutions for kids"/>
-  <meta name="robots" content="noindex" />
       <meta property="og:url" content="https://cleanhomehacks.com/sleeping-with-1.5-million-dust-mites.html" />  
     <meta property="og:type" content="article" />
     <meta property="og:title" content="I Learned My Son Was Sleeping With 1.5 Million Dust Mites - Here’s How I Made Our Home Safer and Cleaner" />
@@ -81,7 +80,7 @@
       background-color: #a62020;
     }
 
-    .w-70 {
+    .w-60 {
       width: 70% !important;
     }
 
@@ -146,7 +145,7 @@
     }
 
     @media (max-width: 576px) {
-      .w-70 {
+      .w-60 {
         width: 90% !important;
       }
     }
@@ -178,7 +177,7 @@
 </head>
 
 <body>
-  <section class="w-70 mx-auto my-4">
+  <section class="w-60 mx-auto my-4">
     <div class="breadcrumb-section">
       <div class="breadcrumb">
         <a href="index.html" class="breadcrumb-link">
@@ -270,7 +269,7 @@
       <div class="image-row">
         <img src="assets/images/adv_helpkids_homespray.png" style="margin-top: 10px;" alt="Image 1">
     </div>
-
+    <div id="pacagen-spray-showcase" class="d-flex justify-content-center align-items-center my-3"></div>
       <h2 style="margin-top: 20px;">The Results</h2>
       <p>After just two weeks, the difference was obvious.  <strong style="color:#c62828;">My son woke up without sneezing. </strong>No more stuffy nose, no more itchy eyes. Our mornings felt calmer, and I felt better knowing I was doing something simple but powerful to protect his health — without shots, without daily pills.</strong></p>
 
@@ -318,6 +317,16 @@
                 window.location.href = finalUrl;
             }, 200);
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const pacagenSprayShowcase = createProductShowcase({
+                image: 'dust_pink.png',
+                alt: 'Dust Allergen Neutralizing Spray',
+                description: 'Breaks down 76% of dust allergens on contact',
+                url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            document.getElementById('pacagen-spray-showcase').innerHTML = pacagenSprayShowcase;
+        });
   </script>
 </body>
 </html>
