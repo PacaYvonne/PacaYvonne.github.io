@@ -201,7 +201,9 @@ function createProductShowcase(config) {
         url,
         description,
         clickable = true,
-        pageType = 'root'
+        pageType = 'root',
+        showReviews = true,
+        buttonText = 'Claim your 15% off now'
     } = config;
 
     reviews ={
@@ -212,10 +214,10 @@ function createProductShowcase(config) {
         "https://www.pacagen.com/products/cat-allergen-reducing-supplement": ["4.80 out of 5 stars", "(200+ reviews)"],
         "https://www.pacagen.com/products/allergen-neutralizing-spray": ["4.72 out of 5 stars", "(600+ reviews)"]
     }
-    
+
     // Determine the correct asset path
     const assetPath = pageType === 'blog' ? '../assets' : 'assets';
-    
+
     if (clickable && url) {
         return `
         <a href="javascript:void(0)" class="d-flex w-md-65 justify-content-center align-items-center text-decoration-none" onclick="f('${url}')">
@@ -226,9 +228,9 @@ function createProductShowcase(config) {
                     </div>
                     <div class="col-7 my-auto col-sm-8 col-md-9">
                         <h3 class="card-title"><b>${alt}</b></h3>
-                        <p class="card-reviews mb-1">★★★★★ &nbsp ${reviews[url][0]} ${reviews[url][1]}</p>
+                        ${showReviews ? `<p class="card-reviews mb-1">★★★★★ &nbsp ${reviews[url][0]} ${reviews[url][1]}</p>` : ''}
                         <p class="card-description mb-0">${description}</p>
-                        <div class="ctabutton mt-2">Claim your 15% off now</div>
+                        <div class="ctabutton mt-2">${buttonText}</div>
                     </div>
                 </div>
             </div>
