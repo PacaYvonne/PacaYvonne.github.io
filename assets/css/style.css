@@ -1190,6 +1190,14 @@ footer {
     width: 85% !important;
   }
 
+  .card-text {
+    font-size: 1.3rem; /* Increased from 0.95rem for better mobile readability */
+  }
+
+  .card-body p {
+    font-size: 1.3rem !important; /* Override clamp() on mobile */
+  }
+
   .blog-contents {
     gap: 2rem;
   }
