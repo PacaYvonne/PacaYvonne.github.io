@@ -255,20 +255,48 @@ function insertProductShowcase(targetSelector, config) {
 
 
 // Wait for DOM to be fully loaded for additional functionality
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Smooth scrolling for internal links
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+document.addEventListener('DOMContentLoaded', function () {
+  // Smooth scrolling for internal links
+  const links = document.querySelectorAll('a[href^="#"]');
+  links.forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
         });
+      }
     });
+  });
+
+  // Home page category filter
+  const filterBar = document.querySelector('.category-filter');
+  if (filterBar) {
+    const filterButtons = filterBar.querySelectorAll('button[data-filter]');
+    const cards = document.querySelectorAll('.row .card[data-category]');
+
+    filterBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-filter]');
+      if (!btn) return;
+
+      const filter = btn.getAttribute('data-filter');
+
+      // Active state
+      filterButtons.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+      });
+
+      // Show/hide cards
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const show = filter === 'all' || cat === filter;
+        const col = card.parentElement; // .col wrapper
+        if (col) {
+          col.style.display = show ? '' : 'none';
+        }
+      });
+    });
+  }
 });

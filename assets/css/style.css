@@ -1,27 +1,229 @@
-/* Reset and base styles */
+/* =========================================================
+   1. Reset & Base Styles
+   ========================================================= */
+
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Base body + FOUC prevention (visibility restored via JS / .no-js) */
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.no-js body,
+.js body {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+p,
+li,
+span,
+a {
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+/* Base paragraph */
+p {
+  margin-bottom: 1.25rem;
+}
+
+/* Images and main layout */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 700px;
+}
+
+/* Advertorial / article header */
+.article-header {
+  border-radius: 5rem;
+  margin-bottom: 50px;
+  padding: 2rem;
+}
+
+/* Shared article image styles */
+.article-img {
+  width: 75%;
+  margin: 25px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .article-img {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   2. Utility Classes
+   ========================================================= */
+
+.w-60 {
+  width: 60% !important;
+}
+
+.w-70 {
+  width: 70% !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.w-md-65 {
+  width: 65%;
+}
+
+/* Text sizes */
+.small-text {
+  font-size: 0.875rem;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* Article body with serif font */
+.article-body {
+  font-family: Georgia, serif;
+}
+
+/* Highlight color used in article body */
+.highlight-green {
+  color: #448763;
+}
+
+.highlight-red {
+  color: #c62828;
+}
+
+/* Light blue background helper */
+.light-b-bg {
+  background-color: #a1e2e2;
+}
+
+/* Centered flex helper for rows of images, etc. */
+.image-row {
+  display: flex;
+  gap: 10px;
+}
+
+.image-row img {
+  width: 100%;
+  height: auto;
+}
+
+.cat-tag--home-cleaning {
+  background-color: orange;
+}
+
+/* Category filter bar under hero on home page */
+.category-filter-bar {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #ffffff;
+}
+
+.category-filter {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  white-space: nowrap; /* keep all buttons on one line */
+  flex-wrap: nowrap;
+  -webkit-overflow-scrolling: touch; /* smooth horizontal scroll on mobile */
+}
+
+.category-filter button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: #222;
+}
+
+.category-filter button.is-active {
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.15rem;
+}
+
+@media (max-width: 768px) {
+  .category-filter {
+    justify-content: flex-start;
+    gap: 1.25rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .category-filter button {
+    font-size: 0.95rem;
+  }
+}
+
+/* Card tweaks for home grid – standardize image size via aspect ratio */
+.card-img-top {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.card {
+  gap: 10px;
+}
+
+.card-body p {
+  font-size: clamp(0.3rem, 2.5vw, 1rem);
+}
+
+/* =========================================================
+   3. Navigation & Header
+   ========================================================= */
+
 .search-icon {
   display: none;
 }
+
 .site-header {
-  /* Grid makes centering dead simple and responsive */
   display: grid;
-  grid-template-columns: auto 1fr auto; /* left icon | logo | right icon */
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: clamp(0.5rem, 2vw, 1rem);
-
   background: #fff;
   padding: clamp(0.4rem, 2vw, 0.8rem) clamp(0.8rem, 3vw, 1.2rem);
-  /* Let content define height instead of hard-coding */
   min-height: clamp(56px, 10vw, 88px);
   box-sizing: border-box;
 }
 
-/* Icons scale slightly with viewport */
 .menu-icon,
 .search-icon {
   font-size: clamp(1.1rem, 3.5vw, 1.6rem);
@@ -32,60 +234,46 @@
   line-height: 1;
 }
 
-/* Center the logo cell */
 .logo {
   justify-self: center;
 }
 
-/* Fluid logo height with a sensible min/max */
-.logo img {
-  height: clamp(36px, 12vw, 72px);
+.logo img,
+nav a img,
+#logo {
+  height: 40px;
   width: auto;
-  display: block;
-  /* Prevent the logo from colliding with icons on very narrow screens */
-  max-width: min(60vw, 420px);
 }
 
-body {
-  font-family: "Arial", sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f9f9f9;
+/* Legacy custom logo size if needed */
+#logo {
+  width: 150px;
+  height: 95px;
 }
 
-main {
-  min-height: 700px;
-}
-
-img {
-  max-width: 100%;
-}
-
-.btn {
-  background-color: #4caf50 !important;
-  border: none !important;
-}
-
-.btn--secondary {
-  background-color: #6c757d !important;
-  border: none !important;
-  margin-top: 10px;
-}
-
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Header and navigation */
-header {
+/* Header wrapper */
+body > header {
   background-color: #056839;
   color: white;
   padding: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Simple home header with logo on top-left of index page */
+.home-header {
+  background-color: #ffffff;
+  padding: 1.25rem 1.5rem 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.home-header__logo img {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+
+/* Nav layout */
 nav {
   max-width: 1200px;
   margin: 0 auto;
@@ -97,16 +285,6 @@ nav {
 
 nav h1 {
   font-size: 1.8rem;
-}
-
-#logo {
-  height: 40px;
-  width: auto;
-}
-
-nav a img {
-  height: 40px;
-  width: auto;
 }
 
 nav ul {
@@ -131,33 +309,211 @@ nav a.active {
   font-weight: bold;
 }
 
-#logo {
-  width: 150px;
-  height: 95px;
+/* =========================================================
+   4. Scroll Banner
+   ========================================================= */
+
+.scroll-banner {
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #f5f5f5;
+  color: #333;
 }
 
-/* Main content */
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+.scroll-content {
+  display: inline-block;
+  animation: scroll-left 20s linear infinite;
 }
 
-.hero {
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================================
+   5. Buttons
+   ========================================================= */
+
+.btn {
+  background-color: #4caf50 !important;
+  border: none !important;
+}
+
+.btn--secondary {
+  background-color: #6c757d !important;
+  border: none !important;
+  margin-top: 10px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Primary CTA */
+.custom-btn {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border-radius: 4px;
+  background-color: #056839;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
   text-align: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Shop button system */
+.shop-button-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.shop-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 6px;
+  background-color: #056839;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.shop-button:hover {
+  background-color: #04502c;
+}
+
+.shop-button:active {
+  transform: translateY(1px);
+}
+
+.shop-button .discount {
+  font-size: 0.85rem;
+  background-color: #c62828;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+/* Page-specific CTA used in some articles */
+.ctabutton {
+  display: inline-block;
+  background-color: #448763;
   color: white;
-  padding: 4rem 2rem;
-  border-radius: 10px;
-  margin-bottom: 3rem;
+  font-weight: bold;
+  padding: 8px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
 }
 
-.hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+.ctabutton:hover {
+  background-color: #3c7456;
 }
 
-/* Grid layouts */
+/* Quiz button */
+.quiz-button {
+  display: inline-block;
+  background-color: #28a745;
+  color: white;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.quiz-button:hover {
+  background-color: #218838;
+}
+
+/* =========================================================
+   6. Hero & Welcome / Intro Sections
+   ========================================================= */
+
+/* Keep hero backgrounds plain white globally (no gradients) */
+.hero,
+.hero-section {
+  background: #ffffff;
+  color: inherit;
+}
+
+/* Variant hero for home index (spacing/typography only) */
+.hero-section--home {
+  background: #ffffff;
+  color: #111;
+  border-radius: 0;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 2.5rem 1.5rem 1.75rem;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.hero-section--home h1 {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-section--home p {
+  margin-top: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.hero-section--home .hero-copy {
+  max-width: 40rem;
+}
+
+/* Welcome / intro */
+.welcome-section {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.welcome-section h2 {
+  margin-bottom: 0.75rem;
+}
+
+.welcome-section p {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Quote block */
+.quote-section {
+  margin: 2rem auto;
+}
+
+.quote {
+  font-style: italic;
+}
+
+.quote-author {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* Blockquote styling */
+.blockquote {
+  border-left: 4px solid #c62828;
+  padding-left: 15px;
+  font-style: italic;
+  color: #444;
+}
+
+/* =========================================================
+   7. Grid Layouts / Blog Listing
+   ========================================================= */
+
 .blog-grid,
 .advertorial-grid {
   display: grid;
@@ -180,32 +536,48 @@ main {
   transform: translateY(-5px);
 }
 
-/* Sections */
 .featured-content,
 .advertorials,
 .quiz-section {
   margin-bottom: 3rem;
 }
 
-.article-header {
-  border-radius: 5rem;
-  margin-bottom: 50px;
-  padding: 2rem;
+/* =========================================================
+   8. Article Components
+   ========================================================= */
+
+.article-section {
+  margin-bottom: 2.5rem;
 }
 
-.article-img {
-  width: 75%;
-  margin: 25px auto;
+/* Shared long-form article wrapper (for content typography rules later) */
+.blog-contents,
+.content-large {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
-  .article-img {
-    width: 100%;
-  }
+.blog-contents {
+  gap: 100px;
 }
+
+.blog-contents p,
+.blog-contents li {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+/* Secondary content image */
+.article-content-image {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+/* Section headings within articles */
 section p {
     margin-bottom: 2rem;
 }
+
 section h3 {
   margin-bottom: 1rem;
   margin-top: 1rem;
@@ -213,23 +585,574 @@ section h3 {
   padding-bottom: 0.5rem;
 }
 
-/* Quiz button */
-.quiz-button {
+/* Card text (e.g., product cards, advertorial cards) */
+.card-text {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Category badge used above titles */
+.category-badge {
   display: inline-block;
-  background-color: #28a745;
+  background-color: #196754;
   color: white;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* Orange variant category badge */
+.category-badge1 {
+  display: inline-block;
+  background-color: #f39f1e;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* Divider used under category */
+.section-divider {
+  height: 2px;
+  background-color: #ccc;
+  margin: 10px auto;
+  width: 80%;
+}
+
+/* Product text links in body */
+.productlink {
+  color: #c62828 !important;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  text-decoration: underline;
 }
 
-.quiz-button:hover {
-  background-color: #218838;
+.productlink:hover {
+  text-decoration: underline;
 }
 
-/* Footer */
+/* Blog title area */
+.blog-title-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  background-color: #ffffff;
+}
+
+.blog-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+/* Quote card used on some pages */
+.quote-card {
+  width: 700px;
+  max-width: 90%;
+  margin: 20px auto;
+  height: auto;
+  background-color: #c0d3c9;
+}
+
+/* Category tag overlay used on home cards */
+.cat-tag {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background-color: var(--bs-success, #198754);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover .cat-tag {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   9. Fold Component (mid-page “fold” block)
+   ========================================================= */
+
+.fold-section {
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.fold-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.fold-leading-title {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.fold-image-wrapper {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.fold-image {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.fold-image-caption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* =========================================================
+   10. Breadcrumb & Author
+   ========================================================= */
+
+.breadcrumb-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: #ffffff;
+}
+
+.breadcrumb a,
+.breadcrumb-link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover,
+.breadcrumb-link:hover {
+  text-decoration: underline;
+  color: #c62828;
+}
+
+/* Author info */
+.author-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.author-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* =========================================================
+   11. FOUC Prevention (for JS-injected components)
+   ========================================================= */
+
+/* Hide when empty until JS fills content */
+#article-fold,
+#article-footer,
+div[id$="-showcase"],
+div[id$="-ad"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Loaded state applied by JS (paired with body visibility rules above) */
+.component-loaded {
+  animation: fadeInSmooth 0.4s ease-out forwards;
+}
+
+/* Smooth component fade-in */
+@keyframes fadeInSmooth {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   12. Ads Module
+   ========================================================= */
+
+.ad-section {
+  margin: 2.5rem auto;
+}
+
+.ad-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ad-logo .ad-logo-dark {
+  filter: brightness(0.1);
+}
+
+.ad-headline {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.ad-body {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.ad-body .ad-product-name {
+  font-weight: 700;
+}
+
+.ad-cta-wrapper {
+  margin-top: 1rem;
+}
+
+.ad-cta {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background-color: #056839;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Background ad block */
+.ad {
+  position: relative;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.ad.ad-clickable {
+  cursor: pointer;
+}
+
+.ad::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.4),
+    transparent 55%
+  );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.ad > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ad-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #777;
+}
+
+/* =========================================================
+   13. Product Cards
+   ========================================================= */
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.card-reviews {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* =========================================================
+   14. Content Typography (article body)
+   ========================================================= */
+
+.content-large {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.content-large h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content-large h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.content-large p {
+  margin-bottom: 1.25rem;
+}
+
+.content-large ul,
+.content-large ol {
+  margin-left: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.content-large li {
+  margin-bottom: 0.6rem;
+}
+
+/* =========================================================
+   15. Comparison Tables
+   ========================================================= */
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.comparison-table th:first-child,
+.comparison-table td:first-child {
+  font-weight: 600;
+}
+
+.comparison-table th:last-child,
+.comparison-table td:last-child {
+  text-align: center;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table .sign-cell {
+  text-align: center;
+}
+
+.comparison-table .sign-cell img {
+  width: 18px;
+  height: 18px;
+}
+
+.comparison-table .sign-cell img[src*="warning-sign"] {
+  filter: hue-rotate(-20deg) saturate(1.4);
+}
+
+/* Brand columns for toggling */
+.col-clorox,
+.col-allerpet {
+  display: table-cell;
+}
+
+/* =========================================================
+   16. Brand Selector
+   ========================================================= */
+
+.brand-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.brand-selector label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.brand-selector select {
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   17. Common Components
+   ========================================================= */
+
+.highlight-box {
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  background-color: #f4f7ff;
+  border: 1px solid #d6e0ff;
+  margin: 1.75rem 0;
+}
+
+/* =========================================================
+   18. Testimonial Carousel Component
+   ========================================================= */
+
+.testimonial-section {
+  margin: 3rem auto;
+}
+
+.testimonial-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-slide {
+  display: none;
+  animation: fadeInSmooth 0.4s ease-out;
+}
+
+.testimonial-slide.active {
+  display: block;
+}
+
+.testimonial-content {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.testimonial-logo {
+  flex: 0 0 auto;
+}
+
+.testimonial-logo img {
+  max-width: 80px;
+}
+
+.testimonial-quote {
+  font-style: italic;
+}
+
+.testimonial-source {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.testimonial-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.testimonial-nav-btn {
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.testimonial-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.testimonial-dot.active {
+  background-color: #056839;
+}
+
+/* =========================================================
+   19. Gift-Style Sections (for gift guides)
+   ========================================================= */
+
+.gift-card {
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.gift-card .article-content-image {
+  margin-bottom: 1rem;
+}
+
+.gift-card .article-content-image img {
+  border-radius: 8px;
+}
+
+.gift-card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.gift-card p {
+  margin-bottom: 0.75rem;
+}
+
+.gift-card .shop-button-wrapper {
+  margin-top: 0.75rem;
+}
+
+.gift-price {
+  font-weight: 700;
+}
+
+.gift-retailer {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* =========================================================
+   20. Hover Effects
+   ========================================================= */
+
+.hover-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================================
+   21. Footer
+   ========================================================= */
+
 footer {
   background-color: #333;
   color: white;
@@ -241,7 +1164,39 @@ footer {
   width: 100%;
 }
 
-/* Responsive design */
+/* =========================================================
+   22. Responsive Design (by breakpoint)
+   ========================================================= */
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .w-70 {
+    width: 95% !important;
+  }
+
+  .content-large p,
+  .content-large li {
+    font-size: 0.95rem;
+  }
+
+  .highlight-box {
+    padding: 1rem;
+  }
+
+  .brand-selector label {
+    font-size: 0.8rem;
+  }
+
+  .comparison-table {
+    font-size: 0.8rem;
+  }
+
+  .table-wrapper {
+    margin: 1.5rem 0;
+  }
+}
+
+/* Tablet & Mobile (max-width: 768px) */
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -252,12 +1207,155 @@ footer {
     gap: 1rem;
   }
 
-  .hero h2 {
-    font-size: 2rem;
-  }
-
   main {
     padding: 1rem;
+  }
+
+  .fold-title,
+  .fold-leading-title {
+    text-align: center;
+  }
+
+  .article-content-image,
+  .article-img {
+    width: 100%;
+  }
+
+  .content-large * {
+    text-align: left;
+  }
+
+  .highlight-box {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .testimonial-section {
+    padding: 0 1rem;
+  }
+
+  .testimonial-title {
+    text-align: center;
+  }
+
+  .testimonial-slide {
+    text-align: left;
+  }
+
+  .testimonial-content {
+    flex-direction: column;
+  }
+
+  .testimonial-logo {
+    text-align: center;
+  }
+
+  .testimonial-quote {
+    font-size: 0.95rem;
+  }
+
+  .testimonial-nav-btn {
+    font-size: 0.8rem;
+  }
+
+  .small-text {
+    font-size: 0.8rem;
+  }
+
+  .w-md-65 {
+    width: 100%;
+  }
+
+  .brand-selector {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .comparison-table {
+    font-size: 0.8rem;
+  }
+
+  .col-clorox,
+  .col-allerpet {
+    display: table-row-group;
+  }
+
+  .shop-button-wrapper {
+    width: 100%;
+  }
+
+  .shop-button {
+    width: 100%;
+  }
+
+  .ad-section,
+  .ad {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .ad-headline {
+    font-size: 1.2rem;
+  }
+
+  .ad-body {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    margin-bottom: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-reviews {
+    font-size: 0.8rem;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+  }
+
+  .gift-card {
+    padding: 1.25rem;
+  }
+}
+
+/* Desktop (min-width: 769px) */
+@media (min-width: 769px) {
+  .brand-selector {
+    justify-content: flex-end;
+  }
+
+  .col-clorox,
+  .col-allerpet {
+    display: table-cell;
+  }
+
+  .card .row {
+    align-items: stretch;
+  }
+
+  .card .col-md-4 {
+    display: flex;
+    align-items: center;
+  }
+
+  .card .col-md-8 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .card .card-title {
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -275,16 +1373,3 @@ footer {
     padding: 0.25rem;
   }
 }
-
-/* Custom styles */
-.light-b-bg{
-    background-color: #a1e2e2;
-}
-
-.quote-card {
-    width: 700px;
-    max-width: 90%;
-    margin: 20px auto;
-    height: auto;
-    background-color: #c0d3c9;
-  }
