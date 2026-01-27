@@ -407,7 +407,7 @@ nav a.active {
 /* Page-specific CTA used in some articles */
 .ctabutton {
   display: inline-block;
-  background-color: #448763;
+  background-color: #c62828;
   color: white;
   font-weight: bold;
   padding: 8px 18px;
@@ -417,7 +417,7 @@ nav a.active {
 }
 
 .ctabutton:hover {
-  background-color: #3c7456;
+  background-color: #a62020;
 }
 
 /* Quiz button */
@@ -558,7 +558,7 @@ nav a.active {
 }
 
 .blog-contents {
-  gap: 100px;
+  gap: 3rem;
 }
 
 .blog-contents p,
@@ -760,6 +760,18 @@ section h3 {
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+/* Author by-text styling */
+.by-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Blog category container */
+.blog-category {
+  display: flex;
+  align-items: center;
 }
 
 /* =========================================================
@@ -1170,8 +1182,29 @@ footer {
 
 /* Mobile (max-width: 576px) */
 @media (max-width: 576px) {
+  .w-60 {
+    width: 85% !important;
+  }
+
   .w-70 {
-    width: 95% !important;
+    width: 85% !important;
+  }
+
+  .blog-contents {
+    gap: 2rem;
+  }
+
+  .blog-contents p,
+  .blog-contents li {
+    font-size: 1rem;
+  }
+
+  .blog-title {
+    font-size: 1.5rem;
+  }
+
+  .image-row {
+    flex-direction: column;
   }
 
   .content-large p,
@@ -1209,6 +1242,23 @@ footer {
 
   main {
     padding: 1rem;
+  }
+
+  .blog-contents {
+    gap: 3rem;
+  }
+
+  .blog-contents p,
+  .blog-contents li {
+    font-size: 1.1rem;
+  }
+
+  .blog-title {
+    font-size: 1.75rem;
+  }
+
+  .image-row {
+    flex-wrap: wrap;
   }
 
   .fold-title,
