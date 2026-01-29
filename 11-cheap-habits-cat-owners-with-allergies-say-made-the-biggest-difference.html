@@ -19,8 +19,15 @@
 </style>
     <script>document.documentElement.className += ' js';</script>
     
-    <!-- Load main JavaScript -->
+    <!-- Component initialization helper (must load before bundles) -->
+    <script src="assets/js/component-init.js"></script>
+    
+    <!-- Main JavaScript (navigation, footer) -->
     <script src="assets/js/main.js" defer></script>
+    
+    <!-- Component bundles -->
+    <script src="assets/js/product-components-bundle.js"></script>
+    
     <script src="https://static.runconverge.com/pixels/M2PCqt.js" async></script>
     <script>
     window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
@@ -94,6 +101,10 @@
             <p>👉 <a href="https://www.pacagen.com/products/cat-allergen-neutralizing-spray" class="productlink" target="_blank">Pacagen Cat Allergen Neutralizing Spray</a></p>
             <div class="d-flex justify-content-center">
                 <img src="assets/images/11_1.png" class="img-fluid" alt="Pacagen Cat Allergen Neutralizing Spray" class="mt-2">
+            </div>
+            <div class="product-showcase-wrapper product-showcase--wellness">
+                <div class="product-showcase-title">Featured Product</div>
+                <div id="pacagen-spray-showcase" class="d-flex justify-content-center align-items-center mb-3"></div>
             </div>
 
             <h2 class="mt-5">2. Scotch-Brite Lint Roller</h2>
@@ -203,6 +214,75 @@
             setTimeout(() => {
                 window.location.href = finalUrl;
             }, 200);
+        }
+
+        // Helper function to add Shop Now button
+        function addShopButton(showcaseEl) {
+            const wrapper = showcaseEl.closest('.product-showcase-wrapper');
+            if (wrapper) {
+                const shopButton = document.createElement('div');
+                shopButton.className = 'shop-now-button';
+                shopButton.textContent = 'Shop Now';
+                shopButton.onclick = function(e) {
+                    e.preventDefault();
+                    window.location.href = 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray';
+                };
+                wrapper.appendChild(shopButton);
+            }
+        }
+
+        // Use initComponentsWhenReady to wait for product components
+        if (typeof initComponentsWhenReady !== 'undefined') {
+            initComponentsWhenReady(function() {
+                // Create product showcase
+                const showcaseEl = document.getElementById('pacagen-spray-showcase');
+                showcaseEl.innerHTML = createProductShowcase({
+                    image: '11_1.png',
+                    alt: 'Pacagen Cat Allergen Neutralizing Spray',
+                    description: 'Breaks down 98% of cat allergens on contact',
+                    url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                    pageType: 'root'
+                });
+                addShopButton(showcaseEl);
+                showcaseEl.classList.add('component-loaded');
+                showcaseEl.style.visibility = 'visible';
+            }, {
+                waitForProduct: true,
+                waitForArticle: false,
+                waitForAds: false
+            });
+        } else {
+            // Fallback if component-init.js isn't loaded
+
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof createProductShowcase !== 'undefined') {
+                    const showcaseEl = document.getElementById('pacagen-spray-showcase');
+                    showcaseEl.innerHTML = createProductShowcase({
+                        image: '11_1.png',
+                        alt: 'Pacagen Cat Allergen Neutralizing Spray',
+                        description: 'Breaks down 98% of cat allergens on contact',
+                        url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                        pageType: 'root'
+                    });
+                    addShopButton(showcaseEl);
+                    showcaseEl.classList.add('component-loaded');
+                    showcaseEl.style.visibility = 'visible';
+                } else {
+                    window.addEventListener('productComponentsLoaded', function() {
+                        const showcaseEl = document.getElementById('pacagen-spray-showcase');
+                        showcaseEl.innerHTML = createProductShowcase({
+                            image: '11_1.png',
+                            alt: 'Pacagen Cat Allergen Neutralizing Spray',
+                            description: 'Breaks down 98% of cat allergens on contact',
+                            url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                            pageType: 'root'
+                        });
+                        addShopButton(showcaseEl);
+                        showcaseEl.classList.add('component-loaded');
+                        showcaseEl.style.visibility = 'visible';
+                    }, { once: true });
+                }
+            });
         }
     </script>
 </body>

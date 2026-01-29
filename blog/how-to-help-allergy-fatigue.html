@@ -11,16 +11,19 @@
     body { visibility: hidden; opacity: 0; transition: opacity 0.3s ease; }
     .no-js body { visibility: visible; opacity: 1; }
 </style>
-    <script>document.documentElement.className += ' js';</script>
-    <script src="https://static.runconverge.com/pixels/M2PCqt.js" async></script>
-    <script>
-    window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
-    cvg({method:"track",eventName:"$page_load"});
-    cvg({ method: "link_domain", domain: "pacagen.com" });
-    </script>
-    
-    <!-- Load main JavaScript -->
-    <script src="../assets/js/main.js" defer></script>
+        <script>document.documentElement.className += ' js';</script>
+        <!-- Component initialization helper (must load before bundles) -->
+        <script src="../assets/js/component-init.js"></script>
+        <!-- Main JavaScript -->
+        <script src="../assets/js/main.js" defer></script>
+        <!-- Component bundles -->
+        <script src="../assets/js/product-components-bundle.js"></script>
+        <script src="https://static.runconverge.com/pixels/M2PCqt.js" async></script>
+        <script>
+        window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
+        cvg({method:"track",eventName:"$page_load"});
+        cvg({ method: "link_domain", domain: "pacagen.com" });
+        </script>
 </head>
 <body>
 
@@ -106,6 +109,10 @@
                 <p role="presentation" dir="ltr">Allergen-proofing cat foods: a food topper that contains Pacagen's allergen-neutralizing technology which neutralizes 98% of active cat allergens.</p>
                 </li>
                 </ul>
+                <div class="product-showcase-wrapper product-showcase--wellness">
+                    <div class="product-showcase-title">Featured Product</div>
+                    <div id="pacagen-cat-spray-showcase" class="d-flex justify-content-center align-items-center mb-3"></div>
+                </div>
                 <h2 dir="ltr">Conclusion</h2>
                 <p dir="ltr">Living with cat allergies doesn't mean you have to live with constant fatigue. By implementing these strategies and staying informed about new developments, you can significantly reduce your symptoms and enjoy a more energetic life alongside your feline friends.</p>
                 <p dir="ltr">Remember, if fatigue persists despite these measures, consult with your healthcare provider. They can help rule out other potential causes and provide personalized advice for managing your allergies and fatigue.</p>
@@ -116,5 +123,73 @@
             </footer>
         </article>
     </main>
+  <script>
+    // Helper function to add Shop Now button
+    function addShopButton(showcaseEl) {
+        const wrapper = showcaseEl.closest('.product-showcase-wrapper');
+        if (wrapper && !wrapper.querySelector('.shop-now-button')) {
+            const shopButton = document.createElement('div');
+            shopButton.className = 'shop-now-button';
+            shopButton.textContent = 'Shop Now';
+            shopButton.onclick = function(e) {
+                e.preventDefault();
+                window.location.href = 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray';
+            };
+            wrapper.appendChild(shopButton);
+        }
+    }
+
+    // Use initComponentsWhenReady
+    if (typeof initComponentsWhenReady !== 'undefined') {
+        initComponentsWhenReady(function() {
+            const showcaseEl = document.getElementById('pacagen-cat-spray-showcase');
+            showcaseEl.innerHTML = createProductShowcase({
+                image: '11_1.png',
+                alt: 'Cat Allergen Neutralizing Spray',
+                description: 'Breaks down 98% of cat allergens on contact',
+                url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            addShopButton(showcaseEl);
+            showcaseEl.classList.add('component-loaded');
+            showcaseEl.style.visibility = 'visible';
+        }, {
+            waitForProduct: true,
+            waitForArticle: false,
+            waitForAds: false
+        });
+    } else {
+        // Fallback if component-init.js isn't loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof createProductShowcase !== 'undefined') {
+                const showcaseEl = document.getElementById('pacagen-cat-spray-showcase');
+                showcaseEl.innerHTML = createProductShowcase({
+                    image: '11_1.png',
+                    alt: 'Cat Allergen Neutralizing Spray',
+                    description: 'Breaks down 98% of cat allergens on contact',
+                    url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                    pageType: 'blog'
+                });
+                addShopButton(showcaseEl);
+                showcaseEl.classList.add('component-loaded');
+                showcaseEl.style.visibility = 'visible';
+            } else {
+                window.addEventListener('productComponentsLoaded', function() {
+                    const showcaseEl = document.getElementById('pacagen-cat-spray-showcase');
+                    showcaseEl.innerHTML = createProductShowcase({
+                        image: '11_1.png',
+                        alt: 'Cat Allergen Neutralizing Spray',
+                        description: 'Breaks down 98% of cat allergens on contact',
+                        url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                        pageType: 'blog'
+                    });
+                    addShopButton(showcaseEl);
+                    showcaseEl.classList.add('component-loaded');
+                    showcaseEl.style.visibility = 'visible';
+                });
+            }
+        });
+    }
+  </script>
 </body>
 </html>

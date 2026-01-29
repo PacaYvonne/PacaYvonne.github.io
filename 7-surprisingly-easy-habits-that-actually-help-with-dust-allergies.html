@@ -19,8 +19,12 @@
 </style>
     <script>document.documentElement.className += ' js';</script>
     
-    <!-- Load main JavaScript -->
+    <!-- Component initialization helper (must load before bundles) -->
+    <script src="assets/js/component-init.js"></script>
+    <!-- Main JavaScript -->
     <script src="assets/js/main.js" defer></script>
+    <!-- Component bundles -->
+    <script src="assets/js/product-components-bundle.js"></script>
     <script src="https://static.runconverge.com/pixels/M2PCqt.js" async></script>
     <script>
     window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
@@ -89,12 +93,16 @@
 
             <p>Dust allergies are a daily frustration for many people. Even in clean homes, allergen particles can build up and continue triggering symptoms. These seven easy habits are designed to reduce exposure without overhauling your routine.</p>
 
-            <h2 class="mt-5">1. Use a Dust Allergen Neutralizing Spray (Not Just “Cleaning” Spray)</h2>
-            <p>Most people vacuum and wipe, but that doesn’t neutralize the allergen proteins left behind by dust mites. Allergists recommend Pacagen dust allergen neutralizing spray as an effective way to reduce dust allergen exposure, since they break down the allergen itself rather than just removing visible dust. When used on high-contact surfaces like beds, couches, and pillows, many people notice improvement within about 2 days. Think of it like Febreze—but functional: spray every 2–3 days and move on with your life.
+            <h2 class="mt-5">1. Use a Dust Allergen Neutralizing Spray (Not Just "Cleaning" Spray)</h2>
+            <p>Most people vacuum and wipe, but that doesn't neutralize the allergen proteins left behind by dust mites. Allergists recommend Pacagen dust allergen neutralizing spray as an effective way to reduce dust allergen exposure, since they break down the allergen itself rather than just removing visible dust. When used on high-contact surfaces like beds, couches, and pillows, many people notice improvement within about 2 days. Think of it like Febreze—but functional: spray every 2–3 days and move on with your life.
                 </p>
             <p>👉 <a href="https://www.pacagen.com/products/dust-allergen-neutralizing-spray" class="productlink" target="_blank">Pacagen Dust Allergen Neutralizing Spray</a></p>
             <div class="d-flex justify-content-center">
                 <img src="assets/images/7_1.png" class="img-fluid" alt="Pacagen Cat Allergen Neutralizing Spray" class="mt-2">
+            </div>
+            <div class="product-showcase-wrapper product-showcase--wellness">
+                <div class="product-showcase-title">Featured Product</div>
+                <div id="pacagen-dust-showcase" class="d-flex justify-content-center align-items-center mb-3"></div>
             </div>
 
             <h2 class="mt-5">2. Switch to a Zip-Up Mattress Encasement            </h2>
@@ -189,6 +197,73 @@
             setTimeout(() => {
                 window.location.href = finalUrl;
             }, 200);
+        }
+
+        // Helper function to add Shop Now button
+        function addShopButton(showcaseEl) {
+            const wrapper = showcaseEl.closest('.product-showcase-wrapper');
+            if (wrapper && !wrapper.querySelector('.shop-now-button')) {
+                const shopButton = document.createElement('div');
+                shopButton.className = 'shop-now-button';
+                shopButton.textContent = 'Shop Now';
+                shopButton.onclick = function(e) {
+                    e.preventDefault();
+                    window.location.href = 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray';
+                };
+                wrapper.appendChild(shopButton);
+            }
+        }
+
+        // Use initComponentsWhenReady
+        if (typeof initComponentsWhenReady !== 'undefined') {
+            initComponentsWhenReady(function() {
+                const showcaseEl = document.getElementById('pacagen-dust-showcase');
+                showcaseEl.innerHTML = createProductShowcase({
+                    image: 'https://cdn.shopify.com/s/files/1/0814/8369/4394/files/dust_spray.jpg?v=1764122955',
+                    alt: 'Dust Allergen Neutralizing Spray',
+                    description: 'Breaks down 76% of dust allergens on contact',
+                    url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                    pageType: 'root'
+                });
+                addShopButton(showcaseEl);
+                showcaseEl.classList.add('component-loaded');
+                showcaseEl.style.visibility = 'visible';
+            }, {
+                waitForProduct: true,
+                waitForArticle: false,
+                waitForAds: false
+            });
+        } else {
+            // Fallback if component-init.js isn't loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof createProductShowcase !== 'undefined') {
+                    const showcaseEl = document.getElementById('pacagen-dust-showcase');
+                    showcaseEl.innerHTML = createProductShowcase({
+                        image: 'dust_pink.png',
+                        alt: 'Dust Allergen Neutralizing Spray',
+                        description: 'Breaks down 76% of dust allergens on contact',
+                        url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                        pageType: 'root'
+                    });
+                    addShopButton(showcaseEl);
+                    showcaseEl.classList.add('component-loaded');
+                    showcaseEl.style.visibility = 'visible';
+                } else {
+                    window.addEventListener('productComponentsLoaded', function() {
+                        const showcaseEl = document.getElementById('pacagen-dust-showcase');
+                        showcaseEl.innerHTML = createProductShowcase({
+                            image: 'dust_pink.png',
+                            alt: 'Dust Allergen Neutralizing Spray',
+                            description: 'Breaks down 76% of dust allergens on contact',
+                            url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                            pageType: 'root'
+                        });
+                        addShopButton(showcaseEl);
+                        showcaseEl.classList.add('component-loaded');
+                        showcaseEl.style.visibility = 'visible';
+                    });
+                }
+            });
         }
     </script>
 </body>

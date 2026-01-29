@@ -17,7 +17,12 @@
   <script>
     document.documentElement.className += ' js';
   </script>
+  <!-- Component initialization helper (must load before bundles) -->
+  <script src="../assets/js/component-init.js"></script>
+  <!-- Main JavaScript -->
   <script src="../assets/js/main.js" defer></script>
+  <!-- Component bundles -->
+  <script src="../assets/js/product-components-bundle.js"></script>
   <script src="https://static.runconverge.com/pixels/M2PCqt.js" async></script>
   <script>
     window.cvg || (cvg = function () {
@@ -157,7 +162,11 @@
         <p dir="ltr">Biotech-driven approaches are making it easier to manage allergies without relying solely on medication. Products like <a href="https://pacagen.com/products/dust-allergen-neutralizing-spray" target="_blank" title="Dust allergen neutralizing spray" rel="noopener">allergen-neutralizing sprays</a> or <a href="https://pacagen.com/products/cat-food-topper-chicken" target="_blank" title="Pacagen's Cat Food Topper" rel="noopener">pet food toppers</a>—developed by scientists at Pacagen—target allergens directly in the air, on surfaces, or even at the source (like pet saliva). These are designed to work alongside your existing routine and offer an additional layer of protection.</p>
         <p dir="ltr">As <strong>Dr. Evan Zhao</strong> puts it:</p>
         <blockquote>"The allergen neutralizing formula harnesses the power of naturally engineered proteins to precisely target and neutralize specific allergens, including cat, dog, and dust mite allergens…"</blockquote>
-        <p dir="ltr">This means fewer meds, fewer side effects, and a more direct approach to fighting allergens—whether they’re floating in the air or hiding in your couch.</p>
+        <p dir="ltr">This means fewer meds, fewer side effects, and a more direct approach to fighting allergens—whether they're floating in the air or hiding in your couch.</p>
+        <div class="product-showcase-wrapper product-showcase--wellness">
+            <div class="product-showcase-title">Featured Product</div>
+            <div id="pacagen-dust-showcase" class="d-flex justify-content-center align-items-center mb-3"></div>
+        </div>
         <p dir="ltr">The best plan is one that works for you. Often, it’s a combination of small actions that add up to major relief.</p>
         <p dir="ltr"><b><br></b></p>
         <h2 dir="ltr">Final Thoughts</h2>
@@ -177,5 +186,73 @@
         </div>
         </div>
   </section>
+  <script>
+    // Helper function to add Shop Now button
+    function addShopButton(showcaseEl) {
+        const wrapper = showcaseEl.closest('.product-showcase-wrapper');
+        if (wrapper && !wrapper.querySelector('.shop-now-button')) {
+            const shopButton = document.createElement('div');
+            shopButton.className = 'shop-now-button';
+            shopButton.textContent = 'Shop Now';
+            shopButton.onclick = function(e) {
+                e.preventDefault();
+                window.location.href = 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray';
+            };
+            wrapper.appendChild(shopButton);
+        }
+    }
+
+    // Use initComponentsWhenReady
+    if (typeof initComponentsWhenReady !== 'undefined') {
+        initComponentsWhenReady(function() {
+            const showcaseEl = document.getElementById('pacagen-dust-showcase');
+            showcaseEl.innerHTML = createProductShowcase({
+                image: 'https://cdn.shopify.com/s/files/1/0814/8369/4394/files/dust_spray.jpg?v=1764122955',
+                alt: 'Dust Allergen Neutralizing Spray',
+                description: 'Breaks down 76% of dust allergens on contact',
+                url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            addShopButton(showcaseEl);
+            showcaseEl.classList.add('component-loaded');
+            showcaseEl.style.visibility = 'visible';
+        }, {
+            waitForProduct: true,
+            waitForArticle: false,
+            waitForAds: false
+        });
+    } else {
+        // Fallback if component-init.js isn't loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof createProductShowcase !== 'undefined') {
+                const showcaseEl = document.getElementById('pacagen-dust-showcase');
+                showcaseEl.innerHTML = createProductShowcase({
+                    image: 'https://cdn.shopify.com/s/files/1/0814/8369/4394/files/dust_spray.jpg?v=1764122955',
+                    alt: 'Dust Allergen Neutralizing Spray',
+                    description: 'Breaks down 76% of dust allergens on contact',
+                    url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                    pageType: 'blog'
+                });
+                addShopButton(showcaseEl);
+                showcaseEl.classList.add('component-loaded');
+                showcaseEl.style.visibility = 'visible';
+            } else {
+                window.addEventListener('productComponentsLoaded', function() {
+                    const showcaseEl = document.getElementById('pacagen-dust-showcase');
+                    showcaseEl.innerHTML = createProductShowcase({
+                        image: 'https://cdn.shopify.com/s/files/1/0814/8369/4394/files/dust_spray.jpg?v=1764122955',
+                        alt: 'Dust Allergen Neutralizing Spray',
+                        description: 'Breaks down 76% of dust allergens on contact',
+                        url: 'https://www.pacagen.com/products/dust-allergen-neutralizing-spray',
+                        pageType: 'blog'
+                    });
+                    addShopButton(showcaseEl);
+                    showcaseEl.classList.add('component-loaded');
+                    showcaseEl.style.visibility = 'visible';
+                });
+            }
+        });
+    }
+  </script>
 </body>
 </html>

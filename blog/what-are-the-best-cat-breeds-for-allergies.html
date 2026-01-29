@@ -12,15 +12,18 @@
         .no-js body { visibility: visible; opacity: 1; }
     </style>
         <script>document.documentElement.className += ' js';</script>
+        <!-- Component initialization helper (must load before bundles) -->
+        <script src="../assets/js/component-init.js"></script>
+        <!-- Main JavaScript -->
+        <script src="../assets/js/main.js" defer></script>
+        <!-- Component bundles -->
+        <script src="../assets/js/product-components-bundle.js"></script>
         <script src="https://static.runconverge.com/pixels/M2PCqt.js" async></script>
         <script>
         window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
         cvg({method:"track",eventName:"$page_load"});
         cvg({ method: "link_domain", domain: "pacagen.com" });
         </script>
-    
-    <!-- Load main JavaScript -->
-    <script src="../assets/js/main.js" defer></script>
 </head>
 <body>
 
@@ -75,6 +78,10 @@
                 <p><span class="fw-normal">Burmese cats are closely related to the Balinese and Javanese breeds, as they all descend from Siamese cats. Burmese cats shed very little, so you will be exposed to minimal airborne Fel d 1</span></p>
                 <h3><b>What if I still have cat allergies?</b></h3>
                 <p><span class="fw-normal">It is important to know that even if your cat is among the best cat breeds for allergies, there are numerous other factors that influence the release of airborne Fel d 1. There are a few courses of action you can take at this point. You can wash your cat more regularly to wash away the Fel d 1, but not all cats are receptive to being washed often. You can buy antihistamines from your local pharmacy to relieve the symptoms, but antihistamines do not solve the root cause of your allergic reaction.</p>
+                <div class="product-showcase-wrapper product-showcase--wellness">
+                    <div class="product-showcase-title">Featured Product</div>
+                    <div id="pacagen-cat-spray-showcase" class="d-flex justify-content-center align-items-center mb-3"></div>
+                </div>
             </section>
 
             <footer class="article-footer">
@@ -82,5 +89,73 @@
             </footer>
         </article>
     </main>
+  <script>
+    // Helper function to add Shop Now button
+    function addShopButton(showcaseEl) {
+        const wrapper = showcaseEl.closest('.product-showcase-wrapper');
+        if (wrapper && !wrapper.querySelector('.shop-now-button')) {
+            const shopButton = document.createElement('div');
+            shopButton.className = 'shop-now-button';
+            shopButton.textContent = 'Shop Now';
+            shopButton.onclick = function(e) {
+                e.preventDefault();
+                window.location.href = 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray';
+            };
+            wrapper.appendChild(shopButton);
+        }
+    }
+
+    // Use initComponentsWhenReady
+    if (typeof initComponentsWhenReady !== 'undefined') {
+        initComponentsWhenReady(function() {
+            const showcaseEl = document.getElementById('pacagen-cat-spray-showcase');
+            showcaseEl.innerHTML = createProductShowcase({
+                image: '11_1.png',
+                alt: 'Cat Allergen Neutralizing Spray',
+                description: 'Breaks down 98% of cat allergens on contact',
+                url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                pageType: 'blog'
+            });
+            addShopButton(showcaseEl);
+            showcaseEl.classList.add('component-loaded');
+            showcaseEl.style.visibility = 'visible';
+        }, {
+            waitForProduct: true,
+            waitForArticle: false,
+            waitForAds: false
+        });
+    } else {
+        // Fallback if component-init.js isn't loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof createProductShowcase !== 'undefined') {
+                const showcaseEl = document.getElementById('pacagen-cat-spray-showcase');
+                showcaseEl.innerHTML = createProductShowcase({
+                    image: '11_1.png',
+                    alt: 'Cat Allergen Neutralizing Spray',
+                    description: 'Breaks down 98% of cat allergens on contact',
+                    url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                    pageType: 'blog'
+                });
+                addShopButton(showcaseEl);
+                showcaseEl.classList.add('component-loaded');
+                showcaseEl.style.visibility = 'visible';
+            } else {
+                window.addEventListener('productComponentsLoaded', function() {
+                    const showcaseEl = document.getElementById('pacagen-cat-spray-showcase');
+                    showcaseEl.innerHTML = createProductShowcase({
+                        image: '11_1.png',
+                        alt: 'Cat Allergen Neutralizing Spray',
+                        description: 'Breaks down 98% of cat allergens on contact',
+                        url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+                        pageType: 'blog'
+                    });
+                    addShopButton(showcaseEl);
+                    showcaseEl.classList.add('component-loaded');
+                    showcaseEl.style.visibility = 'visible';
+                });
+            }
+        });
+    }
+  </script>
 </body>
 </html>

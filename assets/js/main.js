@@ -194,66 +194,6 @@ function createImageComponent({ src, alt, caption }) {
     }
 })();
 
-function createProductShowcase(config) {
-    const {
-        image,
-        alt,
-        url,
-        description,
-        clickable = true,
-        pageType = 'root',
-        showReviews = true,
-        buttonText = 'Claim your 15% off now'
-    } = config;
-
-    // reviews ={
-    //     "https://www.pacagen.com/products/cat-allergen-neutralizing-spray": ["4.8 out of 5 stars"],
-    //     "https://www.pacagen.com/products/dog-allergen-neutralizing-spray": ["4.87 out of 5 stars", ""],
-    //     "https://www.pacagen.com/products/dust-allergen-neutralizing-spray": ["4.86 out of 5 stars", ""],
-    //     "https://www.pacagen.com/products/cat-food-topper-chicken": ["4.80 out of 5 stars"],
-    //     "https://www.pacagen.com/products/cat-allergen-reducing-supplement": ["4.80 out of 5 stars"],
-    //     "https://www.pacagen.com/products/allergen-neutralizing-spray": ["4.8 out of 5 stars"]
-    // }
-
-    // Determine the correct asset path
-    const assetPath = pageType === 'blog' ? '../assets' : 'assets';
-
-    if (clickable && url) {
-        return `
-        <a href="javascript:void(0)" class="d-flex w-md-65 justify-content-center align-items-center text-decoration-none" onclick="f('${url}')">
-            <div class="card p-2 mt-3 mb-3">
-                <div class="row mx-auto">
-                    <div class="col-5 col-sm-4 col-md-3 p-0 px-md-2">
-                        <img src="${assetPath}/images/${image}" class=" rounded-4" alt="${alt}">
-                    </div>
-                    <div class="col-7 my-auto col-sm-8 col-md-9">
-                        <h3 class="card-title"><b>${alt}</b></h3>
-                        ${showReviews ? `<p class="card-reviews mb-1">★★★★★ &nbsp ${reviews[url][0]} ${reviews[url][1]}</p>` : ''}
-                        <p class="card-description mb-0">${description}</p>
-                        <div class="ctabutton mt-2">${buttonText}</div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        `;
-    } else {
-        return `
-            <div class="article-content-image d-flex">
-                <img src="${assetPath}/images/${image}" class="article-img" alt="${alt}">
-            </div>
-        `;
-    }
-}
-
-// Function to insert product showcase into page
-function insertProductShowcase(targetSelector, config) {
-    const target = document.querySelector(targetSelector);
-    if (target) {
-        target.insertAdjacentHTML('afterend', createProductShowcase(config));
-    }
-}
-
-
 // Wait for DOM to be fully loaded for additional functionality
 document.addEventListener('DOMContentLoaded', function () {
   // Smooth scrolling for internal links
