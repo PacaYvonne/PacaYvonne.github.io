@@ -170,8 +170,9 @@
             <li role="presentation" dir="ltr"><a href="https://www.mayoclinic.org/diseases-conditions/dust-mites/diagnosis-treatment/drc-20352178"><span>Mayo Clinic. Dust mite allergy diagnosis and treatment.</span></a></li>
             </ol>
         </div>
+        <div id="additional-reading-section"></div>
     </section>
-  <script>
+    <script>
     // Helper function to add Shop Now button
     function addShopButton(showcaseEl) {
         const wrapper = showcaseEl.closest('.product-showcase-wrapper');
@@ -239,5 +240,37 @@
         });
     }
   </script>
+    <!-- Load article components at end of body to ensure DOM is ready -->
+    <script src="../assets/js/components/article/article-registry.js"></script>
+    <script src="../assets/js/components/article/additional-reading.js"></script>
+    <script>
+      // Initialize additional reading after scripts are loaded
+      (function() {
+        function initAdditionalReading(retries = 0) {
+          if (typeof createAdditionalReading !== 'undefined' && typeof getArticleMetadata !== 'undefined') {
+            const additionalReadingHtml = createAdditionalReading({
+              category: 'Home Cleaning',
+              maxArticles: 2
+            });
+            const additionalReadingSection = document.getElementById('additional-reading-section');
+            if (additionalReadingSection && additionalReadingHtml) {
+              additionalReadingSection.innerHTML = additionalReadingHtml;
+            }
+          } else {
+            // Retry if scripts aren't loaded yet (max 10 retries = 1 second)
+            if (retries < 10) {
+              setTimeout(() => initAdditionalReading(retries + 1), 100);
+            }
+          }
+        }
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initAdditionalReading);
+        } else {
+          // DOM already loaded
+          initAdditionalReading();
+        }
+      })();
+    </script>
 </body>
 </html>

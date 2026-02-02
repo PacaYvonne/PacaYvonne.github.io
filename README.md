@@ -1,3 +1,25 @@
+## Component Structure
+
+```
+components/
+├── article/
+│   ├── additional-reading.js    # Additional reading section component (displays related articles)
+│   ├── article-registry.js      # Centralized article metadata registry
+│   ├── article-footer.js         # Article footer component
+│   ├── breadcrumb.js             # Breadcrumb navigation (optional dependency for fold.js)
+│   └── fold.js                   # Main article header component (handles title, author, date, breadcrumb, image - all self-contained)
+├── ads/
+│   └── ad.js                     # Ad component (background image ads)
+├── comparison-table/
+│   └── comparison-table.js       # Reusable comparison table with brand selector for mobile responsiveness
+├── product/
+│   ├── product-showcase.js       # Product showcase card
+│   ├── product-card.js           # Product card component
+│   └── product-reviews.js         # Product reviews component
+└── testimonial/
+    └── testimonial-carousel.js    # Testimonial carousel component
+```
+
 ## Usage of product card
 
 - inserts product card as a child element of \#pacagen-spray-showcase

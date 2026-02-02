@@ -88,11 +88,6 @@ main {
   margin: 25px auto;
 }
 
-@media screen and (max-width: 768px) {
-  .article-img {
-    width: 100%;
-  }
-}
 
 /* =========================================================
    2. Utility Classes
@@ -128,10 +123,7 @@ main {
 }
 
 /* Highlight color used in article body */
-.highlight {
-  color: #F16D34;
-}
-
+.highlight,
 .highlight-red {
   color: #F16D34;
 }
@@ -178,7 +170,8 @@ main {
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.category-filter::-webkit-scrollbar {
+.category-filter::-webkit-scrollbar,
+.category-filter-bar::-webkit-scrollbar {
   display: none; /* Hide scrollbar completely */
 }
 
@@ -213,9 +206,6 @@ main {
     -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
   }
 
-  .category-filter-bar::-webkit-scrollbar {
-    display: none; /* Hide scrollbar completely */
-  }
 
   .category-filter {
     flex-direction: row !important; /* Explicitly set horizontal direction on mobile */
@@ -288,8 +278,7 @@ main {
 }
 
 .logo img,
-nav a img,
-#logo {
+nav a img {
   height: 40px;
   width: auto;
 }
@@ -698,7 +687,6 @@ section h3 {
 
 .productlink:hover {
   color: #E05A23 !important;
-  text-decoration: underline;
 }
 
 /* Blog title area */
@@ -1464,10 +1452,6 @@ footer a:hover {
     font-size: 0.8rem;
   }
 
-  .comparison-table {
-    font-size: 0.8rem;
-  }
-
   .table-wrapper {
     margin: 1.5rem 0;
   }
@@ -1491,10 +1475,6 @@ footer a:hover {
 
   main {
     padding: 1rem;
-  }
-
-  .blog-contents {
-    gap: 3rem;
   }
 
   .blog-contents p,
@@ -1626,11 +1606,6 @@ footer a:hover {
 @media (min-width: 769px) {
   .brand-selector {
     justify-content: flex-end;
-  }
-
-  .col-clorox,
-  .col-allerpet {
-    display: table-cell;
   }
 
   .card .row {

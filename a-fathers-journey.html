@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="text-center">
-        <span class="category-badge category-badge--health">Health</span>
+        <span class="category-badge category-badge--health">Wellness</span>
       </div>
       <div class="section-divider"></div>
       <div class="blog-title-section">
@@ -244,7 +244,7 @@
             fragrance-free, and gentle for daily use.
           </li>
           <li>
-            🛏️ <strong>Creates a hypoallergenic zone</strong> – Prevents
+<strong>Creates a hypoallergenic zone</strong> – Prevents
             allergen buildup on bedding, carpets, and toys.
           </li>
           <li>
@@ -279,10 +279,10 @@
 
         <h3>What I Wish I’d Known Sooner</h3>
         <ul>
-          <li>🧼 Clean isn’t enough — allergens are invisible.</li>
-          <li>🧴 Target soft surfaces — bedding, carpets, stuffed toys.</li>
+          <li>Clean isn’t enough — allergens are invisible.</li>
+          <li>Target soft surfaces — bedding, carpets, stuffed toys.</li>
           <li>🔁 Be consistent — use regularly for best results.</li>
-          <li>❤️ Prevent, don’t react — stop symptoms before they start.</li>
+          <li>Prevent, don’t react — stop symptoms before they start.</li>
         </ul>
 
         <p>
@@ -322,6 +322,7 @@
           >
         </p>
       </div>
+      <div id="additional-reading-section"></div>
     </section>
 
     <script>
@@ -358,6 +359,38 @@
         document.getElementById("pacagen-spray-showcase").innerHTML =
           pacagenSprayShowcase;
       });
+    </script>
+    <!-- Load article components at end of body to ensure DOM is ready -->
+    <script src="assets/js/components/article/article-registry.js"></script>
+    <script src="assets/js/components/article/additional-reading.js"></script>
+    <script>
+      // Initialize additional reading after scripts are loaded
+      (function() {
+        function initAdditionalReading(retries = 0) {
+          if (typeof createAdditionalReading !== 'undefined' && typeof getArticleMetadata !== 'undefined') {
+            const additionalReadingHtml = createAdditionalReading({
+              category: 'Wellness',
+              maxArticles: 2
+            });
+            const additionalReadingSection = document.getElementById('additional-reading-section');
+            if (additionalReadingSection && additionalReadingHtml) {
+              additionalReadingSection.innerHTML = additionalReadingHtml;
+            }
+          } else {
+            // Retry if scripts aren't loaded yet (max 10 retries = 1 second)
+            if (retries < 10) {
+              setTimeout(() => initAdditionalReading(retries + 1), 100);
+            }
+          }
+        }
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initAdditionalReading);
+        } else {
+          // DOM already loaded
+          initAdditionalReading();
+        }
+      })();
     </script>
   </body>
 </html>

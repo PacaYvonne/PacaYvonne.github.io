@@ -6,7 +6,7 @@
     <meta name="description" content="A look at the science behind dust allergies, and how they work.">
     <meta name="keywords" content="dust allergies, allergy management, anaphylaxis, dust allergies work">
     <title>How Dust Allergies Work: The Science Behind Dust Allergies | Clean Home Hacks</title>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <style>
         body { visibility: hidden; opacity: 0; transition: opacity 0.3s ease; }
         .no-js body { visibility: visible; opacity: 1; }
@@ -25,16 +25,60 @@
     cvg({ method: "link_domain", domain: "pacagen.com" });
     </script>
 </head>
-<body>
+<body class="article-body">
+  <section class="w-60 mx-auto my-4">
+    <div class="breadcrumb-section">
+      <div class="breadcrumb">
+        <a href="../index.html" class="breadcrumb-link">
+          <i class="bi bi-house-door me-2 fs-5"></i>
+        </a>
+      </div>
+    </div>
 
-    <main>
-        <article class="blog-post">
-            <header class="article-header">
-                <h1>How Dust Allergies Work: The Science Behind Dust Allergies</h1>
-                <p class="article-meta">Published on August 8, 2025</p>
-            </header>
+    <div class="text-center">
+      <span class="category-badge">Wellness</span>
+    </div>
 
-            <section class="article-content">
+    <div class="section-divider"></div>
+
+    <div class="blog-title-section">
+      <h2 class="blog-title">How Dust Allergies Work: The Science Behind Dust Allergies</h2>
+    </div>
+
+    <div class="container py-2">
+        <div class="row align-items-center">
+        <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                    fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+        <!-- Left column: Share + icons -->
+        <div class="col-md-6 d-flex align-items-center gap-2">
+          <span class="fw-semibold">Share:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://cleanhomehacks.com/blog/how-dust-allergies-work.html" 
+          target="_blank" 
+          class="text-decoration-none fs-5 text-black">
+         <i class="bi bi-facebook"></i>
+         </a>
+          <a href="https://twitter.com/intent/tweet?text=How%20Dust%20Allergies%20Work%3A%20The%20Science%20Behind%20Dust%20Allergies%20-%20https%3A%2F%2Fcleanhomehacks.com%2Fblog%2Fhow-dust-allergies-work.html" target="_blank" class="text-decoration-none fs-5 text-black twitter-share-button"><i class="bi bi-twitter"></i></a>
+          <a href="https://pinterest.com/pin/create/button/?url=https://cleanhomehacks.com/blog/how-dust-allergies-work.html&media=https://cdn.shopify.com/s/files/1/0814/8369/4394/files/Dust_Allergies.png&description=How%20Dust%20Allergies%20Work%3A%20The%20Science%20Behind%20Dust%20Allergies" 
+          target="_blank" 
+          class="text-decoration-none fs-5 text-black">
+         <i class="bi bi-pinterest"></i>
+       </a>
+      </div>
+    
+        <!-- Right column: Updated date -->
+            <div class="col-md-6 text-md-end mt-2 mt-md-0 text-muted">
+                Published on August 8, 2025
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-contents">
                 <p>You vacuum regularly. You keep your space tidy. So why are you still sneezing, coughing, or waking up with itchy eyes?</p>
                 <p>Turns out, the problem isn't just dust. It's what’s hiding in it — and most of us have never been properly introduced to the real culprits. In this blog, let’s explore what actually causes dust allergies.<br><br></p>
                 <p><img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/Dust_Allergies.png?v=1750456871" class="mb-4 float-start p-5" alt="dust allergies"></p>
@@ -94,13 +138,37 @@
                 <li><a href="https://www.mayoclinic.org/diseases-conditions/allergies/in-depth/allergy/art-20049365" title="Tips to allery-proof your home" rel="noopener" target="_blank">https://www.mayoclinic.org/diseases-conditions/allergies/in-depth/allergy/art-20049365</a></li>
                 <li><a href="https://pacagen.com/blogs/dust-allergies/hypoallergenic-pillow-covers-to-improve-sleep" title="Hypoallergenic pillow recommendations" rel="noopener" target="_blank">https://pacagen.com/blogs/dust-allergies/hypoallergenic-pillow-covers-to-improve-sleep</a></li>
                 </ul>
-            </section>
-
-            <footer class="article-footer">
-                <p>For more allergy-related content, visit our <a href="../index.html">homepage</a> or take our <a href="../quiz.html">allergy personality quiz</a>.</p>
-            </footer>
-        </article>
-    </main>
+    </div>
+    <div id="additional-reading-section"></div>
+  </section>
+  <script src="../assets/js/components/article/article-registry.js"></script>
+  <script src="../assets/js/components/article/additional-reading.js"></script>
+  <script>
+    (function () {
+      let retries = 0;
+      function initAdditionalReading(currentRetries = 0) {
+        if (typeof createAdditionalReading !== 'undefined' && typeof getArticleMetadata !== 'undefined') {
+          const additionalReadingHtml = createAdditionalReading({
+            category: 'Wellness',
+            maxArticles: 2
+          });
+          const additionalReadingSection = document.getElementById('additional-reading-section');
+          if (additionalReadingSection && additionalReadingHtml) {
+            additionalReadingSection.innerHTML = additionalReadingHtml;
+          }
+        } else {
+          if (currentRetries < 10) {
+            setTimeout(() => initAdditionalReading(currentRetries + 1), 100);
+          }
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAdditionalReading);
+      } else {
+        initAdditionalReading();
+      }
+    })();
+  </script>
   <script>
     // Helper function to add Shop Now button
     function addShopButton(showcaseEl) {

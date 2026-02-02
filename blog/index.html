@@ -21,266 +21,232 @@
     
     <!-- Load main JavaScript -->
     <script src="../assets/js/main.js" defer></script>
-    <style>
-        .blog-index {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .blog-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 10px;
-        }
-
-        .blog-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .blog-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .blog-categories {
-            margin-bottom: 2rem;
-        }
-
-        .category-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-        }
-
-        .category-tag {
-            padding: 0.5rem 1rem;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 25px;
-            text-decoration: none;
-            color: #495057;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .category-tag:hover {
-            background-color: #2c5aa0;
-            color: white;
-            border-color: #2c5aa0;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            border-left: 4px solid #2c5aa0;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .blog-card h3 {
-            color: #2c5aa0;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .blog-card h3 a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .blog-card h3 a:hover {
-            text-decoration: underline;
-        }
-
-        .blog-excerpt {
-            color: #666;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .blog-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        .read-more {
-            display: inline-block;
-            color: #F16D34;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .read-more:hover {
-            color: #E05A23;
-        }
-
-        .category-badge {
-            background-color: #e7f3ff;
-            color: #2c5aa0;
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .blog-index {
-                padding: 1rem;
-            }
-            
-            .blog-header h1 {
-                font-size: 2rem;
-            }
-            
-            .category-tags {
-                justify-content: flex-start;
-            }
-            
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="home">
+    <!-- Static home header with logo in top-left (in addition to injected nav) -->
+    <header class="home-header">
+      <div class="home-header__logo">
+        <a href="../index.html">
+          <img src="../assets/images/logo.png" alt="Clean Home Hacks logo">
+        </a>
+      </div>
+    </header>
 
-    <main class="blog-index">
-        <div class="blog-header">
-            <h1>Clean Home Hacks</h1>
-            <p>Comprehensive guides, tips, and expert advice for keeping your clean and fresh.</p>
-        </div>
-        <div class="blog-grid">
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Seasonal Allergies</span>
-                </div>
-                <h3><a href="can-allergies-cause-a-cough.html">Can Allergies Cause a Cough?</a></h3>
-                <p class="blog-excerpt">Learn about the link between allergies and coughing, including what causes coughing from allergies and how to manage it.</p>
-                <a href="can-allergies-cause-a-cough.html" class="read-more">Read Full Article →</a>
-            </article>
+    <main>
+        <!-- Hero section -->
+        <section class="hero-section hero-section--home">
+          <div class="container">
+            <div class="row align-items-center g-4">
+              <div class="col-md-6 hero-copy">
+                <h1>Clean Home Hacks</h1>
+                <p>
+                  Comprehensive guides, tips, and expert advice for keeping your home clean and fresh.
+                </p>
+              </div>
+              <div class="col-md-6 text-center">
+                <img
+                  src="../assets/images/img-index-hero.png"
+                  alt="Person cleaning a bright living room"
+                  class="img-fluid rounded-4"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Cat Allergies</span>
-                </div>
-                <h3><a href="understanding-fel-d-1.html">Understanding Fel d 1: The Cat Allergen</a></h3>
-                <p class="blog-excerpt">A deep dive into the science of Fel d 1, the primary cat allergen responsible for the majority of allergic responses to cats.</p>
-                <a href="understanding-fel-d-1.html" class="read-more">Read Full Article →</a>
-            </article>
+        <!-- Category filter bar -->
+        <section class="category-filter-bar">
+          <nav class="category-filter" aria-label="Article categories">
+            <button type="button" class="is-active" data-filter="all">All</button>
+            <button type="button" data-filter="Wellness">Wellness</button>
+            <button type="button" data-filter="Home Decor">Home Decor</button>
+            <button type="button" data-filter="Home Cleaning">Home Cleaning</button>
+          </nav>
+        </section>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Dust Mite Allergies</span>
-                </div>
-                <h3><a href="dust-mite-allergies.html">Dust Mite Allergies: What You Need To Know</a></h3>
-                <p class="blog-excerpt">Learn about dust mite allergies, including what they are, how they affect you, and how to manage them.</p>
-                <a href="dust-mite-allergies.html" class="read-more">Read Full Article →</a>
-            </article>
+        <div class="container">
+            <section class="mx-auto my-4">
+                <div class="row row-cols-1 row-cols-md-2 g-3">
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Allergy Fatigue</span>
-                </div>
-                <h3><a href="how-to-help-allergy-fatigue.html">How To Help Allergy Fatigue</a></h3>
-                <p class="blog-excerpt">Practical tips and strategies to help you overcome allergy-induced fatigue, specifically focusing on cat allergies.</p>
-                <a href="how-to-help-allergy-fatigue.html" class="read-more">Read Full Article →</a>
-            </article>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="can-allergies-cause-a-cough.html">
+                            <img src="../assets/images/Allergery_Cough.png" class="card-img-top" alt="Can Allergies Cause a Cough?">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="can-allergies-cause-a-cough.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                Can Allergies Cause a Cough?
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Cat Allergies</span>
-                </div>
-                <h3><a href="what-are-the-best-cat-breeds-for-allergies.html">Allergy Free Cats: The Best Cat Breeds For Allergies</a></h3>
-                <p class="blog-excerpt">Discover the best cat breeds for people with allergies, including Siberian, Balinese, Oriental Shorthair, Devon, Cornish Rex, Russian Blue, Sphynx, and Burmese.</p>
-                <a href="what-are-the-best-cat-breeds-for-allergies.html" class="read-more">Read Full Article →</a>
-            </article>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="understanding-fel-d-1.html">
+                            <img src="../assets/images/understanding_feld1.png" class="card-img-top" alt="Understanding Fel d 1: The Cat Allergen">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="understanding-fel-d-1.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                Understanding Fel d 1: The Cat Allergen
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Cat Allergies</span>
-                </div>
-                <h3><a href="worst-cats-for-allergies.html">The Worst Cats for Allergies</a></h3>
-                <p class="blog-excerpt">A list of cat breeds that are the worst for allergies, including Persian, British Longhair, and Himalayan.</p>
-                <a href="worst-cats-for-allergies.html" class="read-more">Read Full Article →</a>
-            </article>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="dust-mite-allergies.html">
+                            <img src="../assets/images/seasonal-dust-mite-allergy.png" class="card-img-top" alt="Dust Mite Allergies: What You Need To Know">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="dust-mite-allergies.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                Dust Mite Allergies: What You Need To Know
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Allergy Cough</span>
-                </div>
-                <h3><a href="can-allergies-cause-a-cough.html">Can Allergies Cause a Cough?</a></h3>
-                <p class="blog-excerpt">Learn about the link between allergies and coughing, including what causes coughing from allergies and how to manage it.</p>
-                <a href="can-allergies-cause-a-cough.html" class="read-more">Read Full Article →</a>
-            </article>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="how-to-help-allergy-fatigue.html">
+                            <img src="../assets/images/person-sleeping-on-couch.jpg" class="card-img-top" alt="How To Help Allergy Fatigue">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="how-to-help-allergy-fatigue.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                How To Help Allergy Fatigue
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Home Care</span>
-                </div>
-                <h3><a href="best-home-air-purifiers.html">Best Home Air Purifiers</a></h3>
-                <p class="blog-excerpt">Learn about the best air purifiers for the home, including how they work, what to look for, and which ones are truly “allergist-recommended”.</p>
-                <a href="best-home-air-purifier.html" class="read-more">Read Full Article →</a>
-            </article>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="what-are-the-best-cat-breeds-for-allergies.html">
+                            <img src="../assets/images/Siberian-cat-4.jpg" class="card-img-top" alt="Allergy Free Cats: The Best Cat Breeds For Allergies">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="what-are-the-best-cat-breeds-for-allergies.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                Allergy Free Cats: The Best Cat Breeds For Allergies
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Dust Mite Allergies</span>
-                </div>
-                <h3><a href="dust-mite-mattress-covers.html">Dust Mite Mattress Covers: Do They Work?</a></h3>
-                <p class="blog-excerpt">Learn about dust mite mattress covers, including how they work, what to look for, and which ones are truly “allergist-recommended”.</p>
-                <a href="dust-mite-mattress-covers.html" class="read-more">Read Full Article →</a>
-            </article>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="worst-cats-for-allergies.html">
+                            <img src="../assets/images/Persian-cat-3.jpg" class="card-img-top" alt="The Worst Cats for Allergies">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="worst-cats-for-allergies.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                The Worst Cats for Allergies
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Dogs</span>
-                </div>
-                <h3><a href="best-hypoallergenic-dogs.html">Best Hypoallergenic Dogs</a></h3>
-                <p class="blog-excerpt">Learn about the best hypoallergenic dogs, including Poodle, Bichon Frise, Portuguese Water Dog, Schnauzer, and Maltese.</p>
-                <a href="best-hypoallergenic-dogs.html" class="read-more">Read Full Article →</a>
-            </article>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Home Cleaning">
+                        <a href="best-home-air-purifiers.html">
+                            <img src="../assets/images/best-air-purifier.png" class="card-img-top" alt="Best Home Air Purifiers">
+                        </a>
+                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
+                      <div class="card-body">
+                        <a href="best-home-air-purifiers.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                Best Home Air Purifiers
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Dogs</span>
-                </div>
-                <h3><a href="how-dog-allergies-work.html">How Dog Allergies Work: The Science Behind Dog Allergies</a></h3>
-                <p class="blog-excerpt">A look at the science behind dog allergies, and how they work. Learn about the different symptoms of dog allergies, and how to manage them.</p>
-                <a href="how-dog-allergies-work.html" class="read-more">Read Full Article →</a>
-            </article>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Home Cleaning">
+                        <a href="dust-mite-mattress-covers.html">
+                            <img src="../assets/images/bedsheets.png" class="card-img-top" alt="Dust Mite Mattress Covers: Do They Work?">
+                        </a>
+                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
+                      <div class="card-body">
+                        <a href="dust-mite-mattress-covers.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                Dust Mite Mattress Covers: Do They Work?
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="category-badge">Dust Allergies</span>
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="best-hypoallergenic-dogs.html">
+                            <img src="../assets/images/schnauzer.jpg" class="card-img-top" alt="Best Hypoallergenic Dogs">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="best-hypoallergenic-dogs.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                Best Hypoallergenic Dogs
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="how-dog-allergies-work.html">
+                            <img src="../assets/images/schnauzer.jpg" class="card-img-top" alt="How Dog Allergies Work: The Science Behind Dog Allergies">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="how-dog-allergies-work.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                How Dog Allergies Work: The Science Behind Dog Allergies
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                        <a href="how-dust-allergies-work.html">
+                            <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/Dust_Allergies.png?v=1750456871" class="card-img-top" alt="How Dust Allergies Work: The Science Behind Dust Allergies">
+                        </a>
+                      <div class="cat-tag bg-success text-white">Wellness</div>
+                      <div class="card-body">
+                        <a href="how-dust-allergies-work.html" class="text-decoration-none text-dark">
+                            <p class="card-text">
+                                How Dust Allergies Work: The Science Behind Dust Allergies
+                            </p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-                <h3><a href="how-dust-allergies-work.html">How Dust Allergies Work: The Science Behind Dust Allergies</a></h3>
-                <p class="blog-excerpt">A look at the science behind dust allergies, and how they work. Learn about the different symptoms of dust allergies, and how to manage them.</p>
-                <a href="how-dust-allergies-work.html" class="read-more">Read Full Article →</a>
-            </article>
+              </section>
+            </div>
         </div>
     </main>
 </body>

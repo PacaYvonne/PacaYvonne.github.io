@@ -75,7 +75,7 @@
       </div>
       
       <div class="text-center">
-        <span class="category-badge category-badge--health">Health</span>
+        <span class="category-badge category-badge--health">Wellness</span>
       </div>
       <div class="section-divider"></div>
       <div class="blog-title-section">
@@ -271,15 +271,15 @@
             reactions, instead of just covering them up.
           </li>
           <li>
-            <strong>🛋️ Safe for soft surfaces: </strong>Works on bedding,
+            <strong>Safe for soft surfaces: </strong>Works on bedding,
             curtains, furniture, and even clothes.
           </li>
           <li>
-            <strong>🌿 Non-toxic & fragrance-free: </strong>Safe for seniors,
+            <strong>Non-toxic & fragrance-free: </strong>Safe for seniors,
             pets, and people with chemical sensitivities.
           </li>
           <li>
-            <strong>🌬️ Creates a lasting hypoallergenic zone: </strong>Regular
+            <strong>Creates a lasting hypoallergenic zone: </strong>Regular
             use prevents allergen buildup in shared living spaces.
           </li>
         </ul>
@@ -312,18 +312,18 @@
         </p>
         <ul>
           <li>
-            🧼 “Clean” doesn’t always mean allergen-free; most allergens are
+            "Clean" doesn't always mean allergen-free; most allergens are
             invisible.
           </li>
           <li>
-            🧴 Use Pacagen regularly on soft surfaces; where allergens love to
+            Use Pacagen regularly on soft surfaces; where allergens love to
             hide.
           </li>
           <li>
-            💤 Consistency is key; build it into your weekly cleaning routine.
+            Consistency is key; build it into your weekly cleaning routine.
           </li>
           <li>
-            ❤️ Prevention matters; once allergens are neutralized, symptoms
+            Prevention matters; once allergens are neutralized, symptoms
             fade.
           </li>
         </ul>
@@ -364,6 +364,8 @@
             story.</em
           >
         </p>
+
+        <div id="additional-reading-section"></div>
       </div>
     </section>
     <script>
@@ -457,6 +459,38 @@
         document.getElementById("pacagen-spray-showcase").innerHTML =
           pacagenSprayShowcase;
       });
+    </script>
+    <!-- Load article components at end of body to ensure DOM is ready -->
+    <script src="assets/js/components/article/article-registry.js"></script>
+    <script src="assets/js/components/article/additional-reading.js"></script>
+    <script>
+      // Initialize additional reading after scripts are loaded
+      (function() {
+        function initAdditionalReading(retries = 0) {
+          if (typeof createAdditionalReading !== 'undefined' && typeof getArticleMetadata !== 'undefined') {
+            const additionalReadingHtml = createAdditionalReading({
+              category: 'Wellness',
+              maxArticles: 2
+            });
+            const additionalReadingSection = document.getElementById('additional-reading-section');
+            if (additionalReadingSection && additionalReadingHtml) {
+              additionalReadingSection.innerHTML = additionalReadingHtml;
+            }
+          } else {
+            // Retry if scripts aren't loaded yet (max 10 retries = 1 second)
+            if (retries < 10) {
+              setTimeout(() => initAdditionalReading(retries + 1), 100);
+            }
+          }
+        }
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initAdditionalReading);
+        } else {
+          // DOM already loaded
+          initAdditionalReading();
+        }
+      })();
     </script>
   </body>
 </html>

@@ -117,7 +117,40 @@
         <p>These subtle touches create depth and ambiance without screaming for attention.</p>
 
         <h2>Before You Buy Another Throw Pillow…</h2>
-        <p>Start with lighting. It sets the mood, adds style, and makes your home feel <em>intentional</em>. You’ll be surprised how big of a difference a few smart swaps can make — even if your budget’s under $50.</p>
+        <p>Start with lighting. It sets the mood, adds style, and makes your home feel <em>intentional</em>. You'll be surprised how big of a difference a few smart swaps can make — even if your budget's under $50.</p>
+        <div id="additional-reading-section"></div>
   </section>
+    <!-- Load article components at end of body to ensure DOM is ready -->
+    <script src="../assets/js/components/article/article-registry.js"></script>
+    <script src="../assets/js/components/article/additional-reading.js"></script>
+    <script>
+      // Initialize additional reading after scripts are loaded
+      (function() {
+        function initAdditionalReading(retries = 0) {
+          if (typeof createAdditionalReading !== 'undefined' && typeof getArticleMetadata !== 'undefined') {
+            const additionalReadingHtml = createAdditionalReading({
+              category: 'Home Decor',
+              maxArticles: 2
+            });
+            const additionalReadingSection = document.getElementById('additional-reading-section');
+            if (additionalReadingSection && additionalReadingHtml) {
+              additionalReadingSection.innerHTML = additionalReadingHtml;
+            }
+          } else {
+            // Retry if scripts aren't loaded yet (max 10 retries = 1 second)
+            if (retries < 10) {
+              setTimeout(() => initAdditionalReading(retries + 1), 100);
+            }
+          }
+        }
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initAdditionalReading);
+        } else {
+          // DOM already loaded
+          initAdditionalReading();
+        }
+      })();
+    </script>
 </body>
 </html>
