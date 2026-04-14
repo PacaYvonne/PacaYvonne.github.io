@@ -1190,7 +1190,24 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
 
             <form class="chh-comments__composer" aria-label="Add a comment">
-              <label class="chh-comments__label" for="chhCommentInput">Add a comment</label>
+              <div class="chh-comments__composer-profile">
+                <div class="chh-comments__avatar-picker">
+                  <input type="file" id="chhCommentAvatar" class="chh-comments__input-file" accept="image/jpeg,image/png,image/webp,image/gif" />
+                  <label for="chhCommentAvatar" class="chh-comments__avatar-preview-btn">
+                    <span class="chh-comments__avatar-preview-wrap" aria-hidden="true">
+                      <img id="chhCommentAvatarPreview" class="chh-comments__avatar-preview-img" width="48" height="48" alt="" hidden />
+                      <span id="chhCommentAvatarPlaceholder" class="chh-comments__avatar-placeholder">+</span>
+                    </span>
+                    <span class="chh-comments__avatar-hint">Photo</span>
+                  </label>
+                  <button type="button" id="chhCommentAvatarClear" class="chh-comments__avatar-clear" hidden>Remove</button>
+                </div>
+                <div class="chh-comments__name-field">
+                  <label class="chh-comments__label" for="chhCommentName">Display name</label>
+                  <input type="text" id="chhCommentName" class="chh-comments__input chh-comments__input--name" maxlength="60" placeholder="e.g. Jordan K." autocomplete="name" required />
+                </div>
+              </div>
+              <label class="chh-comments__label" for="chhCommentInput">Your comment</label>
               <textarea id="chhCommentInput" class="chh-comments__input" rows="3" placeholder="Write a comment..." maxlength="800" required></textarea>
               <div class="chh-comments__composer-actions">
                 <button type="submit" class="chh-comments__submit">Post</button>
@@ -1287,6 +1304,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!scope) return;
 
         const storageKey = `chh:comments:${window.location.pathname}`;
+        const profileKey = 'chh:comment-profile';
+        const MAX_AVATAR_BYTES = 180000;
         let savedComments = [];
         try {
           savedComments = JSON.parse(localStorage.getItem(storageKey) || '[]') || [];
@@ -1302,6 +1321,22 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
 
+        function persistProfile(profile) {
+          try {
+            localStorage.setItem(profileKey, JSON.stringify(profile));
+          } catch (e) {
+            // ignore
+          }
+        }
+
+        function loadProfile() {
+          try {
+            return JSON.parse(localStorage.getItem(profileKey) || 'null') || null;
+          } catch (e) {
+            return null;
+          }
+        }
+
         function escapeHtml(s) {
           return String(s)
             .replace(/&/g, '&amp;')
@@ -1309,6 +1344,15 @@ document.addEventListener('DOMContentLoaded', function () {
             .replace(/>/g, '&gt;')
             .replace(/\"/g, '&quot;')
             .replace(/'/g, '&#39;');
+        }
+
+        function avatarSrcAttr(url) {
+          const s = String(url || '');
+          if (/^data:image\/(jpeg|png|webp|gif);base64,/i.test(s) && s.length < 600000) {
+            return s.replace(/"/g, '&quot;');
+          }
+          if (/^https:\/\//i.test(s)) return escapeHtml(s);
+          return escapeHtml(s);
         }
 
         function formatTime(ts) {
@@ -1328,18 +1372,24 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
 
+        function avatarForSavedComment(c, idx) {
+          const custom = c && c.avatarUrl && String(c.avatarUrl).indexOf('data:') === 0;
+          if (custom) return c.avatarUrl;
+          return avatars[(seed + 10 + idx + hashString(String(c.author || ''))) % avatars.length];
+        }
+
         function renderSavedComment(c, idx) {
-          const avatarUrl = avatars[(seed + 10 + idx) % avatars.length];
+          const avatarUrl = avatarForSavedComment(c, idx);
           const baseLikes = 0;
-          const threadId = `u${idx}`;
+          const threadId = `u-${c.ts || 0}-${idx}`;
           return `
             <div class="chh-comment-thread chh-comment-thread--user">
               <div class="chh-comment">
-                <img class="chh-comment__avatar" src="${avatarUrl}" alt="" width="40" height="40" loading="lazy" decoding="async">
+                <img class="chh-comment__avatar" src="${avatarSrcAttr(avatarUrl)}" alt="" width="40" height="40" loading="lazy" decoding="async">
                 <div class="chh-comment__content">
                   <div class="chh-comment__head">
-                    <span class="chh-comment__author">${escapeHtml(c.author || 'you')}</span>
-                    <span class="chh-comment__meta">${escapeHtml(formatTime(c.ts))}</span>
+                    <span class="chh-comment__author">${escapeHtml(c.author || 'Guest')}</span>
+                    <span class="chh-comment__meta">${escapeHtml(formatTime(c.ts))} · You</span>
                   </div>
                   <p class="chh-comment__text">${escapeHtml(c.body || '')}</p>
                   <div class="chh-comment__actions">
@@ -1364,11 +1414,10 @@ document.addEventListener('DOMContentLoaded', function () {
           const list = scope.querySelector('.chh-comments__list');
           if (!list) return;
           // newest first
-          const html = savedComments
-            .slice()
-            .sort((a, b) => (b.ts || 0) - (a.ts || 0))
-            .map(renderSavedComment)
-            .join('');
+          const sorted = savedComments.slice().sort((a, b) => (b.ts || 0) - (a.ts || 0));
+          const html = sorted.map(function (c, idx) {
+            return renderSavedComment(c, idx);
+          }).join('');
           if (!html) return;
           list.insertAdjacentHTML('afterbegin', html);
           // re-wire likes now that we added new like buttons
@@ -1379,36 +1428,140 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const form = scope.querySelector('.chh-comments__composer');
         const input = scope.querySelector('#chhCommentInput');
+        const nameInput = scope.querySelector('#chhCommentName');
+        const fileInput = scope.querySelector('#chhCommentAvatar');
+        const previewImg = scope.querySelector('#chhCommentAvatarPreview');
+        const placeholderEl = scope.querySelector('#chhCommentAvatarPlaceholder');
+        const clearBtn = scope.querySelector('#chhCommentAvatarClear');
         const submit = scope.querySelector('.chh-comments__submit');
-        if (!form || !input || !submit) return;
+        if (!form || !input || !nameInput || !submit) return;
+
+        let pendingAvatarDataUrl = null;
+
+        function setAvatarPreview(dataUrl) {
+          pendingAvatarDataUrl = dataUrl;
+          if (!previewImg || !placeholderEl || !clearBtn) return;
+          if (dataUrl) {
+            previewImg.src = dataUrl;
+            previewImg.hidden = false;
+            placeholderEl.hidden = true;
+            clearBtn.hidden = false;
+          } else {
+            previewImg.removeAttribute('src');
+            previewImg.hidden = true;
+            placeholderEl.hidden = false;
+            clearBtn.hidden = true;
+          }
+        }
+
+        function compressImageToJpeg(file, maxEdge, quality, done) {
+          const reader = new FileReader();
+          reader.onload = function () {
+            const img = new Image();
+            img.onload = function () {
+              let w = img.naturalWidth || img.width;
+              let h = img.naturalHeight || img.height;
+              const scale = Math.min(1, maxEdge / Math.max(w, h, 1));
+              w = Math.max(1, Math.round(w * scale));
+              h = Math.max(1, Math.round(h * scale));
+              const canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              if (!ctx) {
+                done(null);
+                return;
+              }
+              ctx.drawImage(img, 0, 0, w, h);
+              let out = null;
+              let q = quality;
+              for (let step = 0; step < 6; step++) {
+                try {
+                  out = canvas.toDataURL('image/jpeg', q);
+                } catch (e) {
+                  out = null;
+                  break;
+                }
+                if (!out || out.length <= MAX_AVATAR_BYTES) break;
+                q *= 0.75;
+              }
+              done(out && out.length <= MAX_AVATAR_BYTES ? out : null);
+            };
+            img.onerror = function () {
+              done(null);
+            };
+            img.src = reader.result;
+          };
+          reader.onerror = function () {
+            done(null);
+          };
+          reader.readAsDataURL(file);
+        }
+
+        const prof = loadProfile();
+        if (prof && prof.name) nameInput.value = prof.name;
+        if (prof && prof.avatarUrl && String(prof.avatarUrl).indexOf('data:') === 0) {
+          setAvatarPreview(prof.avatarUrl);
+        }
+
+        if (fileInput) {
+          fileInput.addEventListener('change', function () {
+            const file = fileInput.files && fileInput.files[0];
+            if (!file || !file.type || file.type.indexOf('image/') !== 0) return;
+            compressImageToJpeg(file, 128, 0.82, function (dataUrl) {
+              if (!dataUrl) {
+                fileInput.value = '';
+                return;
+              }
+              setAvatarPreview(dataUrl);
+            });
+          });
+        }
+
+        if (clearBtn) {
+          clearBtn.addEventListener('click', function () {
+            if (fileInput) fileInput.value = '';
+            setAvatarPreview(null);
+          });
+        }
 
         function sync() {
           const val = String(input.value || '').trim();
-          submit.disabled = val.length < 2;
+          const name = String(nameInput.value || '').trim();
+          submit.disabled = val.length < 2 || name.length < 1;
         }
 
         sync();
         input.addEventListener('input', sync);
+        nameInput.addEventListener('input', sync);
 
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           const val = String(input.value || '').trim();
-          if (val.length < 2) return;
+          const author = String(nameInput.value || '').trim();
+          if (val.length < 2 || author.length < 1) return;
 
-          savedComments.push({
-            author: 'you',
+          const avatarUrl = pendingAvatarDataUrl || null;
+          const entry = {
+            author: author,
             body: val,
             ts: Date.now()
-          });
+          };
+          if (avatarUrl) entry.avatarUrl = avatarUrl;
+
+          savedComments.push(entry);
           persist();
+          persistProfile({ name: author, avatarUrl: avatarUrl || undefined });
           input.value = '';
           sync();
 
-          // Prepend just the new one for speed
           const list = scope.querySelector('.chh-comments__list');
           if (list) {
-            const idx = savedComments.length - 1;
-            list.insertAdjacentHTML('afterbegin', renderSavedComment(savedComments[idx], idx));
+            const sorted = savedComments.slice().sort((a, b) => (b.ts || 0) - (a.ts || 0));
+            const idx = sorted.findIndex(function (x) {
+              return x.ts === entry.ts && x.body === entry.body && x.author === entry.author;
+            });
+            list.insertAdjacentHTML('afterbegin', renderSavedComment(entry, Math.max(0, idx)));
             wireLikeButtons(seed);
           }
         });
