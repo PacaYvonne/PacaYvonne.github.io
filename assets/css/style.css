@@ -1758,6 +1758,18 @@ body.home .home-explore-all {
   padding-right: 0.25rem;
 }
 
+.site-search-sidebar__categories-wrap {
+  margin-bottom: 1.35rem;
+  padding-bottom: 1.35rem;
+  border-bottom: 1px solid var(--chh-border);
+}
+
+.site-search-sidebar__results-section + .site-search-sidebar__results-section {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--chh-border);
+}
+
 .site-search-sidebar__no-results {
   margin: 0;
   font-size: 0.9rem;

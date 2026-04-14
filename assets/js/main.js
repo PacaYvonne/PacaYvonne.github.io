@@ -197,22 +197,44 @@ function insertNavigation(pageType = 'root', currentPage = '') {
                         </button>
                     </div>
                     <form class="site-search-sidebar__form" id="siteSearchForm" action="#" method="get">
-                        <label class="site-search-visually-hidden" for="siteSearchInput">Search blog articles</label>
+                        <label class="site-search-visually-hidden" for="siteSearchInput">Search blog articles and categories</label>
                         <div class="site-search-sidebar__field">
-                            <input type="search" id="siteSearchInput" class="site-search-sidebar__input" name="q" placeholder="Search blog articles…" autocomplete="off">
+                            <input type="search" id="siteSearchInput" class="site-search-sidebar__input" name="q" placeholder="Search articles, topics, or categories…" autocomplete="off">
                             <button type="submit" class="site-search-sidebar__submit">Search</button>
                         </div>
                     </form>
-                    <div id="siteSearchTrendingBlock">
-                        <p class="site-search-sidebar__trending-label">Trending on the blog</p>
-                        <ul class="site-search-sidebar__trending" id="siteSearchTrendingList" role="list">
-                            ${trendingListHtml}
-                        </ul>
+                    <div id="siteSearchBrowseWrap">
+                        <div id="siteSearchCategoriesBlock" class="site-search-sidebar__categories-wrap">
+                            <p class="site-search-sidebar__trending-label">Browse by category</p>
+                            <ul class="site-search-sidebar__trending site-search-sidebar__categories" role="list">
+                                <li class="site-search-sidebar__trending-item">
+                                    <a href="${blogPath}${qCleaning}" class="site-search-sidebar__trending-link site-search-sidebar__trending-link--category">Home Cleaning</a>
+                                </li>
+                                <li class="site-search-sidebar__trending-item">
+                                    <a href="${blogPath}${qWellness}" class="site-search-sidebar__trending-link site-search-sidebar__trending-link--category">Wellness</a>
+                                </li>
+                                <li class="site-search-sidebar__trending-item">
+                                    <a href="${blogPath}${qDecor}" class="site-search-sidebar__trending-link site-search-sidebar__trending-link--category">Home Decor</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="siteSearchTrendingBlock">
+                            <p class="site-search-sidebar__trending-label">Trending on the blog</p>
+                            <ul class="site-search-sidebar__trending" id="siteSearchTrendingList" role="list">
+                                ${trendingListHtml}
+                            </ul>
+                        </div>
                     </div>
                     <div id="siteSearchResultsBlock" class="site-search-sidebar__results-block" hidden>
-                        <p class="site-search-sidebar__trending-label" id="siteSearchResultsHeading">Matching articles</p>
-                        <ul class="site-search-sidebar__trending site-search-sidebar__results-list" id="siteSearchResultsList" role="list"></ul>
-                        <p id="siteSearchNoResults" class="site-search-sidebar__no-results" hidden>No articles match that search. Try different words.</p>
+                        <div id="siteSearchCategoryResultsSection" class="site-search-sidebar__results-section" hidden>
+                            <p class="site-search-sidebar__trending-label" id="siteSearchCategoryResultsHeading">Matching categories</p>
+                            <ul class="site-search-sidebar__trending site-search-sidebar__results-list" id="siteSearchCategoryResultsList" role="list"></ul>
+                        </div>
+                        <div id="siteSearchArticleResultsSection" class="site-search-sidebar__results-section" hidden>
+                            <p class="site-search-sidebar__trending-label" id="siteSearchResultsHeading">Matching articles</p>
+                            <ul class="site-search-sidebar__trending site-search-sidebar__results-list" id="siteSearchResultsList" role="list"></ul>
+                        </div>
+                        <p id="siteSearchNoResults" class="site-search-sidebar__no-results" hidden>No articles or categories match that search. Try different words.</p>
                     </div>
                 </div>
             </aside>
@@ -424,9 +446,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const searchInput = document.getElementById('siteSearchInput');
   const searchCloseBtn = document.getElementById('siteSearchCloseBtn');
   if (searchBtn && searchPanel && searchForm && searchInput) {
-    const trendingBlock = document.getElementById('siteSearchTrendingBlock');
+    const browseWrap = document.getElementById('siteSearchBrowseWrap');
     const resultsBlock = document.getElementById('siteSearchResultsBlock');
     const resultsList = document.getElementById('siteSearchResultsList');
+    const categoryResultsSection = document.getElementById('siteSearchCategoryResultsSection');
+    const categoryResultsList = document.getElementById('siteSearchCategoryResultsList');
+    const categoryResultsHeading = document.getElementById('siteSearchCategoryResultsHeading');
+    const articleResultsSection = document.getElementById('siteSearchArticleResultsSection');
     const noResultsEl = document.getElementById('siteSearchNoResults');
     const resultsHeading = document.getElementById('siteSearchResultsHeading');
 
@@ -522,6 +548,50 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function blogIndexHrefForSearch() {
+      const isInBlog = window.location.pathname.includes('/blog/');
+      return isInBlog ? 'index.html' : 'blog/index.html';
+    }
+
+    function categorySearchEntries() {
+      const base = blogIndexHrefForSearch();
+      return [
+        {
+          name: 'Home Cleaning',
+          haystack:
+            'home cleaning clean housekeeping house laundry kitchen vacuum dust wipe mop routine products busy mom'
+        },
+        {
+          name: 'Wellness',
+          haystack:
+            'wellness home health allergy allergies breathing sleep senior dust air purifier cat dog pet sinus respiratory'
+        },
+        {
+          name: 'Home Decor',
+          haystack:
+            'home decor decor design interior styling room luxe furniture lighting layout small space designers'
+        }
+      ].map(function (c) {
+        return {
+          title: c.name,
+          href: base + '?category=' + encodeURIComponent(c.name),
+          haystack: c.haystack.toLowerCase()
+        };
+      });
+    }
+
+    function matchCategories(tokens) {
+      if (!tokens.length) return [];
+      const out = [];
+      categorySearchEntries().forEach(function (entry) {
+        const ok = tokens.every(function (t) {
+          return entry.haystack.indexOf(t) !== -1;
+        });
+        if (ok) out.push(entry);
+      });
+      return out;
+    }
+
     function runBlogSearch(query) {
       const tokens = tokenize(query);
       const index = buildSearchIndex();
@@ -551,7 +621,25 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    function renderResultList(matches) {
+    function renderCategoryResultList(matches) {
+      if (!categoryResultsList) return;
+      categoryResultsList.innerHTML = '';
+      matches.forEach(function (entry) {
+        const li = document.createElement('li');
+        li.className = 'site-search-sidebar__trending-item';
+        const a = document.createElement('a');
+        a.href = entry.href;
+        a.className = 'site-search-sidebar__trending-link site-search-sidebar__trending-link--category';
+        a.textContent = entry.title;
+        li.appendChild(a);
+        categoryResultsList.appendChild(li);
+      });
+      categoryResultsList.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeSearchSidebar);
+      });
+    }
+
+    function renderArticleResultList(matches) {
       if (!resultsList) return;
       resultsList.innerHTML = '';
       matches.forEach(function (entry) {
@@ -571,29 +659,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateSearchUI() {
       const q = searchInput.value.trim();
-      if (!resultsBlock || !trendingBlock) return;
+      if (!resultsBlock || !browseWrap) return;
 
       if (!q) {
-        trendingBlock.hidden = false;
+        browseWrap.hidden = false;
         resultsBlock.hidden = true;
         if (noResultsEl) noResultsEl.hidden = true;
+        if (categoryResultsSection) categoryResultsSection.hidden = true;
+        if (articleResultsSection) articleResultsSection.hidden = true;
         return;
       }
 
-      const matches = runBlogSearch(q);
-      trendingBlock.hidden = true;
+      const tokens = tokenize(q);
+      const catMatches = matchCategories(tokens);
+      const articleMatches = runBlogSearch(q) || [];
+
+      browseWrap.hidden = true;
       resultsBlock.hidden = false;
 
-      if (!matches || matches.length === 0) {
+      const hasCats = catMatches.length > 0;
+      const hasArts = articleMatches.length > 0;
+
+      if (!hasCats && !hasArts) {
+        if (categoryResultsList) categoryResultsList.innerHTML = '';
         if (resultsList) resultsList.innerHTML = '';
+        if (categoryResultsSection) categoryResultsSection.hidden = true;
+        if (articleResultsSection) articleResultsSection.hidden = true;
         if (noResultsEl) noResultsEl.hidden = false;
         if (resultsHeading) resultsHeading.textContent = 'Matching articles';
+        if (categoryResultsHeading) categoryResultsHeading.textContent = 'Matching categories';
         return;
       }
 
       if (noResultsEl) noResultsEl.hidden = true;
-      if (resultsHeading) resultsHeading.textContent = 'Matching articles (' + matches.length + ')';
-      renderResultList(matches);
+
+      if (hasCats) {
+        if (categoryResultsHeading) {
+          categoryResultsHeading.textContent =
+            catMatches.length === 1
+              ? 'Matching category'
+              : 'Matching categories (' + catMatches.length + ')';
+        }
+        renderCategoryResultList(catMatches);
+        if (categoryResultsSection) categoryResultsSection.hidden = false;
+      } else {
+        if (categoryResultsList) categoryResultsList.innerHTML = '';
+        if (categoryResultsSection) categoryResultsSection.hidden = true;
+      }
+
+      if (hasArts) {
+        if (resultsHeading) {
+          resultsHeading.textContent =
+            articleMatches.length === 1
+              ? 'Matching article'
+              : 'Matching articles (' + articleMatches.length + ')';
+        }
+        renderArticleResultList(articleMatches);
+        if (articleResultsSection) articleResultsSection.hidden = false;
+      } else {
+        if (resultsList) resultsList.innerHTML = '';
+        if (articleResultsSection) articleResultsSection.hidden = true;
+      }
     }
 
     let debounceTimer = null;
@@ -621,9 +747,12 @@ document.addEventListener('DOMContentLoaded', function () {
       searchBtn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       searchInput.value = '';
-      if (trendingBlock) trendingBlock.hidden = false;
+      if (browseWrap) browseWrap.hidden = false;
       if (resultsBlock) resultsBlock.hidden = true;
       if (resultsList) resultsList.innerHTML = '';
+      if (categoryResultsList) categoryResultsList.innerHTML = '';
+      if (categoryResultsSection) categoryResultsSection.hidden = true;
+      if (articleResultsSection) articleResultsSection.hidden = true;
       if (noResultsEl) noResultsEl.hidden = true;
       clearTimeout(debounceTimer);
     }
@@ -662,6 +791,7 @@ document.addEventListener('DOMContentLoaded', function () {
       link.addEventListener('click', closeSearchSidebar);
     });
   }
+
 
   // Blog index: filter from ?category= in URL (header Read menu)
   const categoryParam = new URLSearchParams(window.location.search).get('category');
