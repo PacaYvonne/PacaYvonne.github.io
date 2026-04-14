@@ -32,6 +32,11 @@
             <header class="article-header">
                 <h1>Can Feeding Egg Powder Help With Cat Allergies?</h1>
                 <p class="article-meta">Published on August 5, 2025</p>
+                <div class="author-section">
+                    <span class="by-text">By Elena Marlowe</span>
+                    <img class="author-image" src="../assets/images/adv_reducemychildsymptom_author.png" alt="Author Elena Marlowe" />
+                </div>
+                <p class="author-intro">Elena Marlowe reports on cat-allergy trends and the research behind them—especially when social media hype runs ahead of the evidence.</p>
             </header>
 
             <section class="article-content">
@@ -76,6 +81,8 @@
                 <p>For more allergy-related content, visit our <a href="../index.html">homepage</a> or take our <a href="../quiz.html">allergy personality quiz</a>.</p>
             </footer>
         </article>
+
+        <div id="additional-reading-section"></div>
     </main>
   <script>
     // Helper function to add Shop Now button
@@ -144,6 +151,36 @@
             }
         });
     }
+  </script>
+  <script src="../assets/js/components/article/article-registry.js"></script>
+  <script src="../assets/js/components/article/additional-reading.js"></script>
+  <script>
+    (function () {
+      function initAdditionalReading(retries) {
+        if (typeof createAdditionalReading !== 'undefined' && typeof getArticleMetadata !== 'undefined') {
+          const additionalReadingHtml = createAdditionalReading({
+            category: 'Wellness',
+            maxArticles: 2
+          });
+          const additionalReadingSection = document.getElementById('additional-reading-section');
+          if (additionalReadingSection && additionalReadingHtml) {
+            additionalReadingSection.innerHTML = additionalReadingHtml;
+          }
+        } else if (retries < 10) {
+          setTimeout(function () {
+            initAdditionalReading(retries + 1);
+          }, 100);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          initAdditionalReading(0);
+        });
+      } else {
+        initAdditionalReading(0);
+      }
+    })();
   </script>
 </body>
 </html>

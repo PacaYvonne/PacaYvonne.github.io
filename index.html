@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Clean Home Hacks - Your comprehensive source for keeping your home clean and hypoallergenic.">
+    <meta name="description" content="Clean Home Hacks — practical, science-backed tips for a cleaner, healthier, allergy-friendly home.">
     <title>Clean Home Hacks</title>
     <!-- Prevent FOUC (Flash of Unstyled Content) -->
     <style>
@@ -17,525 +17,403 @@
     cvg({method:"track",eventName:"$page_load"});
     cvg({ method: "link_domain", domain: "pacagen.com" });
     </script>
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="dns-prefetch" href="https://i.pravatar.cc" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <!-- Load main JavaScript -->
     <script src="assets/js/main.js" defer></script>
   </head>
   <body class="home">
-    <!-- Static home header with logo in top-left (in addition to injected nav) -->
-    <header class="home-header">
-      <div class="home-header__logo">
-        <a href="index.html">
-          <img src="assets/images/logo.png" alt="Clean Home Hacks logo">
-        </a>
-      </div>
-    </header>
-
     <main>
-        <!-- Hero section -->
         <section class="hero-section hero-section--home">
           <div class="container">
-            <div class="row align-items-center g-4">
+            <div class="row align-items-center g-4 g-lg-5">
               <div class="col-md-6 hero-copy">
-                <h1>Clean Home Hacks</h1>
-                <p>
-                  Clean Home Hacks is your hub for practical, science-backed tips on
-                  dust, pet, and home allergies — so your space can feel cleaner, calmer,
-                  and easier to breathe in every day.
+                <p class="hero-eyebrow">Clean living · Allergy-friendly home</p>
+                <h1>Cleaning doesn’t have to be complicated.</h1>
+                <p class="hero-lead">
+                  Simple supplies and routines for a consistently clean home.
                 </p>
               </div>
               <div class="col-md-6 text-center">
-                <img
-                  src="assets/images/img-index-hero.png"
-                  alt="Person cleaning a bright living room"
-                  class="img-fluid rounded-4"
-                />
+                <div class="hero-image-wrap">
+                  <img
+                    src="assets/images/chh-hero.jpg"
+                    alt="Bright living room being tidied"
+                    class="img-fluid hero-image"
+                    fetchpriority="high"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Category filter bar -->
-        <section class="category-filter-bar">
-          <nav class="category-filter" aria-label="Article categories">
-            <button type="button" class="is-active" data-filter="all">All</button>
-            <button type="button" data-filter="Wellness">Wellness</button>
-            <button type="button" data-filter="Home Decor">Home Decor</button>
-            <button type="button" data-filter="Home Cleaning">Home Cleaning</button>
-          </nav>
-        </section>
+        <div class="container home-content-wrap">
+            <section class="home-editorial-section" aria-labelledby="featured-guides-heading">
+                <header class="home-editorial-intro">
+                  <h2 id="featured-guides-heading" class="home-editorial-intro__title">Featured guides</h2>
+                  <p class="home-editorial-intro__sub">Editorial picks across wellness, cleaning, and home—updated regularly.</p>
+                </header>
 
-        <div class="container">
-            <section class="mx-auto my-4">
-                <div class="row row-cols-1 row-cols-md-2 g-3">
-
-                  <!-- Slot 1 -->
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html">
-                            <img src="assets/images/11_0.png" class="card-img-top" alt="11 Cheap Habits Cat Owners With Allergies Say Made the Biggest Difference">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                'I Literally Tried Everything' - 11 Cheap Habits Cat Owners With Allergies Say Made the Biggest Difference
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Slot 2 -->
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="5-everyday-changes-helping-cat-owners-with-allergies.html">
-                            <img src="assets/images/5_0.png" class="card-img-top" alt="5 Everyday Changes Helping Cat Owners With Allergies">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="5-everyday-changes-helping-cat-owners-with-allergies.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                5 Everyday Changes Helping Cat Owners With Allergies
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Slot 3 -->
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Cleaning">
-                        <a href="7-surprisingly-easy-habits-that-actually-help-with-dust-allergies.html">
-                            <img src="assets/images/7_0.png" class="card-img-top" alt="7 Surprisingly Easy Habits That Actually Help With Dust Allergies">
-                        </a>
-                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
-                      <div class="card-body">
-                        <a href="7-surprisingly-easy-habits-that-actually-help-with-dust-allergies.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                7 Surprisingly Easy Habits That Actually Help With Dust Allergies
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Slot 4 -->
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="my-review-for-pacagen.html">
-                            <img src="assets/images/chh_30days_hero.png" class="card-img-top" alt="My Honest 30-Day Review of Pacagen as a Long-Time Cat Owner with Allergies">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="my-review-for-pacagen.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                My Honest 30-Day Review of Pacagen as a Long-Time Cat Owner with Allergies
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Slot 5 -->
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Cleaning">
+                <div class="row g-4 g-xl-5 align-items-stretch home-featured-split">
+                  <div class="col-12 col-lg-7 d-flex flex-column">
+                    <article class="home-featured-hero card border-0 home-card h-100 d-flex flex-column" data-category="Home Cleaning">
+                      <div class="card-media flex-shrink-0">
                         <a href="4-products-changed-everything.html">
-                            <img src="assets/images/lis_mom5products_mainimg.png" class="card-img-top" alt="I Am A Busy Mom Who Hates Cleaning And These 4 Products Changed Everything">
+                          <img src="assets/images/lis_mom5products_mainimg.png" class="card-img-top" alt="I Am A Busy Mom Who Hates Cleaning And These 4 Products Changed Everything">
                         </a>
-                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
-                      <div class="card-body">
-                        <a href="4-products-changed-everything.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                I Am A Busy Mom Who Hates Cleaning And These 4 Products Changed Everything
-                            </p>
-                        </a>
+                        <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
                       </div>
-                    </div>
+                      <div class="card-body d-flex flex-column flex-grow-1">
+                        <h2 class="home-featured-hero__title">
+                          <a href="4-products-changed-everything.html" class="text-decoration-none text-dark">I Am A Busy Mom Who Hates Cleaning And These 4 Products Changed Everything</a>
+                        </h2>
+                        <p class="home-featured-hero__excerpt">Quick picks that fit real life—robot vacuum, dust spray, erasers, and a dish wand that actually stuck.</p>
+                        <a href="4-products-changed-everything.html" class="home-read-more mt-auto align-self-start">Read more</a>
+                      </div>
+                    </article>
                   </div>
 
-                  <!-- Slot 3 -->
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Decor">
-                        <a href="/blog/home-decor-less-than-50.html">
-                            <img src="assets/images/adv_50_mainimg.png" class="card-img-top" alt="The One Home Decor Trick Designers Swear By - And It Costs Less Than $50">
+                  <div class="col-12 col-lg-5 d-flex flex-column">
+                    <div class="d-flex flex-column flex-grow-1 home-compact-stack home-compact-stack--fill">
+                      <article class="home-compact-card home-card" data-category="Wellness">
+                        <a href="11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html" class="home-compact-card__link">
+                          <div class="home-compact-card__thumb-col">
+                            <span class="cat-tag cat-tag--compact cat-tag--outside">Wellness</span>
+                            <div class="home-compact-card__thumb">
+                              <img src="assets/images/11_0.png" alt="Woman relaxing — cat allergy habits article">
+                            </div>
+                          </div>
+                          <div class="home-compact-card__body">
+                            <h3 class="home-compact-card__title">'I Literally Tried Everything' — 11 Cheap Habits Cat Owners With Allergies Say Made the Biggest Difference</h3>
+                            <span class="home-read-more">Read more</span>
+                          </div>
                         </a>
-                        <div class="cat-tag cat-tag--home-decor">Home Decor</div>
-                      <div class="card-body">
-                        <a href="/blog/home-decor-less-than-50.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                              The One Home Decor Trick Designers Swear By - And It Costs Less Than $50
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/how-dust-allergies-really-work.html"> 
-                            <img src="assets/images/adv_dustallergies_mainimg.png" class="card-img-top" alt="How Dust Allergies Really Work, And the Myths You Should Stop Believing">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/how-dust-allergies-really-work.html" class="text-decoration-none text-dark">  
-                            <p class="card-text">
-                              How Dust Allergies Really Work, And the Myths You Should Stop Believing
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-              
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/dust-mite-allergy-bedding.html">
-                            <img src="assets/images/adv_dustallergybedding_mainimg.png" class="card-img-top" alt="Dust Mite Allergy Bedding">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/dust-mite-allergy-bedding.html" class="text-decoration-none text-dark"> 
-                            <p class="card-text">
-                              Dust Mite Allergy Bedding: Why a Dust Mite Bed Cover Could Be the Key to Better Sleep
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-              
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Cleaning">
-                        <a href="sleeping-with-1.5-million-dust-mites.html">
-                            <img src="assets/images/adv_helpkids_mainimg.png" class="card-img-top" alt="The Average Bed Has 1.5 Million Dust Mites. I Found a Home Mist That Changed Our Life">
-                        </a>
-                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
-                      <div class="card-body">
-                        <a href="sleeping-with-1.5-million-dust-mites.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                              The Average Bed Has 1.5 Million Dust Mites. I Found a Home Mist That Changed Our Life
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                      </article>
 
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Decor">
-                        <a href="/blog/how-to-make-any-room-feel-luxe.html"> 
-                            <img src="assets/images/adv_luxe_mainimg.png" class="card-img-top" alt="Small Space, Big Style: How to Make Any Room Feel Luxe">
+                      <article class="home-compact-card home-card" data-category="Home Decor">
+                        <a href="blog/home-decor-less-than-50.html" class="home-compact-card__link">
+                          <div class="home-compact-card__thumb-col">
+                            <span class="cat-tag cat-tag--compact cat-tag--outside cat-tag--home-decor">Home Decor</span>
+                            <div class="home-compact-card__thumb">
+                              <img src="assets/images/adv_50_mainimg.png" alt="Affordable home decor ideas">
+                            </div>
+                          </div>
+                          <div class="home-compact-card__body">
+                            <h3 class="home-compact-card__title">The One Home Decor Trick Designers Swear By — And It Costs Less Than $50</h3>
+                            <span class="home-read-more">Read more</span>
+                          </div>
                         </a>
-                      <div class="cat-tag cat-tag--home-decor">Home Decor</div>
-                      <div class="card-body">
-                        <a href="/blog/how-to-make-any-room-feel-luxe.html" class="text-decoration-none text-dark"> 
-                            <p class="card-text">
-                              Small Space, Big Style: How to Make Any Room Feel Luxe
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-              
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/types-of-environmental-allergies.html"> 
-                            <img src="assets/images/blog_enviro_mainimg.png" class="card-img-top" alt="Types of Environmental Allergies and How They Affect You">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/types-of-environmental-allergies.html" class="text-decoration-none text-dark"> 
-                            <p class="card-text">
-                              Types of Environmental Allergies and How They Affect You
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="secret-to-waking-up-with-perfect-skin.html"> 
-                            <img src="assets/images/adv_girlinbed.png" class="card-img-top" alt="The Secret to Waking Up with Better Skin Might Be Hiding in Your Bedroom">  
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="secret-to-waking-up-with-perfect-skin.html" class="text-decoration-none text-dark">   
-                            <p class="card-text">
-                              The Secret to Waking Up with Better Skin Might Be Hiding in Your Bedroom
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Cleaning">
-                        <a href="how-to-clean-a-living-room-in-11-minutes.html"> 
-                            <img src="assets/images/lis_11_main.png" class="card-img-top" alt="How to Clean a Living Room in Just 11 Minutes">
-                        </a>
-                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
-                      <div class="card-body">
-                        <a href="how-to-clean-a-living-room-in-11-minutes.html" class="text-decoration-none text-dark"> 
-                            <p class="card-text">
-                              How to Clean a Living Room in Just 11 Minutes
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="pacagen-home-mist-spray.html"> 
-                            <img src="assets/images/adv_homemist_main.png" class="card-img-top" alt="Pacagen Home Mist Spray: The Science-Backed Way to Refresh Your Air">  
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="zyrtec-vs-dust-allergen-neutralizing-spray.html" class="text-decoration-none text-dark">   
-                            <p class="card-text">
-                              Pacagen Home Mist Spray: The Science-Backed Way to Refresh Your Air
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="zyrtec-vs-dust-allergen-neutralizing-spray.html"> 
-                            <img src="assets/images/lis_vs_main.png" class="card-img-top" alt="Zyrtec vs. a Functional Febreze: Which One Works Better?">  
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="zyrtec-vs-dust-allergen-neutralizing-spray.html" class="text-decoration-none text-dark">   
-                            <p class="card-text">
-                                Zyrtec vs. a Functional Febreze: Which One Works Better?
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Decor">
-                        <a href="/blog/3-secrets-interior-designers.html"> 
-                            <img src="assets/images/adv_interior_mainimg.png" class="card-img-top" alt="Transform Your Space: The 3 Secrets Interior Designers Swear By">
-                        </a>
-                      <div class="cat-tag cat-tag--home-decor">Home Decor</div>
-                      <div class="card-body">
-                        <a href="/blog/3-secrets-interior-designers.html" class="text-decoration-none text-dark">  
-                            <p class="card-text">
-                              Transform Your Space: The 3 Secrets Interior Designers Swear By
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="a-fathers-journey.html"> 
-                            <img src="assets/images/adv_fathers_journey.png" class="card-img-top" alt="A Father's Journey: How I Finally Helped My Son Breathe Again">  
-                        </a>
-                        <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="a-fathers-journey.html" class="text-decoration-none text-dark">   
-                            <p class="card-text">
-                                A Father's Journey: How I Finally Helped My Son Breathe Again
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="for-my-grandma.html"> 
-                            <img src="assets/images/Grandma.png" class="card-img-top" alt="A Son's Story: How I Helped My Mom Breathe Again in Her Senior Home">  
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="for-my-grandma.html" class="text-decoration-none text-dark">   
-                            <p class="card-text">
-                              A Son's Story: How I Helped My Mom Breathe Again in Her Senior Home
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                      </article>
 
-                  <!-- Blog articles -->
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/can-allergies-cause-a-cough.html">
-                            <img src="assets/images/Allergery_Cough.png" class="card-img-top" alt="Can Allergies Cause a Cough?">
+                      <article class="home-compact-card home-card" data-category="Wellness">
+                        <a href="5-everyday-changes-helping-cat-owners-with-allergies.html" class="home-compact-card__link">
+                          <div class="home-compact-card__thumb-col">
+                            <span class="cat-tag cat-tag--compact cat-tag--outside">Wellness</span>
+                            <div class="home-compact-card__thumb">
+                              <img src="assets/images/5_0.png" alt="Cat owner and pet — allergy tips">
+                            </div>
+                          </div>
+                          <div class="home-compact-card__body">
+                            <h3 class="home-compact-card__title">5 Everyday Changes Helping Cat Owners With Allergies</h3>
+                            <span class="home-read-more">Read more</span>
+                          </div>
                         </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/can-allergies-cause-a-cough.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Can Allergies Cause a Cough?
-                            </p>
-                        </a>
-                      </div>
+                      </article>
                     </div>
                   </div>
+                </div>
 
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/understanding-fel-d-1.html">
-                            <img src="assets/images/understanding_feld1.png" class="card-img-top" alt="Understanding Fel d 1: The Cat Allergen">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/understanding-fel-d-1.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Understanding Fel d 1: The Cat Allergen
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+              </section>
 
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/dust-mite-allergies.html">
-                            <img src="assets/images/seasonal-dust-mite-allergy.png" class="card-img-top" alt="Dust Mite Allergies: What You Need To Know">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/dust-mite-allergies.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Dust Mite Allergies: What You Need To Know
-                            </p>
-                        </a>
+              <section class="home-trending" aria-labelledby="home-trending-heading">
+                <div class="home-trending__head">
+                  <h2 id="home-trending-heading" class="home-trending__title">Trending now</h2>
+                  <span class="home-trending__scroll-hint" aria-hidden="true">Scroll →</span>
+                </div>
+                <div class="home-trending__track" role="list">
+                  <article class="home-trending-card" role="listitem">
+                    <a href="blog/how-to-make-any-room-feel-luxe.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/adv_luxe_mainimg.png" alt="Stylish small room interior" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending cat-tag--home-decor">Home decor</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/how-to-help-allergy-fatigue.html">
-                            <img src="assets/images/person-sleeping-on-couch.jpg" class="card-img-top" alt="How To Help Allergy Fatigue">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/how-to-help-allergy-fatigue.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                How To Help Allergy Fatigue
-                            </p>
-                        </a>
+                      <h3 class="home-trending-card__title">Small space, big style—make any room feel luxe</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="blog/best-home-air-purifiers.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/best-air-purifier.png" alt="Air purifier in a living room" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending cat-tag--home-cleaning">Home cleaning</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/what-are-the-best-cat-breeds-for-allergies.html">
-                            <img src="assets/images/Siberian-cat-4.jpg" class="card-img-top" alt="Allergy Free Cats: The Best Cat Breeds For Allergies">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/what-are-the-best-cat-breeds-for-allergies.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Allergy Free Cats: The Best Cat Breeds For Allergies
-                            </p>
-                        </a>
+                      <h3 class="home-trending-card__title">Best air purifiers for the home</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="zyrtec-vs-dust-allergen-neutralizing-spray.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/lis_vs_main.png" alt="Woman comparing allergy relief options" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending bg-success">Wellness</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/worst-cats-for-allergies.html">
-                            <img src="assets/images/Persian-cat-3.jpg" class="card-img-top" alt="The Worst Cats for Allergies">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/worst-cats-for-allergies.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                The Worst Cats for Allergies
-                            </p>
-                        </a>
+                      <h3 class="home-trending-card__title">Zyrtec vs. dust allergen spray—what works?</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="blog/can-allergies-cause-a-cough.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/Allergery_Cough.png" alt="Person with allergy cough symptoms" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending bg-success">Wellness</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Cleaning">
-                        <a href="/blog/best-home-air-purifiers.html">
-                            <img src="assets/images/best-air-purifier.png" class="card-img-top" alt="Best Home Air Purifiers">
-                        </a>
-                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
-                      <div class="card-body">
-                        <a href="/blog/best-home-air-purifiers.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Best Home Air Purifiers
-                            </p>
-                        </a>
+                      <h3 class="home-trending-card__title">Can allergies cause a cough?</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="blog/3-secrets-interior-designers.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/adv_interior_mainimg.png" alt="Modern living room interior" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending cat-tag--home-decor">Home decor</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Home Cleaning">
-                        <a href="/blog/dust-mite-mattress-covers.html">
-                            <img src="assets/images/bedsheets.png" class="card-img-top" alt="Dust Mite Mattress Covers: Do They Work?">
-                        </a>
-                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
-                      <div class="card-body">
-                        <a href="/blog/dust-mite-mattress-covers.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Dust Mite Mattress Covers: Do They Work?
-                            </p>
-                        </a>
+                      <h3 class="home-trending-card__title">3 secrets interior designers swear by</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="7-surprisingly-easy-habits-that-actually-help-with-dust-allergies.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/7_0.png" alt="Home cleaning and dust allergy tips" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending cat-tag--home-cleaning">Home cleaning</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/best-hypoallergenic-dogs.html">
-                            <img src="assets/images/schnauzer.jpg" class="card-img-top" alt="Best Hypoallergenic Dogs">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/best-hypoallergenic-dogs.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Best Hypoallergenic Dogs
-                            </p>
-                        </a>
+                      <h3 class="home-trending-card__title">7 habits that help with dust allergies</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="blog/dust-mite-allergy-bedding.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/adv_dustallergybedding_mainimg.png" alt="Bedding and allergies" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending bg-success">Wellness</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/how-dog-allergies-work.html">
-                            <img src="assets/images/schnauzer.jpg" class="card-img-top" alt="How Dog Allergies Work: The Science Behind Dog Allergies">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/how-dog-allergies-work.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                How Dog Allergies Work: The Science Behind Dog Allergies
-                            </p>
-                        </a>
+                      <h3 class="home-trending-card__title">Dust-mite allergy bedding, decoded</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="how-to-clean-a-living-room-in-11-minutes.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/lis_11_main.png" alt="Couple cleaning living room" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending cat-tag--home-cleaning">Home cleaning</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="/blog/how-dust-allergies-work.html">
-                            <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/Dust_Allergies.png?v=1750456871" class="card-img-top" alt="How Dust Allergies Work: The Science Behind Dust Allergies">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="/blog/how-dust-allergies-work.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                How Dust Allergies Work: The Science Behind Dust Allergies
-                            </p>
-                        </a>
+                      <h3 class="home-trending-card__title">Clean a living room in 11 minutes</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="sleeping-with-1.5-million-dust-mites.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/adv_helpkids_mainimg.png" alt="Family and child at home" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending cat-tag--home-cleaning">Home cleaning</span>
                       </div>
-                    </div>
-                  </div>
-              
+                      <h3 class="home-trending-card__title">Dust mites in the bed—what parents should know</h3>
+                    </a>
+                  </article>
+                  <article class="home-trending-card" role="listitem">
+                    <a href="11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html" class="home-trending-card__link">
+                      <div class="home-trending-card__media">
+                        <img src="assets/images/11_0.png" alt="Woman relaxing at home with cat" width="320" height="180" loading="lazy" decoding="async">
+                        <span class="cat-tag cat-tag--trending bg-success">Wellness</span>
+                      </div>
+                      <h3 class="home-trending-card__title">11 cheap habits for cat owners with allergies</h3>
+                    </a>
+                  </article>
                 </div>
               </section>
             </div>
-        </div>
+
+            <div class="home-band home-band--muted">
+              <div class="container">
+                <section class="home-section home-value-section" aria-labelledby="home-value-heading">
+                  <header class="home-section__head">
+                    <h2 id="home-value-heading" class="home-section__title">Your guide for a cleaner home</h2>
+                    <p class="home-section__sub">Practical ideas you can use this week: quick wins, honest advice, and no pressure to keep a "perfect" house.</p>
+                  </header>
+                  <div class="row g-4 g-lg-5 justify-content-center">
+                    <div class="col-12 col-md-4">
+                      <div class="home-value-card">
+                        <div class="home-value-card__icon" aria-hidden="true">
+                          <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h3 class="home-value-card__title">Practical first</h3>
+                        <p class="home-value-card__text">Tips built around real schedules: quick wins, smart tools, and habits that stick.</p>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="home-value-card">
+                        <div class="home-value-card__icon" aria-hidden="true">
+                          <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h3 class="home-value-card__title">Allergy-aware</h3>
+                        <p class="home-value-card__text">Dust, pets, and indoor air—explained in plain language so you can breathe easier at home.</p>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="home-value-card">
+                        <div class="home-value-card__icon" aria-hidden="true">
+                          <i class="bi bi-journal-richtext"></i>
+                        </div>
+                        <h3 class="home-value-card__title">Editorial guides</h3>
+                        <p class="home-value-card__text">Longer reads when you want depth—still readable on the couch or between errands.</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <div class="container home-content-wrap home-content-wrap--resume">
+              <section class="home-section home-quotes-section" aria-labelledby="home-quotes-heading">
+                <div class="home-quotes-section__inner">
+                  <header class="home-section__head">
+                    <h2 id="home-quotes-heading" class="home-section__title">Join our community</h2>
+                    <p class="home-section__sub">Real voices from people building calmer, cleaner homes—pick a topic below to explore more on the blog.</p>
+                  </header>
+                  <div class="row g-4 align-items-stretch">
+                    <div class="col-12 col-md-4">
+                      <figure class="home-quote-card home-quote-card--social">
+                        <div class="home-quote-card__media">
+                          <img
+                            class="home-quote-card__thumb"
+                            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
+                            alt=""
+                            width="400"
+                            height="250"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        <div class="home-quote-card__body">
+                          <div class="home-quote-card__meta">
+                            <img class="home-quote-card__avatar-img" src="https://i.pravatar.cc/96?img=47" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                            <div>
+                              <span class="home-quote-card__handle">sarah_m</span>
+                              <span class="home-quote-card__loc">Ohio</span>
+                            </div>
+                          </div>
+                          <blockquote class="home-quote-card__quote">
+                            <p>“Finally, tips that don’t make me feel behind. I picked two habits from your cleaning guides and actually kept them.”</p>
+                          </blockquote>
+                          <a class="home-quote-card__topic home-quote-card__topic--home-cleaning" href="blog/index.html?category=Home%20Cleaning">Home Cleaning <span aria-hidden="true">→</span></a>
+                        </div>
+                      </figure>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <figure class="home-quote-card home-quote-card--social">
+                        <div class="home-quote-card__media home-quote-card__media--video">
+                          <video
+                            class="home-quote-card__video"
+                            controls
+                            muted
+                            playsinline
+                            preload="metadata"
+                            poster="https://images.unsplash.com/photo-1631049307264-da0c9a7c5b8e?w=800&q=80"
+                          >
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+                          </video>
+                          <span class="home-quote-card__media-label">Placeholder clip</span>
+                        </div>
+                        <div class="home-quote-card__body">
+                          <div class="home-quote-card__meta">
+                            <img class="home-quote-card__avatar-img" src="https://i.pravatar.cc/96?img=32" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                            <div>
+                              <span class="home-quote-card__handle">priya.k</span>
+                              <span class="home-quote-card__loc">Texas</span>
+                            </div>
+                          </div>
+                          <blockquote class="home-quote-card__quote">
+                            <p>“The allergy articles helped me understand our dust issue. Our bedroom feels less stuffy after changing a few things.”</p>
+                          </blockquote>
+                          <a class="home-quote-card__topic home-quote-card__topic--wellness" href="blog/index.html?category=Wellness">Wellness <span aria-hidden="true">→</span></a>
+                        </div>
+                      </figure>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <figure class="home-quote-card home-quote-card--social">
+                        <div class="home-quote-card__media">
+                          <img
+                            class="home-quote-card__thumb"
+                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80"
+                            alt=""
+                            width="400"
+                            height="250"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        <div class="home-quote-card__body">
+                          <div class="home-quote-card__meta">
+                            <img class="home-quote-card__avatar-img" src="https://i.pravatar.cc/96?img=45" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                            <div>
+                              <span class="home-quote-card__handle">elena.r</span>
+                              <span class="home-quote-card__loc">Florida</span>
+                            </div>
+                          </div>
+                          <blockquote class="home-quote-card__quote">
+                            <p>“I love that it’s realistic for moms. Short lists, honest product talk, no shame if the house isn’t spotless.”</p>
+                          </blockquote>
+                          <a class="home-quote-card__topic home-quote-card__topic--home-decor" href="blog/index.html?category=Home%20Decor">Home Decor <span aria-hidden="true">→</span></a>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="home-section home-social-proof-section" aria-labelledby="home-social-proof-heading">
+                <div class="home-social-proof-section__inner">
+                  <div class="home-social-proof">
+                    <h3 id="home-social-proof-heading" class="home-social-proof__heading">Trending now on social</h3>
+                    <div class="home-social-proof__grid" role="list">
+                      <article class="home-social-proof-tile" role="listitem">
+                        <div class="home-social-proof-tile__media">
+                          <video class="home-social-proof-tile__video" controls muted playsinline preload="metadata" poster="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        <p class="home-social-proof-tile__caption">Maggie’s Brooklyn apartment</p>
+                      </article>
+
+                      <article class="home-social-proof-tile" role="listitem">
+                        <div class="home-social-proof-tile__media">
+                          <video class="home-social-proof-tile__video" controls muted playsinline preload="metadata" poster="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        <p class="home-social-proof-tile__caption">Nadin’s California home</p>
+                      </article>
+
+                      <article class="home-social-proof-tile" role="listitem">
+                        <div class="home-social-proof-tile__media">
+                          <video class="home-social-proof-tile__video" controls muted playsinline preload="metadata" poster="https://images.unsplash.com/photo-1631049307264-da0c9a7c5b8e?w=800&q=80">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        <p class="home-social-proof-tile__caption">Emily’s Brooklyn studio</p>
+                      </article>
+
+                      <article class="home-social-proof-tile" role="listitem">
+                        <div class="home-social-proof-tile__media">
+                          <video class="home-social-proof-tile__video" controls muted playsinline preload="metadata" poster="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        <p class="home-social-proof-tile__caption">Tess’s Brooklyn apartment</p>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
     </main>
 </body>
 </html>

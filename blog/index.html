@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse all Clean Home articles, tips, and guides. Comprehensive information about managing allergies, treatments, and prevention strategies.">
+    <meta name="description" content="Featured Clean Home Hacks articles — practical guides for allergy-friendly cleaning and wellness.">
     <meta name="keywords" content="allergy blog, allergy articles, allergy tips, health information, allergy management, allergy treatment">
-    <title>Blog - All Articles | Clean Home Hacks</title>
+    <title>Blog | Clean Home Hacks</title>
     <!-- Prevent FOUC (Flash of Unstyled Content) -->
     <style>
         body { visibility: hidden; opacity: 0; transition: opacity 0.3s ease; }
@@ -19,19 +19,14 @@
     cvg({ method: "link_domain", domain: "pacagen.com" });
     </script>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Load main JavaScript -->
     <script src="../assets/js/main.js" defer></script>
 </head>
 <body class="home">
-    <!-- Static home header with logo in top-left (in addition to injected nav) -->
-    <header class="home-header">
-      <div class="home-header__logo">
-        <a href="../index.html">
-          <img src="../assets/images/logo.png" alt="Clean Home Hacks logo">
-        </a>
-      </div>
-    </header>
-
     <main>
         <!-- Hero section -->
         <section class="hero-section hero-section--home">
@@ -45,136 +40,41 @@
               </div>
               <div class="col-md-6 text-center">
                 <img
-                  src="../assets/images/img-index-hero.png"
-                  alt="Person cleaning a bright living room"
+                  src="../assets/images/chh-hero.jpg"
+                  alt="Bright living room being tidied"
                   class="img-fluid rounded-4"
+                  decoding="async"
+                  fetchpriority="high"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Category filter bar -->
-        <section class="category-filter-bar">
-          <nav class="category-filter" aria-label="Article categories">
-            <button type="button" class="is-active" data-filter="all">All</button>
-            <button type="button" data-filter="Wellness">Wellness</button>
-            <button type="button" data-filter="Home Decor">Home Decor</button>
-            <button type="button" data-filter="Home Cleaning">Home Cleaning</button>
-          </nav>
-        </section>
-
         <div class="container">
-            <section class="mx-auto my-4">
+            <div class="blog-index-categories py-2">
+              <p id="blog-category-empty-state" class="blog-empty-category-msg text-muted py-4 mb-0" hidden role="status">No articles in this category yet. <a href="index.html">View all articles</a></p>
+
+              <section class="blog-category-section blog-category-section--home-cleaning" data-blog-category="Home Cleaning" aria-labelledby="blog-heading-home-cleaning">
+                <div class="blog-category-section__intro">
+                  <aside class="blog-category-testimonial blog-category-testimonial--home-cleaning" aria-labelledby="blog-heading-home-cleaning">
+                    <h2 id="blog-heading-home-cleaning" class="blog-category-section__title blog-category-section__title--home-cleaning">Home Cleaning</h2>
+                    <p class="blog-category-testimonial__quote">“I stopped trying to deep-clean the whole house every weekend—small habits from these guides actually stuck.”</p>
+                    <p class="blog-category-testimonial__cite">— Jordan T., Austin</p>
+                  </aside>
+                </div>
                 <div class="row row-cols-1 row-cols-md-2 g-3">
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="can-allergies-cause-a-cough.html">
-                            <img src="../assets/images/Allergery_Cough.png" class="card-img-top" alt="Can Allergies Cause a Cough?">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="can-allergies-cause-a-cough.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Can Allergies Cause a Cough?
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="understanding-fel-d-1.html">
-                            <img src="../assets/images/understanding_feld1.png" class="card-img-top" alt="Understanding Fel d 1: The Cat Allergen">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="understanding-fel-d-1.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Understanding Fel d 1: The Cat Allergen
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="dust-mite-allergies.html">
-                            <img src="../assets/images/seasonal-dust-mite-allergy.png" class="card-img-top" alt="Dust Mite Allergies: What You Need To Know">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="dust-mite-allergies.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Dust Mite Allergies: What You Need To Know
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="how-to-help-allergy-fatigue.html">
-                            <img src="../assets/images/person-sleeping-on-couch.jpg" class="card-img-top" alt="How To Help Allergy Fatigue">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="how-to-help-allergy-fatigue.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                How To Help Allergy Fatigue
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="what-are-the-best-cat-breeds-for-allergies.html">
-                            <img src="../assets/images/Siberian-cat-4.jpg" class="card-img-top" alt="Allergy Free Cats: The Best Cat Breeds For Allergies">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="what-are-the-best-cat-breeds-for-allergies.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Allergy Free Cats: The Best Cat Breeds For Allergies
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="worst-cats-for-allergies.html">
-                            <img src="../assets/images/Persian-cat-3.jpg" class="card-img-top" alt="The Worst Cats for Allergies">
-                        </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
-                      <div class="card-body">
-                        <a href="worst-cats-for-allergies.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                The Worst Cats for Allergies
-                            </p>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
                   <div class="col">
                     <div class="card h-100 border-0" data-category="Home Cleaning">
+                      <div class="card-media">
                         <a href="best-home-air-purifiers.html">
-                            <img src="../assets/images/best-air-purifier.png" class="card-img-top" alt="Best Home Air Purifiers">
+                          <img src="../assets/images/best-air-purifier.png" class="card-img-top" alt="Best Home Air Purifiers">
                         </a>
-                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
+                        <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
+                      </div>
                       <div class="card-body">
                         <a href="best-home-air-purifiers.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Best Home Air Purifiers
-                            </p>
+                          <p class="card-text">Best Home Air Purifiers</p>
                         </a>
                       </div>
                     </div>
@@ -182,15 +82,101 @@
 
                   <div class="col">
                     <div class="card h-100 border-0" data-category="Home Cleaning">
+                      <div class="card-media">
                         <a href="dust-mite-mattress-covers.html">
-                            <img src="../assets/images/bedsheets.png" class="card-img-top" alt="Dust Mite Mattress Covers: Do They Work?">
+                          <img src="../assets/images/bedsheets.png" class="card-img-top" alt="Dust Mite Mattress Covers: Do They Work?">
                         </a>
-                      <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
+                        <div class="cat-tag cat-tag--home-cleaning">Home Cleaning</div>
+                      </div>
                       <div class="card-body">
                         <a href="dust-mite-mattress-covers.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Dust Mite Mattress Covers: Do They Work?
-                            </p>
+                          <p class="card-text">Dust Mite Mattress Covers: Do They Work?</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="blog-category-section blog-category-section--home-decor" data-blog-category="Home Decor" aria-labelledby="blog-heading-home-decor">
+                <div class="blog-category-section__intro">
+                  <aside class="blog-category-testimonial blog-category-testimonial--home-decor" aria-labelledby="blog-heading-home-decor">
+                    <h2 id="blog-heading-home-decor" class="blog-category-section__title blog-category-section__title--home-decor">Home Decor</h2>
+                    <p class="blog-category-testimonial__quote">“These guides helped me upgrade one room at a time—without buying a cart full of trendy clutter.”</p>
+                    <p class="blog-category-testimonial__cite">— Maya R., Portland</p>
+                  </aside>
+                </div>
+                <div class="row row-cols-1 row-cols-md-2 g-3">
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Home Decor">
+                      <div class="card-media">
+                        <a href="home-decor-less-than-50.html">
+                          <img src="../assets/images/adv_50_mainimg.png" class="card-img-top" alt="The One Home Decor Trick Designers Swear By — And It Costs Less Than $50">
+                        </a>
+                        <div class="cat-tag cat-tag--home-decor">Home Decor</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="home-decor-less-than-50.html" class="text-decoration-none text-dark">
+                          <p class="card-text">The One Home Decor Trick Designers Swear By — And It Costs Less Than $50</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Home Decor">
+                      <div class="card-media">
+                        <a href="how-to-make-any-room-feel-luxe.html">
+                          <img src="../assets/images/adv_luxe_mainimg.png" class="card-img-top" alt="Small Space, Big Style: How to Make Any Room Feel Luxe">
+                        </a>
+                        <div class="cat-tag cat-tag--home-decor">Home Decor</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="how-to-make-any-room-feel-luxe.html" class="text-decoration-none text-dark">
+                          <p class="card-text">Small Space, Big Style: How to Make Any Room Feel Luxe</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Home Decor">
+                      <div class="card-media">
+                        <a href="3-secrets-interior-designers.html">
+                          <img src="../assets/images/adv_interior_mainimg.png" class="card-img-top" alt="Transform Your Space: The 3 Secrets Interior Designers Swear By">
+                        </a>
+                        <div class="cat-tag cat-tag--home-decor">Home Decor</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="3-secrets-interior-designers.html" class="text-decoration-none text-dark">
+                          <p class="card-text">Transform Your Space: The 3 Secrets Interior Designers Swear By</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="blog-category-section blog-category-section--wellness" data-blog-category="Wellness" aria-labelledby="blog-heading-wellness">
+                <div class="blog-category-section__intro">
+                  <aside class="blog-category-testimonial blog-category-testimonial--wellness" aria-labelledby="blog-heading-wellness">
+                    <h2 id="blog-heading-wellness" class="blog-category-section__title blog-category-section__title--wellness">Wellness</h2>
+                    <p class="blog-category-testimonial__quote">“Finally someone explained allergies without hype—small changes here made my symptoms easier to manage day to day.”</p>
+                    <p class="blog-category-testimonial__cite">— Priya K., Seattle</p>
+                  </aside>
+                </div>
+                <div class="row row-cols-1 row-cols-md-2 g-3">
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                      <div class="card-media">
+                        <a href="can-allergies-cause-a-cough.html">
+                          <img src="../assets/images/Allergery_Cough.png" class="card-img-top" alt="Can Allergies Cause a Cough?">
+                        </a>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="can-allergies-cause-a-cough.html" class="text-decoration-none text-dark">
+                          <p class="card-text">Can Allergies Cause a Cough?</p>
                         </a>
                       </div>
                     </div>
@@ -198,15 +184,95 @@
 
                   <div class="col">
                     <div class="card h-100 border-0" data-category="Wellness">
-                        <a href="best-hypoallergenic-dogs.html">
-                            <img src="../assets/images/schnauzer.jpg" class="card-img-top" alt="Best Hypoallergenic Dogs">
+                      <div class="card-media">
+                        <a href="understanding-fel-d-1.html">
+                          <img src="../assets/images/understanding_feld1.png" class="card-img-top" alt="Understanding Fel d 1: The Cat Allergen">
                         </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="understanding-fel-d-1.html" class="text-decoration-none text-dark">
+                          <p class="card-text">Understanding Fel d 1: The Cat Allergen</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                      <div class="card-media">
+                        <a href="dust-mite-allergies.html">
+                          <img src="../assets/images/seasonal-dust-mite-allergy.png" class="card-img-top" alt="Dust Mite Allergies: What You Need To Know">
+                        </a>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="dust-mite-allergies.html" class="text-decoration-none text-dark">
+                          <p class="card-text">Dust Mite Allergies: What You Need To Know</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                      <div class="card-media">
+                        <a href="how-to-help-allergy-fatigue.html">
+                          <img src="../assets/images/person-sleeping-on-couch.jpg" class="card-img-top" alt="How To Help Allergy Fatigue">
+                        </a>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="how-to-help-allergy-fatigue.html" class="text-decoration-none text-dark">
+                          <p class="card-text">How To Help Allergy Fatigue</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                      <div class="card-media">
+                        <a href="what-are-the-best-cat-breeds-for-allergies.html">
+                          <img src="../assets/images/Siberian-cat-4.jpg" class="card-img-top" alt="Allergy Free Cats: The Best Cat Breeds For Allergies">
+                        </a>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="what-are-the-best-cat-breeds-for-allergies.html" class="text-decoration-none text-dark">
+                          <p class="card-text">Allergy Free Cats: The Best Cat Breeds For Allergies</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                      <div class="card-media">
+                        <a href="worst-cats-for-allergies.html">
+                          <img src="../assets/images/Persian-cat-3.jpg" class="card-img-top" alt="The Worst Cats for Allergies">
+                        </a>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
+                      <div class="card-body">
+                        <a href="worst-cats-for-allergies.html" class="text-decoration-none text-dark">
+                          <p class="card-text">The Worst Cats for Allergies</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100 border-0" data-category="Wellness">
+                      <div class="card-media">
+                        <a href="best-hypoallergenic-dogs.html">
+                          <img src="../assets/images/schnauzer.jpg" class="card-img-top" alt="Best Hypoallergenic Dogs">
+                        </a>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
                       <div class="card-body">
                         <a href="best-hypoallergenic-dogs.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                Best Hypoallergenic Dogs
-                            </p>
+                          <p class="card-text">Best Hypoallergenic Dogs</p>
                         </a>
                       </div>
                     </div>
@@ -214,15 +280,15 @@
 
                   <div class="col">
                     <div class="card h-100 border-0" data-category="Wellness">
+                      <div class="card-media">
                         <a href="how-dog-allergies-work.html">
-                            <img src="../assets/images/schnauzer.jpg" class="card-img-top" alt="How Dog Allergies Work: The Science Behind Dog Allergies">
+                          <img src="../assets/images/schnauzer.jpg" class="card-img-top" alt="How Dog Allergies Work: The Science Behind Dog Allergies">
                         </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
                       <div class="card-body">
                         <a href="how-dog-allergies-work.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                How Dog Allergies Work: The Science Behind Dog Allergies
-                            </p>
+                          <p class="card-text">How Dog Allergies Work: The Science Behind Dog Allergies</p>
                         </a>
                       </div>
                     </div>
@@ -230,20 +296,19 @@
 
                   <div class="col">
                     <div class="card h-100 border-0" data-category="Wellness">
+                      <div class="card-media">
                         <a href="how-dust-allergies-work.html">
-                            <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/Dust_Allergies.png?v=1750456871" class="card-img-top" alt="How Dust Allergies Work: The Science Behind Dust Allergies">
+                          <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/Dust_Allergies.png?v=1750456871" class="card-img-top" alt="How Dust Allergies Work: The Science Behind Dust Allergies">
                         </a>
-                      <div class="cat-tag bg-success text-white">Wellness</div>
+                        <div class="cat-tag bg-success text-white">Wellness</div>
+                      </div>
                       <div class="card-body">
                         <a href="how-dust-allergies-work.html" class="text-decoration-none text-dark">
-                            <p class="card-text">
-                                How Dust Allergies Work: The Science Behind Dust Allergies
-                            </p>
+                          <p class="card-text">How Dust Allergies Work: The Science Behind Dust Allergies</p>
                         </a>
                       </div>
                     </div>
                   </div>
-
                 </div>
               </section>
             </div>

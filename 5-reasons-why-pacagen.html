@@ -69,7 +69,7 @@
 
     .cta-button {
         display: inline-block;
-        background-color: #F16D34; /* Orange background */
+        background-color: #ffffff;
         color: #000000; /* Black text */
         border: 2px solid #000000; /* Black border */
         font-weight: bold;
@@ -78,13 +78,13 @@
         text-decoration: none;
         text-align: center;
         font-size: 1.1rem;
-        transition: background-color 0.3s;
+        transition: background-color 0.2s ease;
         margin-bottom: 20px;
         box-shadow: 4px 4px 0px #000000; /* Black shadow */
     }
 
     .cta-button:hover {
-        background-color: #E05A23;
+        background-color: #ff9644;
     }
 
     .benefits-list {
@@ -191,7 +191,7 @@
 
     .reason-button {
         display: inline-block;
-        background-color: #F16D34; /* Orange background */
+        background-color: #ffffff;
         color: #000000; /* Black text */
         border: 2px solid #000000; /* Black border */
         font-weight: bold;
@@ -199,12 +199,12 @@
         border-radius: 6px;
         text-decoration: none;
         margin-top: 20px;
-        transition: background-color 0.3s;
+        transition: background-color 0.2s ease;
         box-shadow: 4px 4px 0px #000000; /* Black shadow */
     }
 
     .reason-button:hover {
-        background-color: #E05A23;
+        background-color: #ff9644;
     }
 
     /* Stats Section */
@@ -289,7 +289,7 @@
 
     /* Custom button style for product showcase */
     .ctabutton {
-        background-color: #F16D34 !important; /* Orange background */
+        background-color: #ffffff !important;
         color: #000000 !important; /* Black text */
         border: 2px solid #000000 !important; /* Black border */
         padding: 12px 24px;
@@ -299,10 +299,11 @@
         cursor: pointer;
         display: inline-block;
         box-shadow: 4px 4px 0px #000000 !important; /* Black shadow */
+        transition: background-color 0.2s ease;
     }
 
     .ctabutton:hover {
-        background-color: #E05A23 !important;
+        background-color: #ff9644 !important;
     }
 
     /* Reduce top margin for second product showcase */
@@ -508,6 +509,38 @@
             document.getElementById('pacagen-spray-showcase').innerHTML = pacagenSprayShowcase;
             document.getElementById('pacagen-spray-showcase-2').innerHTML = pacagenSprayShowcase;
         });
+    </script>
+
+    <div id="additional-reading-section"></div>
+    <script src="assets/js/components/article/article-registry.js"></script>
+    <script src="assets/js/components/article/additional-reading.js"></script>
+    <script>
+      (function () {
+        function initAdditionalReading(retries) {
+          if (typeof createAdditionalReading !== 'undefined' && typeof getArticleMetadata !== 'undefined') {
+            const additionalReadingHtml = createAdditionalReading({
+              category: 'Wellness',
+              maxArticles: 2
+            });
+            const additionalReadingSection = document.getElementById('additional-reading-section');
+            if (additionalReadingSection && additionalReadingHtml) {
+              additionalReadingSection.innerHTML = additionalReadingHtml;
+            }
+          } else if (retries < 10) {
+            setTimeout(function () {
+              initAdditionalReading(retries + 1);
+            }, 100);
+          }
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function () {
+            initAdditionalReading(0);
+          });
+        } else {
+          initAdditionalReading(0);
+        }
+      })();
     </script>
 </body>
 </html>
