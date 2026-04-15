@@ -14,7 +14,7 @@ function ensureChhFonts() {
     const fonts = document.createElement('link');
     fonts.rel = 'stylesheet';
     fonts.href =
-        'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap';
+        'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap';
     fonts.setAttribute('data-chh-fonts', '1');
     document.head.appendChild(gPre);
     document.head.appendChild(gsPre);
@@ -261,7 +261,7 @@ function insertFooter(pageType = 'root') {
                     <div class="row g-4 g-lg-5 site-footer__grid">
                         <div class="col-12 col-md-4 site-footer__col site-footer__col--social">
                             <h2 class="site-footer__heading site-footer__heading--serif">Stay in touch</h2>
-                            <p class="site-footer__lede">Tips for a cleaner, calmer home—without the guilt trip.</p>
+                            <p class="site-footer__lede">Tips for a cleaner, calmer home.</p>
                             <div class="site-footer__social">
                                 <a href="https://www.instagram.com/" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Clean Home Hacks on Instagram">
                                     <i class="bi bi-instagram" aria-hidden="true"></i>
@@ -289,7 +289,7 @@ function insertFooter(pageType = 'root') {
                             <form class="site-footer__newsletter" id="siteFooterNewsletter" action="#" method="post" novalidate>
                                 <label class="site-footer__visually-hidden" for="siteFooterNewsletterEmail">Email for newsletter</label>
                                 <div class="site-footer__newsletter-field">
-                                    <input type="email" id="siteFooterNewsletterEmail" name="email" class="site-footer__newsletter-input" placeholder="you@email.com" autocomplete="email" inputmode="email">
+                                    <input type="email" id="siteFooterNewsletterEmail" name="email" class="site-footer__newsletter-input" placeholder="your@email.com" autocomplete="email" inputmode="email">
                                     <button type="submit" class="site-footer__newsletter-submit" aria-label="Subscribe to newsletter">
                                         <i class="bi bi-arrow-right" aria-hidden="true"></i>
                                     </button>
@@ -872,7 +872,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const leftCol = document.createElement('div');
         leftCol.className = 'col-12 col-lg-6 hero-category-left';
         leftCol.appendChild(heroCopy);
-        leftCol.appendChild(testimonial);
+        if (testimonial.querySelector('.blog-category-testimonial__quote')) {
+          leftCol.appendChild(testimonial);
+        }
 
         while (heroRow.firstChild) {
           heroRow.removeChild(heroRow.firstChild);
