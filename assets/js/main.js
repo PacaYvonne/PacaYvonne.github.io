@@ -1713,6 +1713,54 @@ document.addEventListener('DOMContentLoaded', function () {
       tryInsert(0);
     })();
 
+  // Blog article mid-ad injection (Uber Eats)
+  (function injectMidArticleAd() {
+    const blogContents = document.querySelector('.blog-contents');
+    if (!blogContents) return;
+    if (document.querySelector('.ad-wrapper')) return; // already injected
+
+    const AD_CONFIG = {
+      backgroundImage: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=80',
+      logo: 'Uber',
+      logoDark: 'Eats',
+      headline: 'Hungry? Your next meal is one tap away.',
+      body: 'Skip the cooking tonight. Get exclusive coupons on your first 3 orders — delivered fast, right to your door.',
+      ctaText: 'Get Coupons',
+      ctaUrl: '#',
+      pageType: 'blog',
+      dark: true
+    };
+
+    function doInject() {
+      if (!window.createAd) return;
+      const h2s = blogContents.querySelectorAll('h2');
+      const insertAfter = h2s.length >= 2 ? h2s[1] : (h2s.length === 1 ? h2s[0] : null);
+      const adHtml = createAd(AD_CONFIG);
+      if (!adHtml) return;
+      if (insertAfter) {
+        insertAfter.insertAdjacentHTML('afterend', adHtml);
+      } else {
+        // fallback: insert after 3rd paragraph
+        const paras = blogContents.querySelectorAll('p');
+        const target = paras[2] || paras[paras.length - 1];
+        if (target) target.insertAdjacentHTML('afterend', adHtml);
+      }
+    }
+
+    if (window.createAd) {
+      doInject();
+      return;
+    }
+
+    // Load ad.js then inject
+    const isInBlog = window.location.pathname.includes('/blog/');
+    const assetPath = isInBlog ? '../assets' : 'assets';
+    const s = document.createElement('script');
+    s.src = assetPath + '/js/components/ads/ad.js';
+    s.onload = doInject;
+    document.head.appendChild(s);
+  })();
+
   // Footer newsletter (static site — wire to your provider later)
   const footerNewsletter = document.getElementById('siteFooterNewsletter');
   if (footerNewsletter) {

@@ -22,34 +22,36 @@
             productName,
             ctaText,
             ctaUrl,
-            pageType = 'root'
+            pageType = 'root',
+            dark = false
         } = config;
-        
+
         if (!backgroundImage || !headline || !body) {
             console.warn('createAd: Missing required parameters');
             return '';
         }
-        
+
         const imagePath = resolveImagePath(backgroundImage, pageType);
         const logoHTML = logo ? `<div class="ad-logo">${logo}${logoDark ? `<span class="ad-logo-dark"> ${logoDark}</span>` : ''}</div>` : '';
-        
+
         // Insert productName into body if it exists
         let bodyHTML = body;
         if (productName) {
             bodyHTML = body.replace(new RegExp(productName, 'g'), `<span class="ad-product-name">${productName}</span>`);
         }
-        
+
         const ctaHTML = ctaText ? `
               <div class="ad-cta-wrapper">
                 <span class="ad-cta">${ctaText}</span>
               </div>` : '';
-        
+
         const isClickable = ctaUrl && ctaUrl !== '#';
-        const wrapperClass = isClickable ? 'ad-section ad ad-clickable' : 'ad-section ad';
+        const darkClass = dark ? ' ad--dark' : '';
+        const wrapperClass = isClickable ? `ad-section ad${darkClass} ad-clickable` : `ad-section ad${darkClass}`;
         const wrapperTag = isClickable ? 'a' : 'div';
         const hrefAttr = isClickable ? `href="${ctaUrl}"` : '';
-        
-        return `
+
+        const adBlock = `
             <${wrapperTag} class="${wrapperClass}" style="background-image: url('${imagePath}');" ${hrefAttr}>
               ${logoHTML}
               <div class="ad-headline">${headline}</div>
@@ -60,6 +62,8 @@
               <span class="ad-label">Ad</span>
             </${wrapperTag}>
         `.trim();
+
+        return `<div class="ad-wrapper">${adBlock}</div>`;
     }
     
     window.createAd = createAd;

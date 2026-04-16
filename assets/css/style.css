@@ -3116,8 +3116,73 @@ div[id$="-ad"] {
    12. Ads Module
    ========================================================= */
 
-.ad-section {
+.ad-wrapper {
   margin: 2.5rem auto;
+}
+
+.ad-wrapper::before {
+  content: "Advertisement";
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #999;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.ad-section {
+  margin: 0;
+}
+
+/* Dark overlay variant */
+.ad--dark {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.ad--dark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ad--dark .ad-headline,
+.ad--dark .ad-body,
+.ad--dark .ad-logo {
+  color: #fff;
+}
+
+.ad--dark .ad-logo .ad-logo-dark {
+  filter: none;
+  color: #06C167;
+}
+
+.ad--dark .ad-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.ad--dark .ad-body {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ad--dark .ad-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ad--dark .ad-cta {
+  background-color: #06C167;
+  color: #fff;
+  border-color: #06C167;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
 }
 
 .ad-logo {
@@ -3131,13 +3196,13 @@ div[id$="-ad"] {
 }
 
 .ad-headline {
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
 .ad-body {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: #444;
 }
 
@@ -3151,25 +3216,21 @@ div[id$="-ad"] {
 
 .ad-cta {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  border-radius: 0;
   background-color: #ffffff;
   color: #000000; /* Black text */
+  font-weight: 700;
   border: 2px solid #000000; /* Black border */
   text-decoration: none;
   box-shadow: 4px 4px 0px #000000; /* Black shadow */
-  transition: background-color 0.2s ease;
-}
-
-.ad-cta:hover {
-  background-color: var(--chh-warm);
 }
 
 /* Background ad block */
 .ad {
   position: relative;
-  padding: 1.75rem;
-  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -4084,6 +4145,7 @@ footer,
     width: 100%;
   }
 
+  .ad-wrapper,
   .ad-section,
   .ad {
     margin-left: 0;
@@ -4091,11 +4153,11 @@ footer,
   }
 
   .ad-headline {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   .ad-body {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .card {
