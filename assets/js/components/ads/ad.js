@@ -23,7 +23,8 @@
             ctaText,
             ctaUrl,
             pageType = 'root',
-            dark = false
+            dark = false,
+            slot
         } = config;
 
         if (!backgroundImage || !headline || !body) {
@@ -47,7 +48,10 @@
 
         const isClickable = ctaUrl && ctaUrl !== '#';
         const darkClass = dark ? ' ad--dark' : '';
-        const wrapperClass = isClickable ? `ad-section ad${darkClass} ad-clickable` : `ad-section ad${darkClass}`;
+        const etsyClass = slot === 'etsy' ? ' ad--etsy' : '';
+        const wrapperClass = isClickable
+            ? `ad-section ad${darkClass}${etsyClass} ad-clickable`
+            : `ad-section ad${darkClass}${etsyClass}`;
         const wrapperTag = isClickable ? 'a' : 'div';
         const hrefAttr = isClickable ? `href="${ctaUrl}"` : '';
 
@@ -63,7 +67,8 @@
             </${wrapperTag}>
         `.trim();
 
-        return `<div class="ad-wrapper">${adBlock}</div>`;
+        const slotAttr = slot ? ` data-ad-slot="${String(slot).replace(/"/g, '')}"` : '';
+        return `<div class="ad-wrapper"${slotAttr}>${adBlock}</div>`;
     }
     
     window.createAd = createAd;

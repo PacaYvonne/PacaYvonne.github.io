@@ -3263,6 +3263,57 @@ div[id$="-ad"] {
   color: #777;
 }
 
+/* Etsy placement: compact block, brand headline, orange CTA */
+.ad.ad--etsy {
+  padding: 1rem 1.35rem;
+}
+
+.ad--etsy .ad-headline {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.12;
+  margin-bottom: 0.35rem;
+}
+
+.ad--etsy .ad-body {
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.ad--dark.ad--etsy .ad-logo {
+  margin-bottom: 0.45rem;
+  font-size: 1.15rem;
+  color: #f1641e;
+}
+
+.ad--dark.ad--etsy .ad-logo .ad-logo-dark {
+  color: #f1641e;
+}
+
+.ad--etsy .ad-cta-wrapper {
+  margin-top: 0.65rem;
+}
+
+.ad--etsy .ad-cta {
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+  box-shadow: none;
+}
+
+.ad--dark.ad--etsy .ad-cta {
+  background-color: #f1641e;
+  color: #fff;
+  border-color: #f1641e;
+  box-shadow: none;
+}
+
+.ad.ad--dark.ad--etsy.ad-clickable:hover .ad-cta {
+  background-color: #e25c1a;
+  border-color: #e25c1a;
+  box-shadow: none;
+}
+
 /* =========================================================
    13. Product Cards
    ========================================================= */
@@ -4154,6 +4205,10 @@ footer,
 
   .ad-headline {
     font-size: 1.5rem;
+  }
+
+  .ad--etsy .ad-headline {
+    font-size: 1.3rem;
   }
 
   .ad-body {

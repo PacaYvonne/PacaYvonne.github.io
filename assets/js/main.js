@@ -1713,38 +1713,62 @@ document.addEventListener('DOMContentLoaded', function () {
       tryInsert(0);
     })();
 
-  // Blog article mid-ad injection (Uber Eats)
-  (function injectMidArticleAd() {
+  // Blog article mid-ad injection (Uber Eats + Etsy)
+  (function injectMidArticleAds() {
     const blogContents = document.querySelector('.blog-contents');
     if (!blogContents) return;
-    if (document.querySelector('.ad-wrapper')) return; // already injected
 
-    const AD_CONFIG = {
-      backgroundImage: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=80',
-      logo: 'Uber',
-      logoDark: 'Eats',
-      headline: 'Hungry? Your next meal is one tap away.',
-      body: 'Skip the cooking tonight. Get exclusive coupons on your first 3 orders — delivered fast, right to your door.',
-      ctaText: 'Get Coupons',
-      ctaUrl: '#',
-      pageType: 'blog',
-      dark: true
-    };
+    const MID_ADS = [
+      {
+        slot: 'uber-eats',
+        backgroundImage: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=80',
+        logo: 'Uber',
+        logoDark: 'Eats',
+        headline: 'Hungry? Your next meal is one tap away.',
+        body: 'Skip the cooking tonight. Get exclusive coupons on your first 3 orders — delivered fast, right to your door.',
+        ctaText: 'Get Coupons',
+        ctaUrl: '#',
+        pageType: 'blog',
+        dark: true
+      },
+      {
+        slot: 'etsy',
+        backgroundImage: 'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=900&q=80',
+        logo: 'Etsy',
+        logoDark: '',
+        headline: 'Unique finds for your home, from makers you’ll love.',
+        body: 'Discover one-of-a-kind decor, organization, and gifts. Shop small and spruce up your space with pieces you won’t see everywhere else.',
+        ctaText: 'Shop Now',
+        ctaUrl: '#',
+        pageType: 'blog',
+        dark: true
+      }
+    ];
+
+    function anchorForAdIndex(index, h2s, paras, firstAdWrapper) {
+      if (index === 0) {
+        if (h2s.length >= 2) return h2s[1];
+        if (h2s.length === 1) return h2s[0];
+        return paras[2] || paras[paras.length - 1] || null;
+      }
+      if (h2s.length >= 3) return h2s[2];
+      if (firstAdWrapper) return firstAdWrapper;
+      return paras[Math.min(5, paras.length - 1)] || paras[paras.length - 1] || null;
+    }
 
     function doInject() {
       if (!window.createAd) return;
       const h2s = blogContents.querySelectorAll('h2');
-      const insertAfter = h2s.length >= 2 ? h2s[1] : (h2s.length === 1 ? h2s[0] : null);
-      const adHtml = createAd(AD_CONFIG);
-      if (!adHtml) return;
-      if (insertAfter) {
-        insertAfter.insertAdjacentHTML('afterend', adHtml);
-      } else {
-        // fallback: insert after 3rd paragraph
-        const paras = blogContents.querySelectorAll('p');
-        const target = paras[2] || paras[paras.length - 1];
-        if (target) target.insertAdjacentHTML('afterend', adHtml);
-      }
+      const paras = blogContents.querySelectorAll('p');
+
+      MID_ADS.forEach(function (cfg, index) {
+        if (blogContents.querySelector('[data-ad-slot="' + cfg.slot + '"]')) return;
+        const firstUber = blogContents.querySelector('[data-ad-slot="uber-eats"]');
+        const anchor = anchorForAdIndex(index, h2s, paras, firstUber);
+        const adHtml = createAd(cfg);
+        if (!adHtml || !anchor) return;
+        anchor.insertAdjacentHTML('afterend', adHtml);
+      });
     }
 
     if (window.createAd) {
