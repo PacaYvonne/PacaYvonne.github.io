@@ -1260,7 +1260,8 @@ body.home .home-social-proof-tile__media {
   margin: 0 auto;
 }
 
-body.home .home-social-proof-tile__video {
+body.home .home-social-proof-tile__video,
+body.home .home-social-proof-tile__img {
   width: 100%;
   height: 100%;
   display: block;
