@@ -3,7 +3,7 @@
 ```
 components/
 ├── article/
-│   ├── additional-reading.js    # Additional reading section component (displays related articles)
+│   ├── related-articles.js      # Related article cards (createAdditionalReading; CHH #additional-reading-section)
 │   ├── article-registry.js      # Centralized article metadata registry
 │   ├── article-footer.js         # Article footer component
 │   ├── breadcrumb.js             # Breadcrumb navigation (optional dependency for fold.js)

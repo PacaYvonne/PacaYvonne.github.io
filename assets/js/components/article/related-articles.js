@@ -1,6 +1,8 @@
-// Additional Reading Component
-// Creates a section with related articles in card layout
+// Related articles (Clean Home Hacks)
+// Card grid of related posts; uses article-registry.js for metadata.
+// File name matches HPI template script path: assets/js/components/article/related-articles.js
 // Usage: createAdditionalReading({ articleUrls: ['blog/article1.html', 'article2.html'] })
+//    or: createAdditionalReading({ category: 'Wellness', maxArticles: 2 })
 
 (function() {
     'use strict';

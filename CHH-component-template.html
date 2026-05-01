@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Internal template: Clean Home Hacks blog head scripts, product showcase injection, additional reading, and main.js chrome.">
+  <title>Component injection template | Clean Home Hacks</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Prevent FOUC (Flash of Unstyled Content) — same pattern as live blog posts -->
+  <style>
+    body { visibility: hidden; opacity: 0; transition: opacity 0.3s ease; }
+    .no-js body { visibility: visible; opacity: 1; }
+  </style>
+  <script>document.documentElement.className += ' js';</script>
+
+  <script src="assets/js/component-init.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/product-components-bundle.js"></script>
+  <script src="https://static.runconverge.com/pixels/M2PCqt.js" async></script>
+  <script>
+    window.cvg || (cvg = function () {
+      cvg.process ? cvg.process.apply(cvg, arguments) : cvg.queue.push(arguments);
+    }, cvg.queue = []);
+    cvg({ method: 'track', eventName: '$page_load' });
+    cvg({ method: 'link_domain', domain: 'pacagen.com' });
+  </script>
+
+  <style>
+    .template-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #5a6b5c;
+      margin: 2rem 0 0.5rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px dashed #c5d4c7;
+    }
+    .template-slot {
+      min-height: 0.5rem;
+    }
+  </style>
+</head>
+<body class="article-body">
+  <section class="w-60 mx-auto my-4">
+    <p class="text-muted small mb-4"><strong>CHH blog shell</strong> (typical <code>/blog/*.html</code> page): <code>component-init.js</code> (before bundles) → <code>main.js</code> (defer: nav, footer, optional CSS/Bootstrap) → <code>product-components-bundle.js</code> → optional Converge pixel + inline <code>cvg</code> bootstrap. Body uses <code>article-body</code> and a main column <code>&lt;section class="w-60 mx-auto my-4"&gt;</code>. Article chrome is mostly static HTML (breadcrumb, category badge, title, author, share row); <strong>no</strong> <code>fold.js</code> (HPI fold). Related cards use the same script filename as HPI: <code>article-registry.js</code> then <code>related-articles.js</code>, which exports <code>createAdditionalReading</code> into <code>#additional-reading-section</code>. Injected pieces: <code>createProductShowcase</code> inside <code>.product-showcase-wrapper</code> (often with <code>addShopButton</code>), then that block. Use <code>initComponentsWhenReady(..., { waitForProduct: true, waitForArticle: false, waitForAds: false })</code> so the callback does not wait for HPI-only article globals.</p>
+
+    <div class="breadcrumb-section">
+      <div class="breadcrumb">
+        <a href="index.html" class="breadcrumb-link" title="Home">
+          <i class="bi bi-house-door me-2 fs-5"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <span class="category-badge">Wellness</span>
+    </div>
+    <div class="section-divider"></div>
+    <div class="blog-title-section">
+      <h2 class="blog-title">CHH component template (placeholder title)</h2>
+    </div>
+    <div class="author-section">
+      <span class="by-text">By Template</span>
+      <img class="author-image" src="assets/images/adv_reducemychildsymptom_author.png" alt="Author placeholder">
+    </div>
+    <p class="author-intro">Minimal author blurb so spacing matches a real post.</p>
+
+    <div class="blog-contents">
+      <p>Placeholder body copy. Replace this block with real <code>blog-contents</code> markup when authoring.</p>
+
+      <p class="template-label">createProductShowcase + addShopButton → <code>#pacagen-cat-spray-showcase-template</code> (<code>assets/images/cat_spray.png</code>)</p>
+      <div class="product-showcase-wrapper product-showcase--wellness">
+        <div class="product-showcase-title">Featured Product</div>
+        <div id="pacagen-cat-spray-showcase-template" class="d-flex justify-content-center align-items-center mb-3 template-slot"></div>
+      </div>
+    </div>
+
+    <p class="template-label">createAdditionalReading → <code>#additional-reading-section</code> (<code>article-registry.js</code> required)</p>
+    <div id="additional-reading-section" class="template-slot"></div>
+  </section>
+
+  <script>
+    function addShopButton(showcaseEl) {
+      const wrapper = showcaseEl.closest('.product-showcase-wrapper');
+      if (wrapper && !wrapper.querySelector('.shop-now-button')) {
+        const shopButton = document.createElement('div');
+        shopButton.className = 'shop-now-button';
+        shopButton.textContent = 'Shop Now';
+        shopButton.onclick = function (e) {
+          e.preventDefault();
+          window.location.href = 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray';
+        };
+        wrapper.appendChild(shopButton);
+      }
+    }
+
+    if (typeof initComponentsWhenReady !== 'undefined') {
+      initComponentsWhenReady(function () {
+        const pageType = window.location.pathname.includes('/blog/') ? 'blog' : 'root';
+        const showcaseEl = document.getElementById('pacagen-cat-spray-showcase-template');
+        if (!showcaseEl || typeof createProductShowcase === 'undefined') return;
+        showcaseEl.innerHTML = createProductShowcase({
+          image: 'cat_spray.png',
+          alt: 'Cat Allergen Neutralizing Spray',
+          description: 'Template: createProductShowcase (hero: assets/images/cat_spray.png).',
+          url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+          pageType: pageType
+        });
+        addShopButton(showcaseEl);
+        showcaseEl.classList.add('component-loaded');
+        showcaseEl.style.visibility = 'visible';
+      }, {
+        waitForProduct: true,
+        waitForArticle: false,
+        waitForAds: false
+      });
+    } else {
+      document.addEventListener('DOMContentLoaded', function () {
+        const pageType = window.location.pathname.includes('/blog/') ? 'blog' : 'root';
+        function injectShowcase() {
+          const showcaseEl = document.getElementById('pacagen-cat-spray-showcase-template');
+          if (!showcaseEl || typeof createProductShowcase === 'undefined') return;
+          showcaseEl.innerHTML = createProductShowcase({
+            image: 'cat_spray.png',
+            alt: 'Cat Allergen Neutralizing Spray',
+            description: 'Fallback when component-init.js is missing.',
+            url: 'https://www.pacagen.com/products/cat-allergen-neutralizing-spray',
+            pageType: pageType
+          });
+          addShopButton(showcaseEl);
+          showcaseEl.classList.add('component-loaded');
+          showcaseEl.style.visibility = 'visible';
+        }
+        if (typeof createProductShowcase !== 'undefined') {
+          injectShowcase();
+        } else {
+          window.addEventListener('productComponentsLoaded', injectShowcase);
+        }
+      });
+    }
+  </script>
+
+  <script src="assets/js/components/article/article-registry.js"></script>
+  <script src="assets/js/components/article/related-articles.js"></script>
+  <script>
+    (function () {
+      function initAdditionalReading(retries) {
+        retries = retries || 0;
+        if (typeof createAdditionalReading !== 'undefined' && typeof getArticleMetadata !== 'undefined') {
+          const additionalReadingHtml = createAdditionalReading({
+            category: 'Wellness',
+            maxArticles: 2
+          });
+          const additionalReadingSection = document.getElementById('additional-reading-section');
+          if (additionalReadingSection && additionalReadingHtml) {
+            additionalReadingSection.innerHTML = additionalReadingHtml;
+          }
+        } else if (retries < 10) {
+          setTimeout(function () { initAdditionalReading(retries + 1); }, 100);
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () { initAdditionalReading(0); });
+      } else {
+        initAdditionalReading(0);
+      }
+    })();
+  </script>
+</body>
+</html>
