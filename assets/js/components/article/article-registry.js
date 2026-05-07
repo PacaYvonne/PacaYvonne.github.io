@@ -29,6 +29,11 @@
             image: 'assets/images/person-sleeping-on-couch.jpg',
             category: 'Wellness'
         },
+        'blog/why-new-moms-skip-baby-allergy-shots-pills.html': {
+            title: '5 Reasons New Moms Rethink Allergy Shots and Pills for Babies',
+            image: 'assets/images/newborn-allergy-hero.png',
+            category: 'Wellness'
+        },
         'blog/understanding-fel-d-1.html': {
             title: 'Understanding Fel d 1: The Cat Allergen',
             image: 'assets/images/understanding_feld1.png',
