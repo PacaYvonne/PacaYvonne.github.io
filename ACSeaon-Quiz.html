@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Take this quick quiz to see whether your first AC run may be stirring up dust and worsening sneezing, congestion, or itchy eyes."
+    />
+    <meta
+      name="keywords"
+      content="AC allergy quiz, dusty vents, indoor allergies, seasonal allergies quiz, dust allergy symptoms, air conditioner dust"
+    />
+    <meta property="og:url" content="https://cleanhomehacks.com/ACSeaon-Quiz.html" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Is It Seasonal Allergies or Your AC? | Clean Home Hacks Quiz"
+    />
+    <meta
+      property="og:description"
+      content="Answer 10 quick questions to see whether recirculated air from dusty vents may be behind your spring sneezing and congestion."
+    />
+    <meta
+      property="og:image"
+      content="https://cleanhomehacks.com/assets/images/adv_dustallergies_mainimg.png"
+    />
+    <title>Is It Seasonal Allergies or Your AC? | Clean Home Hacks</title>
+    <style>
+      body {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .no-js body {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+    <script>
+      document.documentElement.className += " js";
+    </script>
+    <script src="assets/js/main.js" defer></script>
+    <script
+      src="https://static.runconverge.com/pixels/M2PCqt.js"
+      async
+    ></script>
+    <script>
+      window.cvg ||
+        ((cvg = function () {
+          cvg.process
+            ? cvg.process.apply(cvg, arguments)
+            : cvg.queue.push(arguments);
+        }),
+        (cvg.queue = []));
+      cvg({ method: "track", eventName: "$page_load" });
+      cvg({ method: "link_domain", domain: "pacagen.com" });
+    </script>
+    <style>
+      :root {
+        --quiz-bg: #f6f4ef;
+        --quiz-card: #ffffff;
+        --quiz-ink: #17302b;
+        --quiz-muted: #5b6a66;
+        --quiz-border: rgba(23, 48, 43, 0.12);
+        --quiz-accent: #2d6f66;
+        --quiz-accent-deep: #22574f;
+        --quiz-warm: #ef8b52;
+        --quiz-warm-soft: #fde8dc;
+        --quiz-shadow: 0 22px 50px rgba(20, 36, 31, 0.08);
+        --quiz-radius: 24px;
+      }
+
+      body.quiz-page {
+        background:
+          radial-gradient(circle at top left, rgba(239, 139, 82, 0.16), transparent 32%),
+          linear-gradient(180deg, #fbfaf7 0%, var(--quiz-bg) 100%);
+        color: var(--quiz-muted);
+      }
+
+      .quiz-main {
+        max-width: 760px;
+        padding-top: 2.25rem;
+        padding-bottom: 4rem;
+      }
+
+      .quiz-shell {
+        display: grid;
+      }
+
+      .quiz-results,
+      .quiz-question-card {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--quiz-border);
+        border-radius: var(--quiz-radius);
+        box-shadow: var(--quiz-shadow);
+        backdrop-filter: blur(8px);
+      }
+
+      .quiz-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 0.95rem 1.35rem;
+        border: 0;
+        border-radius: 999px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          background-color 0.18s ease,
+          color 0.18s ease;
+      }
+
+      .quiz-button:hover {
+        transform: translateY(-1px);
+      }
+
+      .quiz-button--primary {
+        background: var(--quiz-accent);
+        color: #ffffff;
+        box-shadow: 0 14px 28px rgba(45, 111, 102, 0.22);
+      }
+
+      .quiz-button--primary:hover {
+        background: var(--quiz-accent-deep);
+      }
+
+      .quiz-button--secondary {
+        background: transparent;
+        color: var(--quiz-ink);
+        border: 1px solid rgba(23, 48, 43, 0.14);
+      }
+
+      .quiz-disclaimer {
+        font-size: 0.92rem;
+        color: #6c7672;
+      }
+
+      .quiz-flow {
+        display: block;
+      }
+
+      .quiz-question-card,
+      .quiz-results {
+        padding: clamp(1.4rem, 3vw, 2rem);
+      }
+
+      .quiz-progress-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 1.1rem;
+      }
+
+      .quiz-progress-row strong,
+      .quiz-progress-row span {
+        color: var(--quiz-ink);
+      }
+
+      .quiz-progress {
+        width: 100%;
+        height: 10px;
+        margin-bottom: 1.35rem;
+        border-radius: 999px;
+        background: rgba(45, 111, 102, 0.12);
+        overflow: hidden;
+      }
+
+      .quiz-progress__bar {
+        width: 0%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--quiz-accent) 0%, #65a094 100%);
+        transition: width 0.25s ease;
+      }
+
+      .quiz-question-eyebrow {
+        margin-bottom: 0.55rem;
+        color: #9c4a1e;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .quiz-question-card h2 {
+        margin-bottom: 0.8rem;
+        font-size: clamp(1.55rem, 3vw, 2.2rem);
+        line-height: 1.18;
+        color: var(--quiz-ink);
+      }
+
+      .quiz-question-help {
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+        color: var(--quiz-muted);
+      }
+
+      .quiz-options {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .quiz-option {
+        width: 100%;
+        padding: 1rem 1.05rem;
+        border-radius: 18px;
+        border: 1px solid rgba(23, 48, 43, 0.1);
+        background: #fbfbfa;
+        text-align: left;
+        font: inherit;
+        color: var(--quiz-ink);
+        cursor: pointer;
+        transition:
+          border-color 0.18s ease,
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          background-color 0.18s ease;
+      }
+
+      .quiz-option:hover,
+      .quiz-option:focus-visible {
+        outline: none;
+        transform: translateY(-1px);
+        border-color: rgba(45, 111, 102, 0.35);
+        box-shadow: 0 12px 22px rgba(45, 111, 102, 0.08);
+        background: #ffffff;
+      }
+
+      .quiz-option__title {
+        display: block;
+        margin-bottom: 0.28rem;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .quiz-option__desc {
+        display: block;
+        color: var(--quiz-muted);
+        font-size: 0.94rem;
+        line-height: 1.5;
+      }
+
+      .quiz-foot {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+        margin-top: 1.25rem;
+      }
+
+      .quiz-text-btn {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--quiz-accent);
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .quiz-text-btn[disabled] {
+        opacity: 0.35;
+        cursor: default;
+      }
+
+      .quiz-results {
+        display: none;
+      }
+
+      .quiz-results.is-visible {
+        display: block;
+      }
+
+      .quiz-result-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.45rem 0.85rem;
+        margin-bottom: 0.95rem;
+        border-radius: 999px;
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        background: #e3f2ef;
+        color: var(--quiz-accent-deep);
+      }
+
+      .quiz-results h2 {
+        margin-bottom: 0.8rem;
+        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        line-height: 1.15;
+        color: var(--quiz-ink);
+      }
+
+      .quiz-results__summary {
+        font-size: 1.02rem;
+        line-height: 1.75;
+      }
+
+      .quiz-results-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .quiz-result-card {
+        padding: 1.05rem;
+        border-radius: 18px;
+        background: #f7f8f6;
+        border: 1px solid rgba(23, 48, 43, 0.08);
+      }
+
+      .quiz-result-card h3 {
+        margin-bottom: 0.55rem;
+        font-size: 1rem;
+        color: var(--quiz-ink);
+      }
+
+      .quiz-result-card ul {
+        margin: 0;
+        padding-left: 1rem;
+      }
+
+      .quiz-results-note {
+        padding: 1rem 1.1rem;
+        margin-top: 1rem;
+        border-radius: 18px;
+        background: var(--quiz-warm-soft);
+        color: #804422;
+        font-size: 0.95rem;
+      }
+
+      .quiz-results-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 1.3rem;
+      }
+
+      .quiz-anchor {
+        color: var(--quiz-accent);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .quiz-anchor:hover {
+        color: var(--quiz-accent-deep);
+      }
+
+      .quiz-loading-screen {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background: rgba(247, 245, 242, 0.96);
+        backdrop-filter: blur(6px);
+        color: var(--quiz-ink);
+        z-index: 9999;
+      }
+
+      .quiz-loading-screen.is-visible {
+        display: flex;
+      }
+
+      .quiz-loading-screen__inner {
+        width: min(420px, 100%);
+        text-align: center;
+        padding: 2rem 1.6rem;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(23, 48, 43, 0.09);
+        box-shadow: 0 24px 60px rgba(20, 36, 31, 0.12);
+      }
+
+      .quiz-loading-screen__brand {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.15rem;
+      }
+
+      .quiz-loading-screen__brand img {
+        width: min(220px, 68vw);
+        height: auto;
+      }
+
+      .quiz-loading-screen__spinner {
+        position: relative;
+        width: 88px;
+        height: 88px;
+        margin: 0 auto 1.2rem;
+      }
+
+      .quiz-loading-screen__spinner span {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 2px solid rgba(45, 111, 102, 0.14);
+      }
+
+      .quiz-loading-screen__spinner span:nth-child(1) {
+        inset: 10px;
+        border-top-color: rgba(45, 111, 102, 0.98);
+        animation: quizSpin 1.1s linear infinite;
+      }
+
+      .quiz-loading-screen__spinner span:nth-child(2) {
+        inset: 22px;
+        border-color: rgba(45, 111, 102, 0.12);
+      }
+
+      .quiz-loading-screen__spinner span:nth-child(3) {
+        inset: 34px;
+        border-color: rgba(239, 139, 82, 0.28);
+      }
+
+      .quiz-loading-screen h2 {
+        margin-bottom: 0.5rem;
+        color: var(--quiz-ink);
+        font-size: 1.15rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .quiz-loading-screen p {
+        margin-bottom: 1rem;
+        color: var(--quiz-muted);
+      }
+
+      .quiz-loading-screen__bar {
+        width: 100%;
+        height: 4px;
+        border-radius: 999px;
+        background: rgba(45, 111, 102, 0.14);
+        overflow: hidden;
+      }
+
+      .quiz-loading-screen__bar::before {
+        content: "";
+        display: block;
+        width: 45%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--quiz-accent) 0%, var(--quiz-warm) 100%);
+        animation: quizLoad 1.2s ease-in-out infinite;
+      }
+
+      .quiz-main.quiz-main--recommendation {
+        max-width: 1180px;
+        padding-top: 1.5rem;
+      }
+
+      .quiz-results.quiz-results--recommendation {
+        padding: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+
+      .recommendation-shell {
+        display: grid;
+        gap: 1.4rem;
+      }
+
+      .recommendation-hero {
+        padding: clamp(1.6rem, 3vw, 2.25rem);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at top right, rgba(239, 139, 82, 0.16), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #f7f5f2 100%);
+        color: var(--quiz-ink);
+        border: 1px solid rgba(23, 48, 43, 0.08);
+        box-shadow: 0 22px 50px rgba(20, 36, 31, 0.08);
+      }
+
+      .recommendation-hero__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.38rem 0.75rem;
+        margin-bottom: 1rem;
+        border-radius: 999px;
+        background: #e9f2ef;
+        color: var(--quiz-accent-deep);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .recommendation-hero h1 {
+        margin-bottom: 0.65rem;
+        color: var(--quiz-ink);
+        font-size: clamp(2rem, 4.5vw, 3.4rem);
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+      }
+
+      .recommendation-hero p {
+        max-width: 52rem;
+        margin-bottom: 0;
+        color: var(--quiz-muted);
+        font-size: 1.02rem;
+      }
+
+      .recommendation-found {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.82rem 1rem;
+        margin-top: 1.25rem;
+        border-radius: 16px;
+        background: #fbf1eb;
+        border: 1px solid rgba(239, 139, 82, 0.28);
+        color: var(--quiz-ink);
+        font-weight: 700;
+      }
+
+      .recommendation-found::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #5de196;
+        box-shadow: 0 0 0 4px rgba(93, 225, 150, 0.14);
+      }
+
+      .recommendation-layout {
+        display: grid;
+        grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1.16fr);
+        gap: 1.4rem;
+        align-items: start;
+      }
+
+      .recommendation-card {
+        padding: 1.25rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(23, 48, 43, 0.08);
+        box-shadow: 0 18px 42px rgba(19, 32, 29, 0.07);
+      }
+
+      .recommendation-product-card__visual {
+        padding: 1.1rem;
+        border-radius: 22px;
+        background: linear-gradient(180deg, #fff7f3 0%, #fff 100%);
+      }
+
+      .recommendation-product-card__visual img {
+        width: 100%;
+        border-radius: 18px;
+        object-fit: cover;
+      }
+
+      .recommendation-score {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .recommendation-score__item {
+        padding: 0.9rem 0.85rem;
+        border-radius: 18px;
+        background: #faf7f6;
+        border: 1px solid rgba(23, 48, 43, 0.06);
+      }
+
+      .recommendation-score__item strong {
+        display: block;
+        margin-bottom: 0.24rem;
+        color: #76111a;
+        font-size: 1.08rem;
+      }
+
+      .recommendation-score__item span {
+        display: block;
+        color: var(--quiz-muted);
+        font-size: 0.86rem;
+        line-height: 1.4;
+      }
+
+      .recommendation-product-note {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 18px;
+        background: #fff3ee;
+        color: #7e3821;
+        font-size: 0.94rem;
+        line-height: 1.6;
+      }
+
+      .recommendation-scale__head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 0.7rem;
+      }
+
+      .recommendation-scale__head strong {
+        color: #6a2f1a;
+        font-size: 0.95rem;
+      }
+
+      .recommendation-scale__status {
+        color: var(--quiz-accent-deep);
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .recommendation-scale__bar {
+        position: relative;
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #d7e7e2 0%, #f2e3c8 52%, #f1ba95 100%);
+        overflow: visible;
+      }
+
+      .recommendation-scale__fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, rgba(45, 111, 102, 0.24) 0%, rgba(239, 139, 82, 0.34) 100%);
+      }
+
+      .recommendation-scale__marker {
+        position: absolute;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 3px solid var(--quiz-accent);
+        box-shadow: 0 6px 16px rgba(23, 48, 43, 0.16);
+        transform: translate(-50%, -50%);
+      }
+
+      .recommendation-scale__labels {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-top: 0.65rem;
+        color: #86634f;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .recommendation-scale__summary {
+        margin-top: 0.7rem;
+        margin-bottom: 0;
+        color: #7e3821;
+      }
+
+      .recommendation-copy__meta {
+        margin-bottom: 0.6rem;
+        color: var(--quiz-warm);
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .recommendation-copy h2 {
+        margin-bottom: 0.55rem;
+        font-size: clamp(1.85rem, 3.2vw, 2.9rem);
+        line-height: 1.08;
+        color: #1f201f;
+      }
+
+      .recommendation-copy__lead {
+        margin-bottom: 1rem;
+        font-size: 1.02rem;
+        line-height: 1.75;
+      }
+
+      .recommendation-chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-bottom: 1rem;
+      }
+
+      .recommendation-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.42rem 0.75rem;
+        border-radius: 999px;
+        background: #eef5f3;
+        color: var(--quiz-accent-deep);
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+
+      .recommendation-list {
+        margin: 0;
+        padding-left: 1.1rem;
+      }
+
+      .recommendation-list li {
+        margin-bottom: 0.6rem;
+      }
+
+      .recommendation-section-title {
+        margin-bottom: 0.7rem;
+        font-size: 1.06rem;
+        color: var(--quiz-ink);
+      }
+
+      .recommendation-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 1.15rem;
+      }
+
+      @keyframes quizSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes quizLoad {
+        0% {
+          transform: translateX(-120%);
+        }
+        100% {
+          transform: translateX(260%);
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .quiz-flow {
+          display: block;
+        }
+
+        .recommendation-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .quiz-main {
+          padding-top: 1.2rem;
+          padding-bottom: 3rem;
+        }
+
+        .quiz-question-card,
+        .quiz-results {
+          padding: 1.2rem;
+          border-radius: 20px;
+        }
+
+        .quiz-results-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .quiz-foot,
+        .quiz-progress-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .recommendation-score {
+          grid-template-columns: 1fr;
+        }
+
+      }
+    </style>
+  </head>
+  <body class="article-body quiz-page">
+    <main class="quiz-main">
+      <section class="quiz-shell">
+        <section class="quiz-flow" aria-labelledby="quiz-card-title">
+          <div>
+            <div class="quiz-question-card" id="quizCard">
+              <div class="quiz-progress-row">
+                <strong id="quizStepLabel">Question 1 of 10</strong>
+                <span id="quizPercentLabel">10% complete</span>
+              </div>
+              <div class="quiz-progress" aria-hidden="true">
+                <div class="quiz-progress__bar" id="quizProgressBar"></div>
+              </div>
+
+              <p class="quiz-question-eyebrow" id="quizQuestionEyebrow">
+                Home-air timing
+              </p>
+              <h2 id="quiz-card-title">Loading quiz...</h2>
+              <p class="quiz-question-help" id="quizQuestionHelp"></p>
+
+              <div class="quiz-options" id="quizOptions"></div>
+
+              <div class="quiz-foot">
+                <button class="quiz-text-btn" id="quizBackButton" type="button" disabled>
+                  Back
+                </button>
+                <span class="quiz-disclaimer">Choose the answer that sounds most like your situation.</span>
+              </div>
+            </div>
+
+            <div class="quiz-results" id="quizResults" aria-live="polite"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div class="quiz-loading-screen" id="quizLoadingScreen" aria-hidden="true">
+      <div class="quiz-loading-screen__inner">
+        <div class="quiz-loading-screen__brand">
+          <img src="assets/images/logo.png" alt="Clean Home Hacks" />
+        </div>
+        <div class="quiz-loading-screen__spinner" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h2>Calculating</h2>
+        <p>Clean Home Hacks is building your personalized home-air recommendation.</p>
+        <div class="quiz-loading-screen__bar" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <script>
+      const quizQuestions = [
+        {
+          eyebrow: "Home-air timing",
+          title: "When did you first notice the sneezing or congestion this season?",
+          help: "Think about the pattern, not the worst single day.",
+          options: [
+            {
+              title: "Right after we turned the AC back on",
+              desc: "The symptoms started the same day or within a day of the first real cooling run.",
+              points: 3
+            },
+            {
+              title: "Around the same week the AC started running",
+              desc: "I noticed it in that same general stretch, but not immediately.",
+              points: 2
+            },
+            {
+              title: "It built up gradually over spring",
+              desc: "There was no obvious connection to the AC kicking on.",
+              points: 1
+            },
+            {
+              title: "It happens all year anyway",
+              desc: "Spring did not change much for me.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "Indoor vs. outdoor",
+          title: "Where do you usually feel the flare-up the most?",
+          help: "Pick the place where symptoms are most noticeable.",
+          options: [
+            {
+              title: "Indoors, especially in the bedroom or living room",
+              desc: "Those are the spots where the sneezing and stuffiness really hit.",
+              points: 3
+            },
+            {
+              title: "Mostly indoors, but it can happen outside too",
+              desc: "Home feels worse, though not exclusively.",
+              points: 2
+            },
+            {
+              title: "It feels about the same everywhere",
+              desc: "I cannot tell if being inside changes much.",
+              points: 1
+            },
+            {
+              title: "Mostly outside",
+              desc: "Being outdoors is clearly the stronger trigger.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "First AC clues",
+          title: "What happens when cool air first starts blowing from the vents?",
+          help: "Go with the closest fit, even if it is not exact every time.",
+          options: [
+            {
+              title: "I start sneezing, rubbing my eyes, or feeling stuffy quickly",
+              desc: "The reaction feels tied to the air turning on.",
+              points: 3
+            },
+            {
+              title: "I notice it more within the next hour",
+              desc: "The timing is not instant, but it still feels connected.",
+              points: 2
+            },
+            {
+              title: "I am not sure the airflow changes anything",
+              desc: "The symptoms are there, but the vents do not stand out.",
+              points: 1
+            },
+            {
+              title: "Nothing special happens when the AC starts",
+              desc: "Airflow itself does not seem to matter.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "Vent condition",
+          title: "How would you describe the air or smell from the vents early in the season?",
+          help: "That first-week impression matters more than how it smells after months of regular use.",
+          options: [
+            {
+              title: "Dusty, stale, or a little musty",
+              desc: "The air feels like it has been sitting there all winter.",
+              points: 3
+            },
+            {
+              title: "Not terrible, but definitely not fresh",
+              desc: "Something feels a little off when it first starts up.",
+              points: 2
+            },
+            {
+              title: "Mostly neutral",
+              desc: "No obvious smell or dust note.",
+              points: 1
+            },
+            {
+              title: "Fresh and clean",
+              desc: "The system smells normal right away.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "Filter reality check",
+          title: "When was the HVAC filter last changed or checked?",
+          help: "Best guess is fine if you are not completely sure.",
+          options: [
+            {
+              title: "I honestly do not know",
+              desc: "It may have been a long time, or I rent and never checked.",
+              points: 3
+            },
+            {
+              title: "More than 3 months ago",
+              desc: "It is probably due, especially before heavy summer use.",
+              points: 2
+            },
+            {
+              title: "Within the last 1 to 3 months",
+              desc: "It was changed recently, though not right before startup.",
+              points: 1
+            },
+            {
+              title: "Right before or right after turning the AC on",
+              desc: "I made sure the filter was fresh.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "Soft-surface buildup",
+          title: "How much dust tends to build up around the rooms where the AC runs most?",
+          help: "Think vent covers, blinds, bedding, rugs, and upholstered furniture.",
+          options: [
+            {
+              title: "A lot, especially in sleeping or lounging areas",
+              desc: "I notice dusty surfaces or fuzz collecting pretty fast.",
+              points: 3
+            },
+            {
+              title: "A moderate amount",
+              desc: "Not extreme, but enough that I notice it regularly.",
+              points: 2
+            },
+            {
+              title: "Not much",
+              desc: "Dust is there sometimes, but it does not stand out.",
+              points: 1
+            },
+            {
+              title: "Very little",
+              desc: "Those rooms stay pretty clean.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "Relief pattern",
+          title: "What happens if you leave home for a few hours or open windows instead?",
+          help: "This is about the pattern you notice most often.",
+          options: [
+            {
+              title: "I usually feel better away from the AC",
+              desc: "Symptoms ease when I am out of the house or fresh air is moving through.",
+              points: 3
+            },
+            {
+              title: "I feel a little better, but not dramatically",
+              desc: "There is some difference, just not a huge one.",
+              points: 2
+            },
+            {
+              title: "I do not notice much change",
+              desc: "Being elsewhere does not clearly help.",
+              points: 1
+            },
+            {
+              title: "I actually feel worse outside",
+              desc: "Outdoor air seems more irritating than indoor air.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "Lifestyle clue",
+          title: "Do the symptoms feel stronger when the house is closed up and cooling hard?",
+          help: "Think hot afternoons, overnight cooling, or weekends when the system runs constantly.",
+          options: [
+            {
+              title: "Yes, that is when it is most obvious",
+              desc: "Closed-up, recirculated air feels like the trigger.",
+              points: 3
+            },
+            {
+              title: "Sometimes, especially on heavier AC days",
+              desc: "I have noticed that pattern more than once.",
+              points: 2
+            },
+            {
+              title: "Maybe, but I cannot tell",
+              desc: "It is possible, though not clear.",
+              points: 1
+            },
+            {
+              title: "No, cooling harder does not seem to matter",
+              desc: "The symptom pattern does not track with AC use.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "Household pattern",
+          title: "Has anyone else noticed dusty air, irritation, or a stale smell when the AC starts?",
+          help: "That can be family, roommates, or frequent guests.",
+          options: [
+            {
+              title: "Yes, more than one person has noticed it",
+              desc: "It is not just me picking up on it.",
+              points: 3
+            },
+            {
+              title: "Yes, one other person has mentioned it",
+              desc: "Someone else has noticed the same thing.",
+              points: 2
+            },
+            {
+              title: "No one has said anything, but they might not notice",
+              desc: "It could still be happening without obvious complaints.",
+              points: 1
+            },
+            {
+              title: "No, definitely not",
+              desc: "Other people seem unaffected and the air seems normal to them.",
+              points: 0
+            }
+          ]
+        },
+        {
+          eyebrow: "Big-picture read",
+          title: "Which statement sounds most like your situation right now?",
+          help: "Choose the one that best sums everything up.",
+          options: [
+            {
+              title: "I keep calling it seasonal allergies, but the timing feels suspiciously indoor",
+              desc: "The AC or house air seems too involved to ignore.",
+              points: 3
+            },
+            {
+              title: "It is probably a mix of outdoor allergies and something in the house",
+              desc: "Indoor airflow may be making a real contribution.",
+              points: 2
+            },
+            {
+              title: "I still think it is mostly seasonal",
+              desc: "Indoor factors are possible, but not my main suspicion.",
+              points: 1
+            },
+            {
+              title: "This does not sound like my situation",
+              desc: "The AC angle probably is not the main issue.",
+              points: 0
+            }
+          ]
+        }
+      ];
+
+      const quizResults = [
+        {
+          minScore: 22,
+          badge: "Strong indoor-air pattern",
+          profileLabel: "Personalized home-air profile",
+          profileName: "The AC Reset Household",
+          profileSubtitle:
+            "Your answers point to recirculated indoor dust being a major part of the flare-up, so a source-level dust spray is the cleanest next thing to try.",
+          title: "Your answers strongly suggest the first AC run may be stirring up indoor dust triggers.",
+          summary:
+            "A score in this range usually means the timing, rooms, and airflow clues all point in the same direction: your symptoms may not be \"just seasonal.\" Dust sitting in vents, filters, and soft surfaces can get recirculated fast when the system starts running again.",
+          likely: [
+            "Symptoms begin right when the AC starts or on heavy-cooling days.",
+            "Home feels worse than outside, especially in bedrooms or lounge areas.",
+            "Dusty vent smell, stale air, or an overdue filter are part of the story."
+          ],
+          nextSteps: [
+            "Replace the HVAC filter and make sure it fits snugly.",
+            "Wipe vent covers and clean nearby bedding, rugs, and upholstery.",
+            "Focus on the rooms where you feel the flare-up most."
+          ],
+          ctaLabel: "See a dust-allergen fix",
+          ctaUrl: "https://pacagen.com/en-us/products/dust-allergen-neutralizing-spray",
+          learnUrl: "blog/how-dust-allergies-work.html",
+          recommendedPack: "double"
+        },
+        {
+          minScore: 14,
+          badge: "Mixed trigger pattern",
+          profileLabel: "Personalized home-air profile",
+          profileName: "The Mixed Trigger Home",
+          profileSubtitle:
+            "Outdoor allergies may still be involved, but your quiz answers suggest indoor airflow is likely stacking on top of them, making a dust-spray test a smart first move.",
+          title: "Your symptoms may be seasonal, but indoor airflow likely is making them worse.",
+          summary:
+            "Your answers look like a blended pattern. Outdoor allergens may still be involved, but your AC timing and room-specific clues suggest recirculated indoor dust could be stacking on top of that baseline irritation.",
+          likely: [
+            "Some symptoms track with the AC, even if not every single time.",
+            "One or two indoor clues keep showing up, like dust buildup or stale airflow.",
+            "You may feel somewhat better away from the house or with fresh air moving."
+          ],
+          nextSteps: [
+            "Treat this like a combo problem: outdoor pollen plus indoor recirculation.",
+            "Start with the filter, vent dust, and high-contact soft surfaces.",
+            "Notice whether one room improves after a focused cleanup."
+          ],
+          ctaLabel: "Read about indoor dust triggers",
+          ctaUrl: "https://pacagen.com/en-us/products/dust-allergen-neutralizing-spray",
+          learnUrl: "blog/how-dust-allergies-work.html",
+          recommendedPack: "starter"
+        },
+        {
+          minScore: 0,
+          badge: "Lower AC signal",
+          profileLabel: "Personalized home-air profile",
+          profileName: "The Prevention-First Home",
+          profileSubtitle:
+            "The AC may not be the whole story, but a non-drug way to reduce dust where you sleep and lounge is still the easiest environmental test to run next.",
+          title: "Your answers do not strongly point to dusty vents as the main trigger.",
+          summary:
+            "That does not rule indoor air out completely, but your pattern sounds less tied to recirculated AC air than the average person taking this quiz. Outdoor pollen, existing allergies, or another issue may be more central.",
+          likely: [
+            "Symptoms are not tightly linked to AC startup or indoor airflow.",
+            "Outside may feel just as bad, or worse, than being at home.",
+            "You are not seeing many classic clues like stale vent air or overdue filters."
+          ],
+          nextSteps: [
+            "If symptoms are still frustrating, keep tracking when and where they spike.",
+            "You can still check the filter and vents, but the answer may be broader than the AC alone.",
+            "Consider a medical opinion if symptoms feel intense, persistent, or unusual."
+          ],
+          ctaLabel: "See other dust-allergy clues",
+          ctaUrl: "https://pacagen.com/en-us/products/dust-allergen-neutralizing-spray",
+          learnUrl: "blog/types-of-environmental-allergies.html",
+          recommendedPack: "starter"
+        }
+      ];
+
+      const recommendationProduct = {
+        name: "Pacagen Dust Allergen Neutralizing Spray",
+        shortName: "Dust Allergen Neutralizing Spray",
+        url: "https://pacagen.com/en-us/products/dust-allergen-neutralizing-spray",
+        image:
+          "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/dust_spray.jpg?v=1764122955",
+        rating: "4.8",
+        reviewCount: "60+ reviews",
+        stats: [
+          {
+            value: "76%",
+            label: "up to airborne dust allergen neutralization"
+          },
+          {
+            value: "Drug-free",
+            label: "non-toxic source-level support"
+          },
+          {
+            value: "60-day",
+            label: "money-back guarantee"
+          }
+        ],
+        benefits: [
+          "Targets dust allergens at the source instead of only masking symptoms.",
+          "Designed for couches, carpets, bedding, and other dust-trigger zones.",
+          "Human and pet safe, fabric safe, and made without harsh chemicals."
+        ],
+        packs: [
+          {
+            id: "starter",
+            name: "1-Month Starter Pack",
+            subcopy: "Best if you want to test whether indoor dust is the missing link.",
+            price: "$46.40",
+            priceNote: "autoship starter",
+            meta: "20% off autoship · one-time purchase also available"
+          },
+          {
+            id: "double",
+            name: "2-Month Double Pack",
+            subcopy: "A stronger fit when your quiz points to a clear indoor-air pattern.",
+            price: "$83.52",
+            priceNote: "autoship double pack",
+            meta: "28% off autoship · good for bedrooms + common areas"
+          },
+          {
+            id: "six-month",
+            name: "6-Month Supply Pack",
+            subcopy: "Best value if you already know dust is a recurring issue at home.",
+            price: "$236.64",
+            priceNote: "autoship 6-month supply",
+            meta: "32% off autoship · built for a longer routine"
+          }
+        ]
+      };
+
+      const quizState = {
+        currentIndex: 0,
+        answers: []
+      };
+
+      const quizMain = document.querySelector(".quiz-main");
+      const quizShell = document.querySelector(".quiz-shell");
+      const quizStepLabel = document.getElementById("quizStepLabel");
+      const quizPercentLabel = document.getElementById("quizPercentLabel");
+      const quizProgressBar = document.getElementById("quizProgressBar");
+      const quizEyebrow = document.getElementById("quizQuestionEyebrow");
+      const quizTitle = document.getElementById("quiz-card-title");
+      const quizHelp = document.getElementById("quizQuestionHelp");
+      const quizOptions = document.getElementById("quizOptions");
+      const quizBackButton = document.getElementById("quizBackButton");
+      const quizCard = document.getElementById("quizCard");
+      const quizResultsEl = document.getElementById("quizResults");
+      const quizLoadingScreen = document.getElementById("quizLoadingScreen");
+      const RECOMMENDATION_STORAGE_KEY = "chh-quiz-recommendation";
+      let recommendationTimer = null;
+
+      function trackQuizEvent(name, meta) {
+        if (typeof cvg === "function") {
+          cvg({
+            method: "track",
+            eventName: name,
+            meta: meta || {}
+          });
+        }
+      }
+
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) {
+          return parts.pop().split(";").shift();
+        }
+        return "";
+      }
+
+      function buildTrackedUrl(baseUrl) {
+        const uid = getCookie("__cvg_uid");
+        const sid = getCookie("__cvg_sid");
+        let finalUrl = baseUrl;
+        if (uid || sid) {
+          finalUrl += finalUrl.includes("?") ? "&" : "?";
+          if (uid) {
+            finalUrl += `__cvg_uid=${encodeURIComponent(uid)}`;
+          }
+          if (uid && sid) {
+            finalUrl += "&";
+          }
+          if (sid) {
+            finalUrl += `__cvg_sid=${encodeURIComponent(sid)}`;
+          }
+        }
+        return finalUrl;
+      }
+
+      function updateProgress() {
+        const total = quizQuestions.length;
+        const step = quizState.currentIndex + 1;
+        const percent = Math.round((step / total) * 100);
+        quizStepLabel.textContent = `Question ${step} of ${total}`;
+        quizPercentLabel.textContent = `${percent}% complete`;
+        quizProgressBar.style.width = `${percent}%`;
+        quizBackButton.disabled = quizState.currentIndex === 0;
+      }
+
+      function renderQuestion() {
+        const question = quizQuestions[quizState.currentIndex];
+        if (!question) {
+          return;
+        }
+
+        updateProgress();
+        quizEyebrow.textContent = question.eyebrow;
+        quizTitle.textContent = question.title;
+        quizHelp.textContent = question.help;
+
+        quizOptions.innerHTML = question.options
+          .map(function (option, index) {
+            return `
+              <button class="quiz-option" type="button" data-option-index="${index}">
+                <span class="quiz-option__title">${option.title}</span>
+                <span class="quiz-option__desc">${option.desc}</span>
+              </button>
+            `;
+          })
+          .join("");
+
+        quizOptions.querySelectorAll(".quiz-option").forEach(function (button) {
+          button.addEventListener("click", function () {
+            const optionIndex = Number(button.getAttribute("data-option-index"));
+            handleAnswer(optionIndex);
+          });
+        });
+      }
+
+      function handleAnswer(optionIndex) {
+        const question = quizQuestions[quizState.currentIndex];
+        const option = question.options[optionIndex];
+        quizState.answers[quizState.currentIndex] = option.points;
+
+        trackQuizEvent("CHH Quiz Answered", {
+          questionNumber: quizState.currentIndex + 1,
+          answerIndex: optionIndex,
+          points: option.points
+        });
+
+        if (quizState.currentIndex === quizQuestions.length - 1) {
+          showResults();
+          return;
+        }
+
+        quizState.currentIndex += 1;
+        renderQuestion();
+      }
+
+      function showLoadingScreen() {
+        quizLoadingScreen.classList.add("is-visible");
+        quizLoadingScreen.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function hideLoadingScreen() {
+        quizLoadingScreen.classList.remove("is-visible");
+        quizLoadingScreen.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function saveRecommendationState(result, totalScore) {
+        try {
+          sessionStorage.setItem(
+            RECOMMENDATION_STORAGE_KEY,
+            JSON.stringify({
+              score: totalScore,
+              minScore: result.minScore
+            })
+          );
+        } catch (error) {
+          // Ignore storage failures.
+        }
+      }
+
+      function getStoredRecommendationState() {
+        try {
+          const raw = sessionStorage.getItem(RECOMMENDATION_STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function clearRecommendationState() {
+        try {
+          sessionStorage.removeItem(RECOMMENDATION_STORAGE_KEY);
+        } catch (error) {
+          // Ignore storage failures.
+        }
+      }
+
+      function getRecommendedPack(result) {
+        return (
+          recommendationProduct.packs.find(function (pack) {
+            return pack.id === result.recommendedPack;
+          }) || recommendationProduct.packs[0]
+        );
+      }
+
+      function getScoreScaleData(totalScore) {
+        const maxScore = quizQuestions.length * 3;
+        const normalized = Math.max(0, Math.min(100, (totalScore / maxScore) * 100));
+
+        if (normalized >= 74) {
+          return {
+            percent: normalized,
+            label: "Stronger indoor-air match",
+            summary: "Your answers landed in the strongest range for AC-related indoor dust being part of the problem."
+          };
+        }
+
+        if (normalized >= 45) {
+          return {
+            percent: normalized,
+            label: "Mixed trigger pattern",
+            summary: "Your answers point to a blended pattern where indoor airflow may be adding to seasonal symptoms."
+          };
+        }
+
+        return {
+          percent: normalized,
+          label: "Lower indoor-air match",
+          summary: "Your answers show a lighter AC signal, though indoor dust could still be one piece of the picture."
+        };
+      }
+
+      function renderRecommendation(result, totalScore) {
+        const primaryUrl = buildTrackedUrl(recommendationProduct.url);
+        const recommendedPack = getRecommendedPack(result);
+        const scale = getScoreScaleData(totalScore);
+        quizResultsEl.innerHTML = `
+          <div class="recommendation-shell">
+            <section class="recommendation-hero">
+              <span class="recommendation-hero__eyebrow">Clean Home Hacks Recommendation</span>
+              <h1>${result.profileName}</h1>
+              <p>${result.profileSubtitle}</p>
+              <div class="recommendation-found">
+                Clean Home Hacks pick: ${recommendationProduct.name}
+              </div>
+            </section>
+
+            <section class="recommendation-layout">
+              <div class="recommendation-card recommendation-product-card">
+                <div class="recommendation-product-card__visual">
+                  <img
+                    src="${recommendationProduct.image}"
+                    alt="${recommendationProduct.name}"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+
+                <div class="recommendation-score">
+                  ${recommendationProduct.stats
+                    .map(function (stat) {
+                      return `
+                        <div class="recommendation-score__item">
+                          <strong>${stat.value}</strong>
+                          <span>${stat.label}</span>
+                        </div>
+                      `;
+                    })
+                    .join("")}
+                </div>
+
+                <div class="recommendation-product-note">
+                  <div class="recommendation-scale__head">
+                    <strong>Indoor-air match scale</strong>
+                    <span class="recommendation-scale__status">${scale.label}</span>
+                  </div>
+                  <div class="recommendation-scale__bar" aria-hidden="true">
+                    <span class="recommendation-scale__fill" style="width: ${scale.percent}%;"></span>
+                    <span class="recommendation-scale__marker" style="left: ${scale.percent}%;"></span>
+                  </div>
+                  <div class="recommendation-scale__labels" aria-hidden="true">
+                    <span>Lower</span>
+                    <span>Mixed</span>
+                    <span>Stronger</span>
+                  </div>
+                  <p class="recommendation-scale__summary">
+                    ${scale.summary}
+                  </p>
+                </div>
+              </div>
+
+              <div class="recommendation-copy">
+                <div class="recommendation-copy__meta">
+                  ${recommendationProduct.rating} average rating · ${recommendationProduct.reviewCount} · HSA/FSA eligible
+                </div>
+                <h2>${recommendationProduct.shortName}</h2>
+                <p class="recommendation-copy__lead">
+                  ${result.summary}
+                </p>
+
+                <div class="recommendation-chip-row">
+                  <span class="recommendation-chip">Drug-free</span>
+                  <span class="recommendation-chip">Non-toxic</span>
+                  <span class="recommendation-chip">Fabric safe</span>
+                  <span class="recommendation-chip">Targets the source</span>
+                </div>
+
+                <div class="recommendation-card">
+                  <h3 class="recommendation-section-title">Why this fits your answers</h3>
+                  <ul class="recommendation-list">
+                    ${result.likely
+                      .map(function (item) {
+                        return `<li>${item}</li>`;
+                      })
+                      .join("")}
+                  </ul>
+                </div>
+
+                <div class="recommendation-card" style="margin-top: 1rem;">
+                  <h3 class="recommendation-section-title">Why people choose it</h3>
+                  <ul class="recommendation-list">
+                    ${recommendationProduct.benefits
+                      .map(function (item) {
+                        return `<li>${item}</li>`;
+                      })
+                      .join("")}
+                  </ul>
+                </div>
+
+                <div class="recommendation-actions">
+                  <a
+                    class="quiz-button quiz-button--primary"
+                    id="quizRecommendationCta"
+                    href="${primaryUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Shop this recommendation
+                  </a>
+                  <a
+                    class="quiz-button quiz-button--secondary"
+                    id="quizRecommendationLearnMore"
+                    href="${result.learnUrl}"
+                  >
+                    Learn more first
+                  </a>
+                  <button class="quiz-button quiz-button--secondary" id="quizRestartButton" type="button">
+                    Retake quiz
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+        `;
+
+        const primaryCta = document.getElementById("quizRecommendationCta");
+        const learnMoreLink = document.getElementById("quizRecommendationLearnMore");
+        const restartButton = document.getElementById("quizRestartButton");
+
+        if (primaryCta) {
+          primaryCta.addEventListener("click", function () {
+            trackQuizEvent("CHH Quiz CTA Clicked", {
+              score: totalScore,
+              badge: result.badge,
+              url: recommendationProduct.url,
+              recommendedPack: recommendedPack.id
+            });
+          });
+        }
+
+        if (learnMoreLink) {
+          learnMoreLink.addEventListener("click", function () {
+            trackQuizEvent("CHH Quiz Learn More Clicked", {
+              score: totalScore,
+              badge: result.badge,
+              url: result.learnUrl
+            });
+          });
+        }
+
+        if (restartButton) {
+          restartButton.addEventListener("click", restartQuiz);
+        }
+      }
+
+      function enterRecommendationMode(result, totalScore, shouldTrack) {
+        hideLoadingScreen();
+        quizCard.style.display = "none";
+        quizMain.classList.add("quiz-main--recommendation");
+        quizShell.classList.add("quiz-shell--recommendation");
+        quizResultsEl.classList.add("is-visible", "quiz-results--recommendation");
+        renderRecommendation(result, totalScore);
+        saveRecommendationState(result, totalScore);
+        window.history.replaceState(null, "", "#recommendation");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        if (shouldTrack) {
+          trackQuizEvent("CHH Quiz Recommendation Shown", {
+            score: totalScore,
+            result: result.badge,
+            recommendedPack: result.recommendedPack
+          });
+        }
+      }
+
+      function showResults() {
+        const totalScore = quizState.answers.reduce(function (sum, value) {
+          return sum + value;
+        }, 0);
+
+        const matchedResult = quizResults.find(function (result) {
+          return totalScore >= result.minScore;
+        });
+
+        trackQuizEvent("CHH Quiz Completed", {
+          score: totalScore,
+          result: matchedResult.badge
+        });
+
+        showLoadingScreen();
+        recommendationTimer = setTimeout(function () {
+          recommendationTimer = null;
+          enterRecommendationMode(matchedResult, totalScore, true);
+        }, 1500);
+      }
+
+      function restartQuiz() {
+        if (recommendationTimer) {
+          clearTimeout(recommendationTimer);
+          recommendationTimer = null;
+        }
+
+        hideLoadingScreen();
+        quizState.currentIndex = 0;
+        quizState.answers = [];
+        clearRecommendationState();
+        quizMain.classList.remove("quiz-main--recommendation");
+        quizShell.classList.remove("quiz-shell--recommendation");
+        quizResultsEl.classList.remove("is-visible", "quiz-results--recommendation");
+        quizResultsEl.innerHTML = "";
+        quizCard.style.display = "block";
+        renderQuestion();
+        window.history.replaceState(null, "", window.location.pathname);
+        quizCard.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        trackQuizEvent("CHH Quiz Restarted");
+      }
+
+      quizBackButton.addEventListener("click", function () {
+        if (quizState.currentIndex === 0) {
+          return;
+        }
+        quizState.currentIndex -= 1;
+        renderQuestion();
+      });
+
+      const storedRecommendation = getStoredRecommendationState();
+      if (storedRecommendation) {
+        const restoredResult =
+          quizResults.find(function (result) {
+            return result.minScore === storedRecommendation.minScore;
+          }) ||
+          quizResults.find(function (result) {
+            return storedRecommendation.score >= result.minScore;
+          }) ||
+          quizResults[0];
+        enterRecommendationMode(restoredResult, storedRecommendation.score, false);
+      } else {
+        renderQuestion();
+      }
+    </script>
+  </body>
+</html>

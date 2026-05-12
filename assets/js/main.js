@@ -361,7 +361,7 @@ function createImageComponent({ src, alt, caption }) {
     let currentPage = '';
     if (window.location.pathname.includes('/blog/')) {
         currentPage = 'blog';
-    } else if (window.location.pathname.includes('quiz.html')) {
+    } else if (window.location.pathname.includes('ACSeaon-Quiz.html')) {
         currentPage = 'quiz';
     }
     
