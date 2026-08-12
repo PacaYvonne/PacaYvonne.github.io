@@ -59,6 +59,11 @@
             image: 'assets/images/bedsheets.png',
             category: 'Home Cleaning'
         },
+        'blog/6-pet-allergens-hiding-places.html': {
+            title: 'The 6 Likely Places for Pet Allergens to Hide in Your Home',
+            image: 'assets/images/pet-allergens-hiding-hero.png',
+            category: 'Home Cleaning'
+        },
         'blog/best-hypoallergenic-dogs.html': {
             title: 'Best Hypoallergenic Dogs',
             image: 'assets/images/schnauzer.jpg',
