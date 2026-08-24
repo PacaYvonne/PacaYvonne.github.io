@@ -69,6 +69,11 @@
             image: 'assets/images/schnauzer.jpg',
             category: 'Wellness'
         },
+        'blog/can-opening-your-windows-make-pet-allergies-better-or-worse.html': {
+            title: 'Can Opening Your Windows Make Pet Allergies Better—or Worse?',
+            image: 'assets/images/open-window-pet-allergies.png',
+            category: 'Wellness'
+        },
         'blog/how-dog-allergies-work.html': {
             title: 'How Dog Allergies Work: The Science Behind Dog Allergies',
             image: 'assets/images/schnauzer.jpg',
