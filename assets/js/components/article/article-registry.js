@@ -115,6 +115,11 @@
             category: 'Home Decor',
             isOnIndex: true
         },
+        'blog/9-practical-storage-solutions-for-modern-homes.html': {
+            title: '9 Practical Storage Solutions for Modern Homes',
+            image: 'assets/images/practical-storage-solutions.png',
+            category: 'Home Decor'
+        },
         // Root level articles
         '11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html': {
             title: '\'I Literally Tried Everything\' - 11 Cheap Habits Cat Owners With Allergies Say Made the Biggest Difference',
