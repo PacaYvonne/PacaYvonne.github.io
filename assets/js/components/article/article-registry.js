@@ -120,6 +120,11 @@
             image: 'assets/images/practical-storage-solutions.png',
             category: 'Home Decor'
         },
+        'blog/keep-pet-hair-off-furniture.html': {
+            title: '5 Tips to Keep Pet Hair Off Your Furniture',
+            image: 'assets/images/keep-pet-hair-off-furniture.png',
+            category: 'Home Cleaning'
+        },
         // Root level articles
         '11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html': {
             title: '\'I Literally Tried Everything\' - 11 Cheap Habits Cat Owners With Allergies Say Made the Biggest Difference',
