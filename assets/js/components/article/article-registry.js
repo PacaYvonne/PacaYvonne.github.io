@@ -125,6 +125,11 @@
             image: 'assets/images/keep-pet-hair-off-furniture.png',
             category: 'Home Cleaning'
         },
+        'blog/where-to-clean-if-you-have-dust-allergies.html': {
+            title: 'Where to Clean If You Have Dust Allergies',
+            image: 'assets/images/where-to-clean.png',
+            category: 'Home Cleaning'
+        },
         // Root level articles
         '11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html': {
             title: '\'I Literally Tried Everything\' - 11 Cheap Habits Cat Owners With Allergies Say Made the Biggest Difference',
