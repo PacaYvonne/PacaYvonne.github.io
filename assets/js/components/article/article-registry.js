@@ -130,6 +130,11 @@
             image: 'assets/images/where-to-clean.png',
             category: 'Home Cleaning'
         },
+        'blog/why-do-pet-allergies-seem-worse-at-night.html': {
+            title: 'Why Do Pet Allergies Seem Worse at Night?',
+            image: 'assets/images/pet-allergies-night-hero.png',
+            category: 'Wellness'
+        },
         // Root level articles
         '11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html': {
             title: '\'I Literally Tried Everything\' - 11 Cheap Habits Cat Owners With Allergies Say Made the Biggest Difference',
