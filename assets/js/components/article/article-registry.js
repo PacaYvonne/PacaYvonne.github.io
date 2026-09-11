@@ -120,6 +120,11 @@
             image: 'assets/images/practical-storage-solutions.png',
             category: 'Home Decor'
         },
+        'blog/cat-items-that-work-with-your-home-decor.html': {
+            title: '5 Cat Items That Can Actually Work With Your Home Decor',
+            image: 'assets/images/cat-items-home-decor-hero.png',
+            category: 'Home Decor'
+        },
         'blog/keep-pet-hair-off-furniture.html': {
             title: '5 Tips to Keep Pet Hair Off Your Furniture',
             image: 'assets/images/keep-pet-hair-off-furniture.png',
