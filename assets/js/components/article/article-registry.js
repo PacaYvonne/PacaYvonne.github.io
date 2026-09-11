@@ -140,6 +140,11 @@
             image: 'assets/images/pet-allergies-night-hero.png',
             category: 'Wellness'
         },
+        'blog/how-to-make-a-kitchen-deep-clean-easier.html': {
+            title: 'How to Make a Kitchen Deep Clean Easier',
+            image: 'assets/images/kitchen-deep-clean-hero.png',
+            category: 'Home Cleaning'
+        },
         // Root level articles
         '11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html': {
             title: '\'I Literally Tried Everything\' - 11 Cheap Habits Cat Owners With Allergies Say Made the Biggest Difference',
