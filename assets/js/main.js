@@ -1713,7 +1713,7 @@ document.addEventListener('DOMContentLoaded', function () {
       tryInsert(0);
     })();
 
-  // Blog article mid-ad injection (Uber Eats + Etsy)
+  // Blog article mid-ad injection
   (function injectMidArticleAds() {
     const blogContents = document.querySelector('.blog-contents');
     if (!blogContents) return;
@@ -1727,18 +1727,6 @@ document.addEventListener('DOMContentLoaded', function () {
         headline: 'Hungry? Your next meal is one tap away.',
         body: 'Skip the cooking tonight. Get exclusive coupons on your first 3 orders — delivered fast, right to your door.',
         ctaText: 'Get Coupons',
-        ctaUrl: '#',
-        pageType: 'blog',
-        dark: true
-      },
-      {
-        slot: 'etsy',
-        backgroundImage: 'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=900&q=80',
-        logo: 'Etsy',
-        logoDark: '',
-        headline: 'Unique finds for your home, from makers you’ll love.',
-        body: 'Discover one-of-a-kind decor, organization, and gifts. Shop small and spruce up your space with pieces you won’t see everywhere else.',
-        ctaText: 'Shop Now',
         ctaUrl: '#',
         pageType: 'blog',
         dark: true
@@ -1763,11 +1751,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
       MID_ADS.forEach(function (cfg, index) {
         if (blogContents.querySelector('[data-ad-slot="' + cfg.slot + '"]')) return;
+        const adHtml = createAd(cfg);
+        if (!adHtml) return;
+
+        // Optional explicit mount: <div data-ad-before="uber-eats"></div>
+        const beforeMount = blogContents.querySelector('[data-ad-before="' + cfg.slot + '"]');
+        if (beforeMount) {
+          beforeMount.outerHTML = adHtml;
+          return;
+        }
+
         const firstUber = blogContents.querySelector('[data-ad-slot="uber-eats"]');
         const anchor = anchorForAdIndex(index, h2s, paras, firstUber);
-        const adHtml = createAd(cfg);
-        if (!adHtml || !anchor) return;
-        anchor.insertAdjacentHTML('afterend', adHtml);
+        if (!anchor) return;
+        const position = index === 0 ? 'beforebegin' : 'afterend';
+        anchor.insertAdjacentHTML(position, adHtml);
       });
     }
 
