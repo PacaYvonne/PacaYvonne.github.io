@@ -59,9 +59,19 @@
             image: 'assets/images/bedsheets.png',
             category: 'Home Cleaning'
         },
+        'blog/6-pet-allergens-hiding-places.html': {
+            title: 'The 6 Likely Places for Pet Allergens to Hide in Your Home',
+            image: 'assets/images/pet-allergens-hiding-hero.png',
+            category: 'Home Cleaning'
+        },
         'blog/best-hypoallergenic-dogs.html': {
             title: 'Best Hypoallergenic Dogs',
             image: 'assets/images/schnauzer.jpg',
+            category: 'Wellness'
+        },
+        'blog/can-opening-your-windows-make-pet-allergies-better-or-worse.html': {
+            title: 'Can Opening Your Windows Make Pet Allergies Better—or Worse?',
+            image: 'assets/images/open-window-pet-allergies.png',
             category: 'Wellness'
         },
         'blog/how-dog-allergies-work.html': {
@@ -104,6 +114,36 @@
             image: 'assets/images/adv_interior_mainimg.png',
             category: 'Home Decor',
             isOnIndex: true
+        },
+        'blog/9-practical-storage-solutions-for-modern-homes.html': {
+            title: '9 Practical Storage Solutions for Modern Homes',
+            image: 'assets/images/practical-storage-solutions.png',
+            category: 'Home Decor'
+        },
+        'blog/cat-items-that-work-with-your-home-decor.html': {
+            title: '5 Cat Items That Can Actually Work With Your Home Decor',
+            image: 'assets/images/cat-items-home-decor-hero.png',
+            category: 'Home Decor'
+        },
+        'blog/keep-pet-hair-off-furniture.html': {
+            title: '5 Tips to Keep Pet Hair Off Your Furniture',
+            image: 'assets/images/keep-pet-hair-off-furniture.png',
+            category: 'Home Cleaning'
+        },
+        'blog/where-to-clean-if-you-have-dust-allergies.html': {
+            title: 'Where to Clean If You Have Dust Allergies',
+            image: 'assets/images/where-to-clean.png',
+            category: 'Home Cleaning'
+        },
+        'blog/why-do-pet-allergies-seem-worse-at-night.html': {
+            title: 'Why Do Pet Allergies Seem Worse at Night?',
+            image: 'assets/images/pet-allergies-night-hero.png',
+            category: 'Wellness'
+        },
+        'blog/how-to-make-a-kitchen-deep-clean-easier.html': {
+            title: 'How to Make a Kitchen Deep Clean Easier',
+            image: 'assets/images/kitchen-deep-clean-hero.png',
+            category: 'Home Cleaning'
         },
         // Root level articles
         '11-cheap-habits-cat-owners-with-allergies-say-made-the-biggest-difference.html': {
