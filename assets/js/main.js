@@ -966,6 +966,38 @@ document.addEventListener('DOMContentLoaded', function () {
         return 'general';
       }
 
+      function pageSpecificThreads(pathname) {
+        const p = (pathname || '').toLowerCase();
+
+        if (/why-are-my-dust-allergies-still-bothering-me/.test(p)) {
+          return [
+            {
+              author: 'jess.m',
+              meta: '1 day ago · Portland',
+              body:
+                'This is literally me. I wash bedding on hot, vacuum constantly, run a purifier… and still wake up congested. I never thought “looking clean” and neutralizing allergens were different things.',
+              replies: []
+            },
+            {
+              author: 'derek.t',
+              meta: '10 hours ago · Chicago',
+              body:
+                'I almost bought another pricey HEPA vacuum before reading this. Glad I paused—sounds like I was chasing visible dust and missing what was left on the couch and mattress.',
+              replies: []
+            },
+            {
+              author: 'amina.r',
+              meta: '4 hours ago · Atlanta',
+              body:
+                'Quick question: if I already wash sheets weekly, where should I start misting first—bed, rugs, or the living room sofa? Trying the 4-step routine this weekend.',
+              replies: []
+            }
+          ];
+        }
+
+        return null;
+      }
+
       function threadPoolsForTopic(topicKey) {
         const editorReply = {
           author: 'CleanHomeHacks',
@@ -1253,11 +1285,79 @@ document.addEventListener('DOMContentLoaded', function () {
         return pools[topicKey] || pools.general;
       }
 
+      function parsePublishedDate() {
+        const nodes = document.querySelectorAll('.text-muted');
+        for (let i = 0; i < nodes.length; i++) {
+          const match = (nodes[i].textContent || '').match(/Published on\s+(.+)/i);
+          if (!match) continue;
+          const parsed = new Date(match[1].trim());
+          if (!isNaN(parsed.getTime())) return parsed;
+        }
+        return null;
+      }
+
+      function maxCommentDaysAgo(publishDate) {
+        if (!publishDate) return 14;
+        const msPerDay = 24 * 60 * 60 * 1000;
+        const today = new Date();
+        const startToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const startPublish = new Date(publishDate.getFullYear(), publishDate.getMonth(), publishDate.getDate());
+        return Math.max(0, Math.floor((startToday - startPublish) / msPerDay));
+      }
+
+      function keepMetaSuffix(meta) {
+        const parts = String(meta || '').split(' · ');
+        return parts.length > 1 ? ' · ' + parts.slice(1).join(' · ') : '';
+      }
+
+      function ageLabelForComment(idx, seed, maxDays) {
+        // Ages are always on/after publish day and never in the future
+        if (maxDays <= 0) {
+          const hours = [4, 9, 2][idx] ?? (2 + ((seed + idx) % 10));
+          return hours === 1 ? '1 hour ago' : `${hours} hours ago`;
+        }
+        if (maxDays === 1) {
+          return ['1 day ago', '10 hours ago', '4 hours ago'][idx] || '1 day ago';
+        }
+        if (maxDays === 2) {
+          return ['2 days ago', '1 day ago', '6 hours ago'][idx] || '1 day ago';
+        }
+        const daySpans = [
+          Math.min(2, maxDays),
+          Math.min(1, maxDays),
+          Math.min(4, maxDays)
+        ];
+        const days = daySpans[idx] ?? Math.min(1 + ((seed + idx) % Math.max(1, maxDays)), maxDays);
+        if (days <= 0) return '4 hours ago';
+        if (days === 1) return '1 day ago';
+        return `${days} days ago`;
+      }
+
+      function ageLabelForReply(parentIdx, maxDays) {
+        if (maxDays <= 0) return '1 hour ago';
+        if (maxDays === 1) return parentIdx === 0 ? '8 hours ago' : '2 hours ago';
+        return '1 day ago';
+      }
+
+      function withFreshMetas(thread, idx, seed, maxDays) {
+        const suffix = keepMetaSuffix(thread.meta);
+        const replies = (thread.replies || []).map(function (reply) {
+          return Object.assign({}, reply, {
+            meta: ageLabelForReply(idx, maxDays) + keepMetaSuffix(reply.meta)
+          });
+        });
+        return Object.assign({}, thread, {
+          meta: ageLabelForComment(idx, seed, maxDays) + suffix,
+          replies: replies
+        });
+      }
+
       function renderCommentThread(thread, idx, seed, topicKey) {
         const avatarUrl = avatars[(seed + idx) % avatars.length];
         const stableId = String(hashString(`${topicKey}|${thread.author || ''}|${thread.body || ''}`));
         const threadId = `${topicKey}-${stableId}`;
-        const baseLikes = 3 + ((seed + idx) % 19);
+        // Keep likes low; one of the three seeded comments always shows 0
+        const baseLikes = idx === 1 ? 0 : 1 + ((seed + idx) % 3);
         const replyHtml = (thread.replies || [])
           .map(function (reply, rIdx) {
             const replyAvatar = avatars[(seed + idx + rIdx + 2) % avatars.length];
@@ -1306,9 +1406,15 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       function renderSection(seed) {
-        const topicKey = inferCommentTopicKey(window.location.pathname);
-        const pool = threadPoolsForTopic(topicKey);
-        const chosen = pickUnique(pool, seed, 3);
+        const pathname = window.location.pathname;
+        const topicKey = inferCommentTopicKey(pathname);
+        const maxDays = maxCommentDaysAgo(parsePublishedDate());
+        const pageThreads = pageSpecificThreads(pathname);
+        const chosen = (pageThreads || pickUnique(threadPoolsForTopic(topicKey), seed, 3)).map(
+          function (t, idx) {
+            return withFreshMetas(t, idx, seed, maxDays);
+          }
+        );
         const list = chosen
           .map(function (t, idx) {
             return renderCommentThread(t, idx, seed, topicKey);
