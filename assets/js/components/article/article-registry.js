@@ -204,6 +204,12 @@
             category: 'Home Cleaning',
             isOnIndex: true
         },
+        'why-are-my-dust-allergies-still-bothering-me.html': {
+            title: 'I Vacuumed. I Washed My Bedding. So Why Are My Dust Allergies Still Bothering Me?',
+            image: 'assets/images/dust-allergies-hero.png',
+            category: 'Home Cleaning',
+            isOnIndex: true
+        },
         'pacagen-home-mist-spray.html': {
             title: 'Pacagen Home Mist Spray: The Science-Backed Way to Refresh Your Air',
             image: 'assets/images/adv_homemist_main.png',
