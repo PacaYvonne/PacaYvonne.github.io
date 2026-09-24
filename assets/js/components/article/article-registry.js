@@ -200,6 +200,12 @@
             category: 'Home Cleaning',
             isOnIndex: true
         },
+        'compared-4-popular-house-allergen-sprays.html': {
+            title: 'I Compared 4 Popular House Allergen Sprays — One Size Definitely Does Not Fit All',
+            image: 'assets/images/compared-4-products-hero.png',
+            category: 'Wellness',
+            isOnIndex: true
+        },
         'pacagen-home-mist-spray.html': {
             title: 'Pacagen Home Mist Spray: The Science-Backed Way to Refresh Your Air',
             image: 'assets/images/adv_homemist_main.png',
