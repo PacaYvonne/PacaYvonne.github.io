@@ -140,6 +140,16 @@
             image: 'assets/images/pet-allergies-night-hero.png',
             category: 'Wellness'
         },
+        'blog/are-hypoallergenic-pets-actually-hypoallergenic.html': {
+            title: 'Are Hypoallergenic Pets Actually Hypoallergenic?',
+            image: 'assets/images/hypoallergenic-pets-hero.png',
+            category: 'Wellness'
+        },
+        'blog/pet-hair-dander-and-allergens.html': {
+            title: 'Pet Hair, Dander and Allergens: What You Should Actually Be Cleaning',
+            image: 'assets/images/pet-hair-dander-allergens-hero.png',
+            category: 'Home Cleaning'
+        },
         'blog/how-to-make-a-kitchen-deep-clean-easier.html': {
             title: 'How to Make a Kitchen Deep Clean Easier',
             image: 'assets/images/kitchen-deep-clean-hero.png',
