@@ -1,5 +1,167 @@
 // Main JavaScript file for Clean Home Hacks
 
+// ---------------------------------------------------------------------------
+// Outbound `path_source` attribution
+//
+// Any time a visitor leaves this site for one of the main brand domains
+// (Pacagen, Reyou, Wildtype — including subdomains / variants such as
+// wildtypefoods.com), append ?path_source=<current page path> so the
+// destination can tell which page sent them. The value is the URL path
+// without the leading slash or the .html extension, e.g.
+//   /compared-4-popular-house-allergen-sprays.html
+//     -> "compared-4-popular-house-allergen-sprays"
+//   /blog/how-dust-allergies-work.html -> "blog/how-dust-allergies-work"
+//   / (or /index.html)                 -> "index"
+// ---------------------------------------------------------------------------
+(function setupOutboundPathSource() {
+  var TARGET_BRAND_TOKENS = ["pacagen", "reyou", "wildtype"];
+
+  function getPathSource() {
+    var path = window.location.pathname || "";
+    path = path.replace(/^\/+/, "").replace(/\/+$/, "");
+    path = path.replace(/\.html?$/i, "");
+    return path || "index";
+  }
+
+  function isTargetHost(hostname) {
+    if (!hostname) return false;
+    var host = String(hostname).toLowerCase();
+    return TARGET_BRAND_TOKENS.some(function (token) {
+      return host.indexOf(token) !== -1;
+    });
+  }
+
+  function decorateOutboundUrl(rawUrl) {
+    if (!rawUrl || typeof rawUrl !== "string") return null;
+    var trimmed = rawUrl.trim();
+    if (!trimmed || trimmed.charAt(0) === "#") return null;
+    if (/^(javascript|mailto|tel|data|blob):/i.test(trimmed)) return null;
+    var url;
+    try {
+      url = new URL(trimmed, window.location.href);
+    } catch (e) {
+      return null;
+    }
+    if (url.protocol !== "http:" && url.protocol !== "https:") return null;
+    if (!isTargetHost(url.hostname)) return null;
+    url.searchParams.set("path_source", getPathSource());
+    return url.toString();
+  }
+
+  // Exposed so inline helpers (and debugging) can reuse the same logic.
+  window.__chhGetPathSource = getPathSource;
+  window.__chhDecorateOutboundUrl = decorateOutboundUrl;
+
+  function decorateAnchor(anchor) {
+    if (!anchor || !anchor.getAttribute) return;
+    var href = anchor.getAttribute("href");
+    if (!href) return;
+    var decorated = decorateOutboundUrl(href);
+    if (decorated && anchor.href !== decorated) {
+      anchor.setAttribute("href", decorated);
+    }
+  }
+
+  function decorateAnchorsIn(root) {
+    if (!root || !root.querySelectorAll) return;
+    if (root.nodeType === 1 && root.matches && root.matches("a[href]")) {
+      decorateAnchor(root);
+    }
+    root.querySelectorAll("a[href]").forEach(decorateAnchor);
+  }
+
+  // Wrap the legacy global `f(url)` redirect helper (defined inline on many
+  // pages) so Pacagen links reached via onclick="f('...')" also carry the
+  // parameter. Inline scripts run before this deferred file, so `f` is
+  // already defined here; the DOMContentLoaded re-check covers any page
+  // that defines it later.
+  function wrapGlobalF() {
+    var original = window.f;
+    if (typeof original !== "function" || original.__pathSourceWrapped) {
+      return;
+    }
+    var wrapped = function (baseUrl) {
+      var decorated =
+        typeof baseUrl === "string" ? decorateOutboundUrl(baseUrl) : null;
+      var args = Array.prototype.slice.call(arguments);
+      if (decorated) args[0] = decorated;
+      return original.apply(this, args);
+    };
+    wrapped.__pathSourceWrapped = true;
+    window.f = wrapped;
+  }
+  wrapGlobalF();
+
+  // Rewrite the destination at click time (capture phase, before the
+  // browser follows the link). This covers anchors added after load that
+  // the MutationObserver has not processed yet, plus middle-clicks via
+  // auxclick.
+  function onOutboundClick(event) {
+    var target = event.target;
+    if (!target || !target.closest) return;
+
+    // "Shop Now" buttons are plain <div>s whose inline JS handler jumps
+    // straight to a hard-coded product URL — there is no anchor to rewrite.
+    // Send them to the (decorated) product link in the same showcase.
+    var shopButton = target.closest(".shop-now-button");
+    if (shopButton && !target.closest("a")) {
+      var wrapper =
+        shopButton.closest(".product-showcase-wrapper") ||
+        shopButton.parentElement;
+      var showcaseLink = wrapper
+        ? wrapper.querySelector("a[href]")
+        : null;
+      var shopDestination = showcaseLink
+        ? decorateOutboundUrl(showcaseLink.getAttribute("href"))
+        : null;
+      if (shopDestination) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+        window.location.href = shopDestination;
+      }
+      return;
+    }
+
+    var link = target.closest("a[href]");
+    if (link) decorateAnchor(link);
+  }
+  document.addEventListener("click", onOutboundClick, true);
+  document.addEventListener("auxclick", onOutboundClick, true);
+
+  function init() {
+    wrapGlobalF();
+    decorateAnchorsIn(document);
+
+    // Product cards / showcases are injected after load; keep any anchors
+    // they add decorated as well.
+    if (window.MutationObserver && document.body) {
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          mutation.addedNodes.forEach(function (node) {
+            if (node.nodeType === 1) decorateAnchorsIn(node);
+          });
+          if (mutation.type === "attributes") {
+            decorateAnchor(mutation.target);
+          }
+        });
+      });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["href"],
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
 function ensureChhFonts() {
   if (document.querySelector("link[data-chh-fonts]")) {
     return;

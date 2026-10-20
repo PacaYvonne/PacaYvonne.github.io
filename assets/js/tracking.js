@@ -27,6 +27,26 @@
         if (typeof cvg !== 'undefined') {
             cvg({ method: "track", eventName: "HealthPetInsiderPacagenClick" });
         }
+
+        // Carry the source page path to the destination (see main.js).
+        if (typeof window.__chhDecorateOutboundUrl === 'function') {
+            baseUrl = window.__chhDecorateOutboundUrl(baseUrl) || baseUrl;
+        } else if (typeof baseUrl === 'string') {
+            try {
+                const outbound = new URL(baseUrl, window.location.href);
+                const host = outbound.hostname.toLowerCase();
+                if (['pacagen', 'reyou', 'wildtype'].some((token) => host.includes(token))) {
+                    const path = window.location.pathname
+                        .replace(/^\/+/, '')
+                        .replace(/\/+$/, '')
+                        .replace(/\.html?$/i, '') || 'index';
+                    outbound.searchParams.set('path_source', path);
+                    baseUrl = outbound.toString();
+                }
+            } catch (e) {
+                // Leave baseUrl untouched if it cannot be parsed.
+            }
+        }
         
         // Get cookie values
         let uid = getCookie('__cvg_uid');
