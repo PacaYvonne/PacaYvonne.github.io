@@ -1,27 +1,309 @@
 // Main JavaScript file for Clean Home Hacks
 
 // ---------------------------------------------------------------------------
-// Outbound `path_source` attribution
+// Traffic attribution capture + outbound forwarding (Clean Home Hacks)
 //
-// Any time a visitor leaves this site for one of the main brand domains
-// (Pacagen, Reyou, Wildtype — including subdomains / variants such as
-// wildtypefoods.com), append ?path_source=<current page path> so the
-// destination can tell which page sent them. The value is the URL path
-// without the leading slash or the .html extension, e.g.
-//   /compared-4-popular-house-allergen-sprays.html
-//     -> "compared-4-popular-house-allergen-sprays"
-//   /blog/how-dust-allergies-work.html -> "blog/how-dust-allergies-work"
-//   / (or /index.html)                 -> "index"
+// On landing, valid traffic parameters are captured once into a single
+// attribution record (localStorage -> first-party cookie -> in-memory,
+// 30-day expiry). Whenever a visitor leaves for a main brand domain, the
+// persisted parameters are appended to the destination URL.
+//
+// path_source: the slug of the page the visitor originally landed on
+// (route/file name without extension, "index" for the homepage), captured
+// once and never recomputed from later pages. A valid incoming
+// ?path_source= value is kept verbatim instead of generating one.
+//
+// utm_source remapping: the visitor's original utm_source is persisted but
+// forwarded as `channel`; outbound main-domain URLs always carry
+// utm_source=chh ("Clean Home Hacks").
+//
+// Main domains are identified by brand token in the hostname (Pacagen,
+// Reyou, Wildtype — including subdomains/variants such as
+// wildtypefoods.com). The only main domain actually linked in this repo
+// today is pacagen.com (www.pacagen.com / pacagen.com).
 // ---------------------------------------------------------------------------
-(function setupOutboundPathSource() {
+(function setupAttribution() {
+  var STORAGE_KEY = "chh:attribution";
+  var COOKIE_NAME = "chh_attribution";
+  var TTL_MS = 30 * 24 * 60 * 60 * 1000;
+  var SITE_UTM_SOURCE = "chh"; // Clean Home Hacks
   var TARGET_BRAND_TOKENS = ["pacagen", "reyou", "wildtype"];
 
-  function getPathSource() {
-    var path = window.location.pathname || "";
-    path = path.replace(/^\/+/, "").replace(/\/+$/, "");
-    path = path.replace(/\.html?$/i, "");
+  // Parameters captured from the landing URL (path_source handled too).
+  var CAPTURE_KEYS = [
+    "tw_source",
+    "tw_adid",
+    "cvg_source",
+    "cvg_adid",
+    "cvg_cid",
+    "fbclid",
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+    "utm_id",
+    "campaign_id",
+    "ad_id",
+  ];
+  // A differing value for any of these means a genuinely new ad visit.
+  var AD_IDENTIFIER_KEYS = [
+    "fbclid",
+    "tw_adid",
+    "cvg_adid",
+    "cvg_cid",
+    "utm_id",
+    "campaign_id",
+    "ad_id",
+  ];
+  // Order used when appending to outbound URLs.
+  var FORWARD_ORDER = [
+    "path_source",
+    "tw_source",
+    "tw_adid",
+    "cvg_source",
+    "cvg_adid",
+    "cvg_cid",
+    "fbclid",
+    "utm_source", // always SITE_UTM_SOURCE; original goes to `channel`
+    "channel",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+    "utm_id",
+    "campaign_id",
+    "ad_id",
+  ];
+
+  var memoryRecord = null;
+
+  // --- Validation -----------------------------------------------------------
+
+  // Unresolved ad macros ("{{ad.id}}", "{{campaign.id}}",
+  // "{{site_source_name}}", percent-encoded forms) are never valid.
+  function isValidValue(value) {
+    if (value === null || value === undefined) return false;
+    var text = String(value).trim();
+    if (!text) return false;
+    var decoded = text;
+    for (var i = 0; i < 3; i++) {
+      try {
+        var next = decodeURIComponent(decoded);
+        if (next === decoded) break;
+        decoded = next;
+      } catch (e) {
+        break;
+      }
+    }
+    if (decoded.indexOf("{{") !== -1 && decoded.indexOf("}}") !== -1) {
+      return false;
+    }
+    return true;
+  }
+
+  // --- path_source ----------------------------------------------------------
+
+  function getPathSource(pathname) {
+    var path = pathname != null ? pathname : window.location.pathname || "";
+    path = String(path)
+      .replace(/^\/+/, "")
+      .replace(/\/+$/, "")
+      .replace(/\.html?$/i, "");
     return path || "index";
   }
+
+  // --- Storage (localStorage -> cookie -> memory) ---------------------------
+
+  function writeLocalStorage(record) {
+    try {
+      var raw = JSON.stringify(record);
+      window.localStorage.setItem(STORAGE_KEY, raw);
+      return window.localStorage.getItem(STORAGE_KEY) === raw;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function readLocalStorage() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function clearLocalStorage() {
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+      /* storage blocked */
+    }
+  }
+
+  function writeCookie(record) {
+    try {
+      var expires = new Date(record.expiresAt || Date.now() + TTL_MS);
+      var cookie =
+        COOKIE_NAME +
+        "=" +
+        encodeURIComponent(JSON.stringify(record)) +
+        "; expires=" +
+        expires.toUTCString() +
+        "; path=/; SameSite=Lax";
+      if (window.location.protocol === "https:") cookie += "; Secure";
+      document.cookie = cookie;
+      return readCookie() !== null;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function readCookie() {
+    try {
+      var prefix = COOKIE_NAME + "=";
+      var parts = document.cookie ? document.cookie.split(";") : [];
+      for (var i = 0; i < parts.length; i++) {
+        var part = parts[i].trim();
+        if (part.indexOf(prefix) === 0) {
+          return JSON.parse(decodeURIComponent(part.slice(prefix.length)));
+        }
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function clearCookie() {
+    try {
+      document.cookie =
+        COOKIE_NAME + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    } catch (e) {
+      /* cookies blocked */
+    }
+  }
+
+  function saveAttribution(record) {
+    memoryRecord = record;
+    if (writeLocalStorage(record)) {
+      clearCookie();
+    } else if (!writeCookie(record)) {
+      // Both persistent stores blocked: memoryRecord above is the fallback.
+    }
+    return record;
+  }
+
+  function clearAttribution() {
+    memoryRecord = null;
+    clearLocalStorage();
+    clearCookie();
+  }
+
+  function loadAttribution(now) {
+    var at = typeof now === "number" ? now : Date.now();
+    var record = memoryRecord || readLocalStorage() || readCookie();
+    if (!record || !record.params || typeof record.params !== "object") {
+      return null;
+    }
+    if (
+      typeof record.expiresAt !== "number" ||
+      at >= record.expiresAt ||
+      (record.capturedAt && at < record.capturedAt - TTL_MS)
+    ) {
+      clearAttribution();
+      return null;
+    }
+    // Drop any invalid values that may have been stored by older code.
+    Object.keys(record.params).forEach(function (key) {
+      if (!isValidValue(record.params[key])) delete record.params[key];
+    });
+    return record;
+  }
+
+  // --- Capture ---------------------------------------------------------------
+
+  // source (optional, for reuse/testing): { search, pathname } or a query
+  // string. Defaults to the current page URL.
+  function captureAttribution(source) {
+    var search = window.location.search || "";
+    var pathname = window.location.pathname || "";
+    if (typeof source === "string") {
+      search = source;
+    } else if (source && typeof source === "object") {
+      if (typeof source.search === "string") search = source.search;
+      if (typeof source.pathname === "string") pathname = source.pathname;
+    }
+
+    var query = new URLSearchParams(
+      search.charAt(0) === "?" ? search.slice(1) : search,
+    );
+    var incoming = {};
+    CAPTURE_KEYS.forEach(function (key) {
+      var value = query.get(key);
+      if (isValidValue(value)) incoming[key] = String(value).trim();
+    });
+    var incomingPathSource = query.get("path_source");
+    var hasIncomingPathSource = isValidValue(incomingPathSource);
+    if (hasIncomingPathSource) {
+      incomingPathSource = String(incomingPathSource).trim();
+    }
+
+    var now = Date.now();
+    var stored = loadAttribution(now);
+
+    if (!stored) {
+      var freshParams = Object.assign({}, incoming);
+      freshParams.path_source = hasIncomingPathSource
+        ? incomingPathSource
+        : getPathSource(pathname);
+      return saveAttribution({
+        params: freshParams,
+        capturedAt: now,
+        expiresAt: now + TTL_MS,
+      });
+    }
+
+    var isNewAdVisit = AD_IDENTIFIER_KEYS.some(function (key) {
+      return (
+        incoming[key] &&
+        stored.params[key] &&
+        incoming[key] !== stored.params[key]
+      );
+    });
+
+    if (isNewAdVisit) {
+      var replacementParams = Object.assign({}, incoming);
+      replacementParams.path_source = hasIncomingPathSource
+        ? incomingPathSource
+        : getPathSource(pathname);
+      return saveAttribution({
+        params: replacementParams,
+        capturedAt: now,
+        expiresAt: now + TTL_MS,
+      });
+    }
+
+    // Same visit: merge valid new values; missing/empty/invalid values
+    // never overwrite stored ones. path_source is only replaced by an
+    // explicitly supplied valid value, never recomputed from this page.
+    var mergedParams = Object.assign({}, stored.params, incoming);
+    if (hasIncomingPathSource) {
+      mergedParams.path_source = incomingPathSource;
+    }
+    var merged = {
+      params: mergedParams,
+      capturedAt: stored.capturedAt || now,
+      expiresAt: stored.expiresAt || now + TTL_MS,
+    };
+    var changed =
+      JSON.stringify(merged.params) !== JSON.stringify(stored.params);
+    if (changed) saveAttribution(merged);
+    return merged;
+  }
+
+  // --- Outbound URL building --------------------------------------------------
 
   function isTargetHost(hostname) {
     if (!hostname) return false;
@@ -31,7 +313,22 @@
     });
   }
 
-  function decorateOutboundUrl(rawUrl) {
+  function isMainDomain(rawUrl) {
+    if (!rawUrl || typeof rawUrl !== "string") return false;
+    try {
+      var url = new URL(rawUrl.trim(), window.location.href);
+      return (
+        (url.protocol === "http:" || url.protocol === "https:") &&
+        isTargetHost(url.hostname)
+      );
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // buildOutboundUrl(rawUrl, recordOverride?) -> decorated URL string, or
+  // null when rawUrl is not a main-domain http(s) destination.
+  function buildOutboundUrl(rawUrl, recordOverride) {
     if (!rawUrl || typeof rawUrl !== "string") return null;
     var trimmed = rawUrl.trim();
     if (!trimmed || trimmed.charAt(0) === "#") return null;
@@ -44,25 +341,54 @@
     }
     if (url.protocol !== "http:" && url.protocol !== "https:") return null;
     if (!isTargetHost(url.hostname)) return null;
-    url.searchParams.set("path_source", getPathSource());
+
+    var record =
+      recordOverride !== undefined
+        ? recordOverride
+        : loadAttribution() || captureAttribution();
+    var params = (record && record.params) || {};
+
+    var values = {};
+    if (isValidValue(params.path_source)) {
+      values.path_source = params.path_source;
+    } else {
+      values.path_source = getPathSource();
+    }
+    CAPTURE_KEYS.forEach(function (key) {
+      if (key === "utm_source") return; // remapped below
+      if (isValidValue(params[key])) values[key] = params[key];
+    });
+    values.utm_source = SITE_UTM_SOURCE;
+    if (isValidValue(params.utm_source)) {
+      values.channel = params.utm_source;
+    }
+
+    // URLSearchParams.set updates existing keys in place (no duplicates)
+    // and preserves the destination's other params and fragment.
+    FORWARD_ORDER.forEach(function (key) {
+      if (values[key] !== undefined) url.searchParams.set(key, values[key]);
+    });
     return url.toString();
   }
 
-  // Exposed so inline helpers (and debugging) can reuse the same logic.
-  window.__chhGetPathSource = getPathSource;
-  window.__chhDecorateOutboundUrl = decorateOutboundUrl;
+  // Backwards-compatible name used by existing code/pages.
+  function decorateOutboundUrl(rawUrl) {
+    return buildOutboundUrl(rawUrl);
+  }
+
+  // --- Link tagging -------------------------------------------------------------
 
   function decorateAnchor(anchor) {
     if (!anchor || !anchor.getAttribute) return;
     var href = anchor.getAttribute("href");
     if (!href) return;
-    var decorated = decorateOutboundUrl(href);
+    var decorated = buildOutboundUrl(href);
     if (decorated && anchor.href !== decorated) {
       anchor.setAttribute("href", decorated);
     }
   }
 
-  function decorateAnchorsIn(root) {
+  function tagLinks(root) {
     if (!root || !root.querySelectorAll) return;
     if (root.nodeType === 1 && root.matches && root.matches("a[href]")) {
       decorateAnchor(root);
@@ -71,22 +397,23 @@
   }
 
   // Wrap the legacy global `f(url)` redirect helper (defined inline on many
-  // pages) so Pacagen links reached via onclick="f('...')" also carry the
-  // parameter. Inline scripts run before this deferred file, so `f` is
-  // already defined here; the DOMContentLoaded re-check covers any page
-  // that defines it later.
+  // pages) so links reached via onclick="f('...')" also carry the
+  // parameters. Inline scripts run before this deferred file, so `f` is
+  // already defined here; init() re-checks for later definitions.
   function wrapGlobalF() {
     var original = window.f;
-    if (typeof original !== "function" || original.__pathSourceWrapped) {
+    if (typeof original !== "function" || original.__attributionWrapped) {
       return;
     }
     var wrapped = function (baseUrl) {
       var decorated =
-        typeof baseUrl === "string" ? decorateOutboundUrl(baseUrl) : null;
+        typeof baseUrl === "string" ? buildOutboundUrl(baseUrl) : null;
       var args = Array.prototype.slice.call(arguments);
       if (decorated) args[0] = decorated;
       return original.apply(this, args);
     };
+    wrapped.__attributionWrapped = true;
+    // Keep the marker previous code used so nothing wraps twice.
     wrapped.__pathSourceWrapped = true;
     window.f = wrapped;
   }
@@ -94,25 +421,24 @@
 
   // Rewrite the destination at click time (capture phase, before the
   // browser follows the link). This covers anchors added after load that
-  // the MutationObserver has not processed yet, plus middle-clicks via
-  // auxclick.
+  // the MutationObserver has not processed yet, plus modified/middle
+  // clicks via auxclick. Hrefs are also pre-tagged so cmd/ctrl-click and
+  // "copy link" carry the parameters too.
   function onOutboundClick(event) {
     var target = event.target;
     if (!target || !target.closest) return;
 
     // "Shop Now" buttons are plain <div>s whose inline JS handler jumps
     // straight to a hard-coded product URL — there is no anchor to rewrite.
-    // Send them to the (decorated) product link in the same showcase.
+    // Send them to the (built) product link in the same showcase.
     var shopButton = target.closest(".shop-now-button");
     if (shopButton && !target.closest("a")) {
       var wrapper =
         shopButton.closest(".product-showcase-wrapper") ||
         shopButton.parentElement;
-      var showcaseLink = wrapper
-        ? wrapper.querySelector("a[href]")
-        : null;
+      var showcaseLink = wrapper ? wrapper.querySelector("a[href]") : null;
       var shopDestination = showcaseLink
-        ? decorateOutboundUrl(showcaseLink.getAttribute("href"))
+        ? buildOutboundUrl(showcaseLink.getAttribute("href"))
         : null;
       if (shopDestination) {
         event.preventDefault();
@@ -129,17 +455,45 @@
   document.addEventListener("click", onOutboundClick, true);
   document.addEventListener("auxclick", onOutboundClick, true);
 
+  // SPA-style navigation: re-capture on history changes. Merging rules
+  // guarantee path_source/params from the original landing are preserved
+  // when the new route carries no parameters.
+  function onRouteChange() {
+    captureAttribution();
+    tagLinks(document);
+  }
+  ["pushState", "replaceState"].forEach(function (method) {
+    var original =
+      window.history && window.history[method];
+    if (typeof original !== "function" || original.__attributionWrapped) {
+      return;
+    }
+    var wrappedHistory = function () {
+      var result = original.apply(this, arguments);
+      try {
+        onRouteChange();
+      } catch (e) {
+        /* never break navigation */
+      }
+      return result;
+    };
+    wrappedHistory.__attributionWrapped = true;
+    window.history[method] = wrappedHistory;
+  });
+  window.addEventListener("popstate", onRouteChange);
+
   function init() {
     wrapGlobalF();
-    decorateAnchorsIn(document);
+    captureAttribution();
+    tagLinks(document);
 
     // Product cards / showcases are injected after load; keep any anchors
-    // they add decorated as well.
+    // they add tagged as well.
     if (window.MutationObserver && document.body) {
       var observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
           mutation.addedNodes.forEach(function (node) {
-            if (node.nodeType === 1) decorateAnchorsIn(node);
+            if (node.nodeType === 1) tagLinks(node);
           });
           if (mutation.type === "attributes") {
             decorateAnchor(mutation.target);
@@ -155,11 +509,37 @@
     }
   }
 
+  // Capture as early as this deferred script runs so the landing record
+  // exists even if the visitor clicks out before DOMContentLoaded handlers.
+  captureAttribution();
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
+
+  // Public, reusable utility (also used by assets/js/tracking.js).
+  window.CHHAttribution = {
+    STORAGE_KEY: STORAGE_KEY,
+    COOKIE_NAME: COOKIE_NAME,
+    TTL_MS: TTL_MS,
+    SITE_UTM_SOURCE: SITE_UTM_SOURCE,
+    CAPTURE_KEYS: CAPTURE_KEYS.slice(),
+    AD_IDENTIFIER_KEYS: AD_IDENTIFIER_KEYS.slice(),
+    captureAttribution: captureAttribution,
+    loadAttribution: loadAttribution,
+    saveAttribution: saveAttribution,
+    clearAttribution: clearAttribution,
+    buildOutboundUrl: buildOutboundUrl,
+    isMainDomain: isMainDomain,
+    isValidValue: isValidValue,
+    getPathSource: getPathSource,
+    tagLinks: tagLinks,
+  };
+  // Backwards-compatible aliases from the path_source-only version.
+  window.__chhGetPathSource = getPathSource;
+  window.__chhDecorateOutboundUrl = decorateOutboundUrl;
 })();
 
 function ensureChhFonts() {

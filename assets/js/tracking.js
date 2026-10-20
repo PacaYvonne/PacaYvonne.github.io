@@ -28,24 +28,13 @@
             cvg({ method: "track", eventName: "HealthPetInsiderPacagenClick" });
         }
 
-        // Carry the source page path to the destination (see main.js).
-        if (typeof window.__chhDecorateOutboundUrl === 'function') {
+        // Forward persisted attribution to main-domain destinations via
+        // the central utility in main.js (capture/load/build/tag). It
+        // appends path_source + traffic params and remaps utm_source.
+        if (typeof window.CHHAttribution === 'object' && typeof window.CHHAttribution.buildOutboundUrl === 'function') {
+            baseUrl = window.CHHAttribution.buildOutboundUrl(baseUrl) || baseUrl;
+        } else if (typeof window.__chhDecorateOutboundUrl === 'function') {
             baseUrl = window.__chhDecorateOutboundUrl(baseUrl) || baseUrl;
-        } else if (typeof baseUrl === 'string') {
-            try {
-                const outbound = new URL(baseUrl, window.location.href);
-                const host = outbound.hostname.toLowerCase();
-                if (['pacagen', 'reyou', 'wildtype'].some((token) => host.includes(token))) {
-                    const path = window.location.pathname
-                        .replace(/^\/+/, '')
-                        .replace(/\/+$/, '')
-                        .replace(/\.html?$/i, '') || 'index';
-                    outbound.searchParams.set('path_source', path);
-                    baseUrl = outbound.toString();
-                }
-            } catch (e) {
-                // Leave baseUrl untouched if it cannot be parsed.
-            }
         }
         
         // Get cookie values
